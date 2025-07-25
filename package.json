@@ -1,0 +1,29 @@
+{
+  "name": "playwright-ts-qa-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "PWDEBUG=1 npx playwright test",
+    "posttest": "npx ts-node tools/formatJUnitReport.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/xml2js": "^0.4.14",
+    "ts-node": "^10.9.2",
+    "typescipt": "^1.0.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "xml2js": "^0.6.2"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "weeklyRelease": {
+    "ALD": "ALD 12.3.2.0"
+  },
+  "dateFormat": {
+    "fulldate": "07/13/2025",
+    "date": "13"
+  },
+  "projectManagers": {
+    "Gadge_Praful": "Gadge, Praful"
+  },
+  "ProductionDashboard": {
+    "Production_StartDate": "07/13/2025",
+    "Production_EndDate": "07/20/2025",
+    "Production_Release": "QALink"
+  },
+
+  "editorText": {
+    "editorText": "Sample note text",
+    "enterText": "Completed regression testing."
+  },
+  "editorDate": {
+    "Date": "20",
+    "fulldate": "07/20/2025"
+  },
+  "tips": {
+    "tips": "Tips",
+    "tipsText": "text=Tips text",
+    "tipsCategory": "text=Tips Category",
+    "tipTitle": "The instruction to reload Windchill base data",
+    "editTip": "Edit the tip - The instruction to reload Windchill base data",
+    "enterText": "This is a sample tip text for testing purposes.",
+    "tipUpdate": "Tips Update",
+    "tipUpdateText": "This is a sample tip text for testing purposes. Updated."
+  }
+}

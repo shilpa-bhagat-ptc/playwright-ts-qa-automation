@@ -1,0 +1,15 @@
+# Playwright artifacts
+screenshots/
+test-results/
+reports/html-report/
+allure-report/
+allure-results/
+allure-report/
+
+# Node dependencies
+node_modules/
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
+.vscode/
