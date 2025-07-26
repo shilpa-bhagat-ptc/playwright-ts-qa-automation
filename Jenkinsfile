@@ -8,6 +8,7 @@ pipeline {
 		git url: 'https://github.com/shilpa-bhagat-ptc/playwright-ts-qa-automation.git'
 	  }
 	}
+  }
 	stage('Install Dependencies') {
 	  steps {
 		sh 'npm ci'
