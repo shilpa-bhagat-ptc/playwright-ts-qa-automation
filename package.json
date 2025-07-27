@@ -18,12 +18,14 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.54.1",
+    "@types/uuid": "^10.0.0",
     "@types/xml2js": "^0.4.14",
     "ts-node": "^10.9.2",
     "typescipt": "^1.0.0"
   },
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
+    "uuid": "^11.1.0",
     "xml2js": "^0.6.2"
   }
 }

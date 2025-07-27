@@ -11,36 +11,78 @@ const outputPath = path.resolve(
   "../reports/test-results/formatted-test-results.xml"
 );
 
+// Format time in 0d 0h Xm Ys
+function formatSecondsToHMS(totalSeconds: number): string {
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = Math.floor(totalSeconds % 60);
+  return `0d 0h ${mins}m ${secs}s`;
+}
+
 export async function formatXml() {
   try {
     const rawXml = fs.readFileSync(inputPath, "utf-8");
     const parsed = await parseStringPromise(rawXml);
 
-    let testsuite;
+    const testcases: any[] = [];
+    let totalTests = 0;
+    let totalFailures = 0;
+    let totalSkipped = 0;
+    let totalTime = 0;
+    let hostname = "localhost";
+    let timestamp = new Date().toISOString();
 
-    if (parsed.testsuites?.testsuite?.length) {
-      testsuite = parsed.testsuites.testsuite[0];
-    } else if (parsed.testsuite) {
-      testsuite = parsed.testsuite;
-    } else {
-      throw new Error("No <testsuite> found in XML.");
-    }
+    const suiteList = parsed.testsuites?.testsuite || [parsed.testsuite];
 
-    for (const testcase of testsuite.testcase || []) {
-      delete testcase["system-out"];
+    for (const suite of suiteList) {
+      const suiteTestcases = suite.testcase || [];
+      totalTests += suite.$?.tests
+        ? parseInt(suite.$.tests)
+        : suiteTestcases.length;
+      totalFailures += parseInt(suite.$.failures || "0");
+      totalSkipped += parseInt(suite.$.skipped || "0");
+      hostname = suite.$.hostname || hostname;
+      timestamp = suite.$.timestamp || timestamp;
 
-      if (testcase.failure) {
-        testcase.failure = testcase.failure.map((fail: any) => ({
-          $: fail.$,
-        }));
+      for (const testcase of suiteTestcases) {
+        delete testcase["system-out"];
+        const timeSeconds = parseFloat(testcase.$.time || "0");
+        totalTime += timeSeconds;
+
+        testcases.push({
+          $: {
+            classname: testcase.$.classname,
+            name: testcase.$.name,
+            time: formatSecondsToHMS(timeSeconds),
+          },
+        });
       }
     }
 
-    const builder = new Builder({ headless: true });
-    const outputXml = builder.buildObject({ testsuite });
+    const formatted = {
+      testsuite: {
+        $: {
+          name: "Suite1",
+          hostname,
+          timestamp,
+          tests: totalTests.toString(),
+          failures: totalFailures.toString(),
+          skipped: totalSkipped.toString(),
+          time: formatSecondsToHMS(totalTime),
+        },
+        testcase: testcases,
+      },
+    };
 
+    const builder = new Builder({ headless: true });
+    const outputXml = builder.buildObject(formatted);
     fs.writeFileSync(outputPath, outputXml);
-    console.log("✅ Hector-compatible JUnit XML written to:", outputPath);
+
+    console.log(
+      "✅ Final formatted XML written with",
+      testcases.length,
+      "test cases →",
+      outputPath
+    );
   } catch (err) {
     console.error("❌ Error formatting XML:", err);
   }
