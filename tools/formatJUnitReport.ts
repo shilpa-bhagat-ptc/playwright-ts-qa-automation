@@ -2,16 +2,36 @@ import * as fs from "fs";
 import * as path from "path";
 import { Builder, parseStringPromise } from "xml2js";
 
+// Format seconds into "0d 0h Xm Ys"
 function formatSecondsToHMS(totalSeconds: number): string {
   const mins = Math.floor(totalSeconds / 60);
   const secs = Math.floor(totalSeconds % 60);
   return `0d 0h ${mins}m ${secs}s`;
 }
 
-export async function formatXml(inputPath: string, outputPath: string) {
+export async function formatXml(
+  inputPath: string = path.resolve(__dirname, "../reports/test-results/test-results.xml"),
+  outputPath: string = path.resolve(__dirname, "../reports/test-results/formatted-test-results.xml")
+) {
   try {
+    if (!fs.existsSync(inputPath)) {
+      console.warn("⚠️ Input XML file not found →", inputPath);
+      return;
+    }
+
     const rawXml = fs.readFileSync(inputPath, "utf-8");
     const parsed = await parseStringPromise(rawXml);
+
+    let suiteList: any[] = [];
+
+    if (parsed.testsuite) {
+      suiteList = [parsed.testsuite];
+    } else if (parsed.testsuites?.testsuite) {
+      suiteList = parsed.testsuites.testsuite;
+    } else {
+      console.warn("⚠️ No <testsuite> found in XML. Skipping formatting.");
+      return;
+    }
 
     const testcases: any[] = [];
     let totalTests = 0;
@@ -20,8 +40,6 @@ export async function formatXml(inputPath: string, outputPath: string) {
     let totalTime = 0;
     let hostname = "localhost";
     let timestamp = new Date().toISOString();
-
-    const suiteList = parsed.testsuites?.testsuite || [parsed.testsuite];
 
     for (const suite of suiteList) {
       const suiteTestcases = suite.testcase || [];
@@ -34,17 +52,23 @@ export async function formatXml(inputPath: string, outputPath: string) {
       timestamp = suite.$.timestamp || timestamp;
 
       for (const testcase of suiteTestcases) {
-        delete testcase["system-out"];
         const timeSeconds = parseFloat(testcase.$.time || "0");
         totalTime += timeSeconds;
 
-        testcases.push({
+        const testNode: any = {
           $: {
             classname: testcase.$.classname,
             name: testcase.$.name,
             time: formatSecondsToHMS(timeSeconds),
           },
-        });
+        };
+
+        // Preserve <failure> if test failed
+        if (testcase.failure) {
+          testNode.failure = testcase.failure;
+        }
+
+        testcases.push(testNode);
       }
     }
 
@@ -78,18 +102,7 @@ export async function formatXml(inputPath: string, outputPath: string) {
   }
 }
 
-// ✅ Add this part to trigger it from CLI
-async function main() {
-  const inputPath = path.resolve(
-    __dirname,
-    "../reports/test-results/test-results.xml"
-  );
-  const outputPath = path.resolve(
-    __dirname,
-    "../reports/test-results/formatted-test-results.xml"
-  );
-
-  await formatXml(inputPath, outputPath);
+// Allow CLI usage
+if (require.main === module) {
+  formatXml();
 }
-
-main();
