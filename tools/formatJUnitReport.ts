@@ -1,3 +1,5 @@
+// tools/formatJUnitReport.ts
+
 import * as fs from "fs";
 import * as path from "path";
 import { Builder, parseStringPromise } from "xml2js";
@@ -49,7 +51,6 @@ export async function formatXml() {
           },
         };
 
-        // Preserve <failure> if present
         if (testcase.failure && testcase.failure.length > 0) {
           formattedTestcase.failure = testcase.failure.map((f: any) => ({
             $: {
@@ -59,3 +60,43 @@ export async function formatXml() {
             _: f._ || "",
           }));
         }
+
+        if (testcase.skipped && testcase.skipped.length > 0) {
+          formattedTestcase.skipped = testcase.skipped;
+        }
+
+        testcases.push(formattedTestcase);
+      }
+    }
+
+    const formatted = {
+      testsuite: {
+        $: {
+          name: "Suite1",
+          hostname,
+          timestamp,
+          tests: totalTests.toString(),
+          failures: totalFailures.toString(),
+          skipped: totalSkipped.toString(),
+          time: formatSecondsToHMS(totalTime),
+        },
+        testcase: testcases,
+      },
+    };
+
+    const builder = new Builder({ headless: true });
+    const outputXml = builder.buildObject(formatted);
+    fs.writeFileSync(outputPath, outputXml);
+
+    console.log("✅ Final formatted XML written with", testcases.length, "test cases →", outputPath);
+  } catch (err) {
+    console.error("❌ Error formatting XML:", err);
+  }
+}
+
+// WRAP THIS CALL
+async function main() {
+  await formatXml();
+}
+
+main(); // 👈 Ensures this only runs when the file is directly executed
