@@ -1,63 +1,34 @@
-pipeline {
-	  agent any
-
-  stages {
-	stage('Checkout') {
-	  steps {
-		git branch: 'main',
-		git url: 'https://github.com/shilpa-bhagat-ptc/playwright-ts-qa-automation.git'
-	  }
-	}
+stage('Install Dependencies') {
+  steps {
+    bat 'npm ci'
   }
-	stage('Install Dependencies') {
-	  steps {
-		sh 'npm ci'
-	  }
-	}
-	stage('install Browser Dependencies') {
-	  steps {
-		sh 'npx playwright install-deps'
-	  }
-	}
- stage('Global Setup') {
-	  steps {
-		script {
-			if(fileExists('/.auth/storageState.json')) {
-				echo 'Storage state already exists, skipping global setup.'
-			} else {
-				echo 'Running global setup...'
-				script: 'npx ts-node tests/config/global-setup.ts'
-			}
-		}
-	  }
-	  post {
-		sh 'npx ts-node tests/config/global-setup.ts'
-	  }
-	}
-
-	stage('Run Tests') {
-	  steps {
-		sh 'npm run test'
-	  }
-	}
-stage('publish HTML Report') {
-	always {
-		archiveArtifacts artifacts: 'reports/html-report/**', fingerprint: true
-		archiveArtifacts artifacts: 'screenshots/**', fingerprint: true
-		allowEmptyArchive: true
-	}
-	  
-	}
-	stage('Format JUnit Report') {
-	  steps {
-		sh 'npx ts-node tools/formatJUnitReport.ts'
-	  }
-	}
+}
+stage('Install Playwright Browsers') {
+  steps {
+    bat 'npx playwright install'
   }
-
-  post {
-	always {
-	  junit 'reports/test-results/formatted-test-results.xml'
-	}
+}
+stage('Install Browser Dependencies') {
+  steps {
+    bat 'npx playwright install-deps'
+  }
+}
+stage('Run Tests') {
+  steps {
+    bat 'npx playwright test'
+  }
+}
+stage('Format JUnit Report') {
+  steps {
+    bat 'npx ts-node tools/formatJUnitReport.ts'
+  }
+}
+stage('Publish HTML Report') {
+  steps {
+    publishHTML(target: [
+      reportDir: 'reports/html-report',
+      reportFiles: 'index.html',
+      reportName: 'Playwright Report'
+    ])
   }
 }
