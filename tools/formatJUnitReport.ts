@@ -2,16 +2,9 @@ import * as fs from "fs";
 import * as path from "path";
 import { Builder, parseStringPromise } from "xml2js";
 
-const inputPath = path.resolve(
-  __dirname,
-  "../reports/test-results/test-results.xml"
-);
-const outputPath = path.resolve(
-  __dirname,
-  "../reports/test-results/formatted-test-results.xml"
-);
+const inputPath = path.resolve(__dirname, "../reports/test-results/test-results.xml");
+const outputPath = path.resolve(__dirname, "../reports/test-results/formatted-test-results.xml");
 
-// Format time in 0d 0h Xm Ys
 function formatSecondsToHMS(totalSeconds: number): string {
   const mins = Math.floor(totalSeconds / 60);
   const secs = Math.floor(totalSeconds % 60);
@@ -48,44 +41,21 @@ export async function formatXml() {
         const timeSeconds = parseFloat(testcase.$.time || "0");
         totalTime += timeSeconds;
 
-        testcases.push({
+        const formattedTestcase: any = {
           $: {
             classname: testcase.$.classname,
             name: testcase.$.name,
             time: formatSecondsToHMS(timeSeconds),
           },
-        });
-      }
-    }
+        };
 
-    const formatted = {
-      testsuite: {
-        $: {
-          name: "Suite1",
-          hostname,
-          timestamp,
-          tests: totalTests.toString(),
-          failures: totalFailures.toString(),
-          skipped: totalSkipped.toString(),
-          time: formatSecondsToHMS(totalTime),
-        },
-        testcase: testcases,
-      },
-    };
-
-    const builder = new Builder({ headless: true });
-    const outputXml = builder.buildObject(formatted);
-    fs.writeFileSync(outputPath, outputXml);
-
-    console.log(
-      "✅ Final formatted XML written with",
-      testcases.length,
-      "test cases →",
-      outputPath
-    );
-  } catch (err) {
-    console.error("❌ Error formatting XML:", err);
-  }
-}
-
-formatXml();
+        // Preserve <failure> if present
+        if (testcase.failure && testcase.failure.length > 0) {
+          formattedTestcase.failure = testcase.failure.map((f: any) => ({
+            $: {
+              message: f.$?.message || "Test failed",
+              type: f.$?.type || "Error",
+            },
+            _: f._ || "",
+          }));
+        }
