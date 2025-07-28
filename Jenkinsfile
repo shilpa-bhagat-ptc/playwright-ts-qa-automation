@@ -21,7 +21,6 @@ pipeline {
       }
     }
 
-
     stage('Run Tests') {
       steps {
         sh 'npm run test'
@@ -42,4 +41,9 @@ pipeline {
     }
   }
 
-  p
+  post {
+    always {
+      junit 'reports/test-results/formatted-test-results.xml'
+    }
+  }
+}
