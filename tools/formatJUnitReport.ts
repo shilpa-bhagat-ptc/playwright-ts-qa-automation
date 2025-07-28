@@ -1,41 +1,95 @@
-import fs from 'fs';
-import path from 'path';
-import { parseStringPromise } from 'xml2js';
-import builder from 'xmlbuilder';
+import * as fs from "fs";
+import * as path from "path";
+import { Builder, parseStringPromise } from "xml2js";
 
-async function formatXml(inputFile: string, outputFile: string) {
-  const xmlData = fs.readFileSync(inputFile, 'utf-8');
-  const parsed = await parseStringPromise(xmlData);
+function formatSecondsToHMS(totalSeconds: number): string {
+  const mins = Math.floor(totalSeconds / 60);
+  const secs = Math.floor(totalSeconds % 60);
+  return `0d 0h ${mins}m ${secs}s`;
+}
 
-  // 🔐 Safe test suite extraction
-  const suiteList: any[] =
-    parsed.testsuites?.testsuite ??
-    (parsed.testsuite ? [parsed.testsuite] : []);
+export async function formatXml(inputPath: string, outputPath: string) {
+  try {
+    const rawXml = fs.readFileSync(inputPath, "utf-8");
+    const parsed = await parseStringPromise(rawXml);
 
-  if (suiteList.length === 0) {
-    console.warn("⚠️ No test suites found in the XML.");
-    return;
-  }
+    const testcases: any[] = [];
+    let totalTests = 0;
+    let totalFailures = 0;
+    let totalSkipped = 0;
+    let totalTime = 0;
+    let hostname = "localhost";
+    let timestamp = new Date().toISOString();
 
-  const root = builder.create('Tests');
+    const suiteList = parsed.testsuites?.testsuite || [parsed.testsuite];
 
-  for (const suite of suiteList) {
-    const testCases = suite.testcase || [];
+    for (const suite of suiteList) {
+      const suiteTestcases = suite.testcase || [];
+      totalTests += suite.$?.tests
+        ? parseInt(suite.$.tests)
+        : suiteTestcases.length;
+      totalFailures += parseInt(suite.$.failures || "0");
+      totalSkipped += parseInt(suite.$.skipped || "0");
+      hostname = suite.$.hostname || hostname;
+      timestamp = suite.$.timestamp || timestamp;
 
-    for (const testCase of testCases) {
-      const attrs = testCase.$;
-      const failure = testCase.failure ? 'failed' : 'passed';
+      for (const testcase of suiteTestcases) {
+        delete testcase["system-out"];
+        const timeSeconds = parseFloat(testcase.$.time || "0");
+        totalTime += timeSeconds;
 
-      root.ele('Test', {
-        class: attrs.classname,
-        name: attrs.name,
-        result: failure,
-        time: attrs.time || '0s',
-        package: 'com.ptc.qalink',
-        scrumTeam: 'QALink',
-        tags: '',
-        jira: '',
-        priority: 'P1'
-      });
+        testcases.push({
+          $: {
+            classname: testcase.$.classname,
+            name: testcase.$.name,
+            time: formatSecondsToHMS(timeSeconds),
+          },
+        });
+      }
     }
+
+    const formatted = {
+      testsuite: {
+        $: {
+          name: "Suite1",
+          hostname,
+          timestamp,
+          tests: totalTests.toString(),
+          failures: totalFailures.toString(),
+          skipped: totalSkipped.toString(),
+          time: formatSecondsToHMS(totalTime),
+        },
+        testcase: testcases,
+      },
+    };
+
+    const builder = new Builder({ headless: true });
+    const outputXml = builder.buildObject(formatted);
+    fs.writeFileSync(outputPath, outputXml);
+
+    console.log(
+      "✅ Final formatted XML written with",
+      testcases.length,
+      "test cases →",
+      outputPath
+    );
+  } catch (err) {
+    console.error("❌ Error formatting XML:", err);
   }
+}
+
+// ✅ Add this part to trigger it from CLI
+async function main() {
+  const inputPath = path.resolve(
+    __dirname,
+    "../reports/test-results/test-results.xml"
+  );
+  const outputPath = path.resolve(
+    __dirname,
+    "../reports/test-results/formatted-test-results.xml"
+  );
+
+  await formatXml(inputPath, outputPath);
+}
+
+main();
