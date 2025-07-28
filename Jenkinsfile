@@ -21,18 +21,6 @@ pipeline {
       }
     }
 
-    stage('Global Setup') {
-      steps {
-        script {
-          if (fileExists('.auth/storageState.json')) {
-            echo 'Storage state already exists, skipping global setup.'
-          } else {
-            echo 'Running global setup...'
-            sh 'npx ts-node tests/config/global-setup.ts'
-          }
-        }
-      }
-    }
 
     stage('Run Tests') {
       steps {
@@ -42,9 +30,8 @@ pipeline {
 
     stage('Publish HTML Report') {
       steps {
-        archiveArtifacts artifacts: 'reports/html-report/**', fingerprint: true
-        archiveArtifacts artifacts: 'screenshots/**', fingerprint: true
-        allowEmptyArchive: true
+        archiveArtifacts artifacts: 'reports/html-report/**', fingerprint: true, allowEmptyArchive: true
+        archiveArtifacts artifacts: 'screenshots/**', fingerprint: true, allowEmptyArchive: true
       }
     }
 
@@ -55,9 +42,4 @@ pipeline {
     }
   }
 
-  post {
-    always {
-      junit 'reports/test-results/formatted-test-results.xml'
-    }
-  }
-}
+  p
