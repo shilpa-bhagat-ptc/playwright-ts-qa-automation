@@ -125,3 +125,27 @@ test("TC-HOM009 - Edit tip and verify updated datetime", async ({
   await page.screenshot({ path: "screenshots/tips-after-update.png" });
   console.log("✅ TC_HOM_009 completed successfully.");
 });
+test("TC-HOM010 - Validate Tips Tab Links", async ({
+  loginPage,
+  homePage,
+  page,
+}, testInfo) => {
+  testInfo.annotations.push({
+    type: "description",
+    description:
+      "Validate all visible tip links and the Tips Category section. @owner:Shilpa Bhagat",
+  });
+
+  console.log("📁 Navigating to Tips tab...");
+  await page.click(HOME_PAGE_LOCATORS.tip);
+  await captureStepScreenshot(page, testInfo, "01_tips_tab_clicked");
+
+  console.log('🔍 Verifying "Tips Category" section is visible...');
+  await expect(page.locator(HOME_PAGE_LOCATORS.tipsCategory)).toBeVisible();
+  await captureStepScreenshot(page, testInfo, "02_tips_category_visible");
+
+  console.log("🔗 Checking all visible tip links...");
+  const tipLinks = page.locator(HOME_PAGE_LOCATORS.tipLinks);
+  const linkCount = await tipLinks.count();
+  expect(linkCount).toBeGreaterThan(0);
+});
