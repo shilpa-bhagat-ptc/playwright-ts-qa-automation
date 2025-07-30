@@ -9,7 +9,7 @@ export async function captureStepScreenshot(
 ) {
   const dir = path.join("screenshots", testInfo.title.replace(/\s+/g, "_"));
 
-  // Set timeout for this step only (optional)
+  // Set timeout
   test.setTimeout(60000);
 
   if (!fs.existsSync(dir)) {
@@ -20,14 +20,12 @@ export async function captureStepScreenshot(
   const filePath = path.join(dir, `${stepName}-${timestamp}.png`);
 
   try {
-    // Ensure page is stable before screenshot
     await page.waitForLoadState("domcontentloaded", { timeout: 10000 });
 
-    // Use a shorter timeout to prevent hanging
     await page.screenshot({
       path: filePath,
-      fullPage: false, // Change to true if absolutely needed
-      timeout: 10000, // Avoid waiting forever
+      fullPage: false,
+      timeout: 10000,
     });
 
     console.log(`📸 Screenshot captured: ${filePath}`);

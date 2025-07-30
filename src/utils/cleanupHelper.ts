@@ -3,7 +3,6 @@
 import fs from "fs";
 import path from "path";
 
-// Folders you want to clean
 const foldersToClean = [
   "Playwright-ts-QALink/screenshots",
   "Playwright-ts-QALink/test-results",
