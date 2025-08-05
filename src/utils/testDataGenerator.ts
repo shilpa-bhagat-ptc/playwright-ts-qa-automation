@@ -20,6 +20,19 @@ export class TestDataGenerator {
   static password(length = 10): string {
     return faker.internet.password({ length, memorable: false });
   }
+
+  static releaseTabs(): string[] {
+    return [
+      "Test Plan",
+      "Production Plan",
+      "Production Schedule",
+      "Product Group",
+      "CFT",
+      "Execution Plan",
+      "Weekly Note",
+    ];
+  }
+
   static installationTips(): string[] {
     return [
       "The instruction to reload Windchill base data",
@@ -27,6 +40,34 @@ export class TestDataGenerator {
       "The script under Windows to decompress ZIP files",
       "Where is the cache of Windchill & Tomcat ?",
       "How to recreate Windchill database schema",
+    ];
+  }
+  static releaseTabSubOptions(): string[] {
+    return [
+      "Test Plan",
+      "Production Plan",
+      "Production Schedule",
+      "Product Group",
+      "CFT",
+      "Execution Plan",
+      "Weekly Note",
+    ];
+  }
+
+  // Returns Planning tab sub-options
+  static planningTabSubOptions(): string[] {
+    return [
+      "Release",
+      "Resource Capacity",
+      "Analyze",
+      "Select",
+      "Advance Select",
+      "Test Automation",
+      "Drop",
+      "Delegate",
+      "Weekly Goal",
+      "Assign",
+      "Weekly Assign",
     ];
   }
 }
@@ -53,4 +94,12 @@ export const Translation_STATUS_OPTIONS = [
   "Delay",
   "Blocked",
   "Done",
+];
+
+export const TestPlan_Header = [
+  "Tasks",
+  "Duration",
+  "Planned Start Date",
+  "Planned End Date",
+  "Holidays",
 ];
