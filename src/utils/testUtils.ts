@@ -45,3 +45,19 @@ export async function isElementVisible(
 ): Promise<boolean> {
   return await page.locator(selector).isVisible();
 }
+
+export async function getTextValuesFromHeader(
+  page: Page,
+  selector: string
+): Promise<string[]> {
+  const elements = page.locator(selector);
+  const count = await elements.count();
+
+  const values: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const text = await elements.nth(i).textContent();
+    values.push(text?.trim() || "");
+  }
+
+  return values;
+}

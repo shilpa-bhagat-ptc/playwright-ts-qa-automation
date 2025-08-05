@@ -7,9 +7,11 @@ export async function captureStepScreenshot(
   testInfo: any,
   stepName: string
 ) {
-  const dir = path.join("screenshots", testInfo.title.replace(/\s+/g, "_"));
+  // 🧼 Sanitize test title for folder name
+  const safeTitle = testInfo.title.replace(/[^a-zA-Z0-9-_]/g, "_");
+  const dir = path.join("screenshots", safeTitle);
 
-  // Set timeout
+  // Optional: Set test timeout
   test.setTimeout(60000);
 
   if (!fs.existsSync(dir)) {
