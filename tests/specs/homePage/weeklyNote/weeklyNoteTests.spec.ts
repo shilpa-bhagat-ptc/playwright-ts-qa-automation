@@ -15,14 +15,14 @@ test("TC_HOM_001 - Verify Home Tab Navigation and Content", async ({
     description: "valid login functionality @owner:Shilpa Bhagat",
   });
 
-  console.log("➡ Navigating to login pageb...");
+  console.log("Navigating to login pageb...");
   await loginPage.navigate;
-  console.log("➡ Logging in with valid credentials...");
+  console.log("Logging in with valid credentials...");
   await captureStepScreenshot(page, testInfo, "Login with valid credentials");
-  console.log("➡ Verifying successful login...");
+  console.log("Verifying successful login...");
   await homePage.waitForHomePageLoaded();
-  console.log("➡ Navigating to Home Page...");
-  console.log(" TC_HOM_001 completed successfully.");
+  console.log("Navigating to Home Page...");
+  console.log("TC_HOM_001 completed successfully.");
 });
 
 test("TC_HOME002 - Invalid login using Faker-generated credentials", async ({

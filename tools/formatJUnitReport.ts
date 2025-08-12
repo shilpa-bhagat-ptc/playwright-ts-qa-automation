@@ -69,9 +69,26 @@ export async function formatXml(
           },
         };
 
-        // Preserve <failure> if test failed
+        // Preserve <failure> if test failed, but crop the logs
         if (testcase.failure) {
-          testNode.failure = testcase.failure;
+          const failureAttrs = testcase.failure[0].$ || {};
+          let failureMessage = testcase.failure[0]._ || "";
+
+          // Trim large logs, keep first 200 chars
+          if (failureMessage.length > 200) {
+            failureMessage =
+              failureMessage.substring(0, 200) + "...[truncated]";
+          }
+
+          testNode.failure = [
+            {
+              $: {
+                message: failureAttrs.message || "Test failed",
+                type: failureAttrs.type || "Error",
+              },
+              _: failureMessage,
+            },
+          ];
         }
 
         testcases.push(testNode);
