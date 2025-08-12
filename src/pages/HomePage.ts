@@ -27,20 +27,20 @@ export class HomePage {
   }
 
   async clickOnCalendar() {
-    console.log("🗓️ Clicking on calendar input...");
+    console.log("Clicking on calendar input...");
     await this.page.locator(HOME_PAGE_LOCATORS.clickOnCalendar).click();
   }
 
   async selectDateFromCalendar(day: string) {
-    console.log("🗓️ Clicking on calendar input...");
+    console.log("Clicking on calendar input...");
     await this.page.locator(HOME_PAGE_LOCATORS.startDate).click();
 
-    console.log("📅 Waiting for calendar to be visible...");
+    console.log("Waiting for calendar to be visible...");
     await this.page
       .locator("div.datepicker-days")
       .waitFor({ state: "visible" });
 
-    console.log(`🗓️ Selecting day ${day} from calendar...`);
+    console.log(`Selecting day ${day} from calendar...`);
     await this.page
       .locator(
         `//td[contains(@class, 'day') and not(contains(@class, 'old')) and text()='${day}']`
@@ -87,7 +87,7 @@ export class HomePage {
   }
 
   async setDateRange(fromDate: string, toDate: string) {
-    console.log("📅 Setting 'From' date...");
+    console.log("Setting 'From' date...");
     await this.page.evaluate((date) => {
       const input = document.querySelector<HTMLInputElement>(
         'input[name="period_from"]'
@@ -99,7 +99,7 @@ export class HomePage {
       }
     }, fromDate);
 
-    console.log("📅 Setting 'To' date...");
+    console.log("Setting 'To' date...");
     await this.page.evaluate((date) => {
       const input = document.querySelector<HTMLInputElement>(
         'input[name="period_to"]'
@@ -171,9 +171,9 @@ export class HomePage {
 
     if (enable !== isChecked) {
       await checkbox.click();
-      console.log(`☑️ Checkbox toggled to: ${enable}`);
+      console.log(`Checkbox toggled to: ${enable}`);
     } else {
-      console.log(`⚠️ Checkbox already in desired state: ${enable}`);
+      console.log(`Checkbox already in desired state: ${enable}`);
     }
   }
 
@@ -197,7 +197,7 @@ export class HomePage {
         console.log("✅ Dialog accepted");
       } else {
         await dialog.dismiss();
-        console.warn("⚠️ Dialog dismissed (text mismatch)");
+        console.warn("Dialog dismissed (text mismatch)");
       }
     });
   }

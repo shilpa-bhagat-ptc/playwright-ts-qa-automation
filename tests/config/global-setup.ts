@@ -23,9 +23,9 @@ async function globalSetup(config: FullConfig) {
   await page.context().storageState({ path: storagePath });
   console.log(`Storage state will be saved to: ${storagePath}`);
   await browser.close();
-  console.log("✅ Session stored successfully.");
+  console.log("Session stored successfully.");
   await formatXml();
-  console.log("✅ XML formatted successfully.");
+  console.log("XML formatted successfully.");
   console.log("Global setup completed.");
 }
 

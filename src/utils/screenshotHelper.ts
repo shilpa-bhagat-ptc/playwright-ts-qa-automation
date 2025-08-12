@@ -30,11 +30,8 @@ export async function captureStepScreenshot(
       timeout: 10000,
     });
 
-    console.log(`📸 Screenshot captured: ${filePath}`);
+    console.log(`Screenshot captured: ${filePath}`);
   } catch (error) {
-    console.error(
-      `❌ Failed to capture screenshot at step "${stepName}":`,
-      error
-    );
+    console.error(`Failed to capture screenshot at step "${stepName}":`, error);
   }
 }

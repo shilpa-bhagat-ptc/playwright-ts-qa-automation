@@ -28,7 +28,7 @@ export class PlanningPage {
     }
   }
   async selectRelease(productName: string, testInfo?: any) {
-    console.log("🖱️ Clicking the Release dropdown...");
+    console.log("Clicking the Release dropdown...");
 
     // Step 1: Click on the Release box
     const releaseBox = this.page.locator(PLANNING_PAGE_LOCATORS.releaseInput);
@@ -48,11 +48,11 @@ export class PlanningPage {
     const isVisible = await productOption.isVisible();
     if (!isVisible) {
       throw new Error(
-        `❌ Product "${productName}" not found in visible dropdown options.`
+        `Product "${productName}" not found in visible dropdown options.`
       );
     }
 
     await productOption.click();
-    console.log(`✅ Selected product: ${productName}`);
+    console.log(`Selected product: ${productName}`);
   }
 }
