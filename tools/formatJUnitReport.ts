@@ -10,12 +10,18 @@ function formatSecondsToHMS(totalSeconds: number): string {
 }
 
 export async function formatXml(
-  inputPath: string = path.resolve(__dirname, "../reports/test-results/test-results.xml"),
-  outputPath: string = path.resolve(__dirname, "../reports/test-results/formatted-test-results.xml")
+  inputPath: string = path.resolve(
+    __dirname,
+    "../reports/test-results/test-results.xml"
+  ),
+  outputPath: string = path.resolve(
+    __dirname,
+    "../reports/test-results/formatted-test-results.xml"
+  )
 ) {
   try {
     if (!fs.existsSync(inputPath)) {
-      console.warn("⚠️ Input XML file not found →", inputPath);
+      console.warn("Input XML file not found →", inputPath);
       return;
     }
 
@@ -29,7 +35,7 @@ export async function formatXml(
     } else if (parsed.testsuites?.testsuite) {
       suiteList = parsed.testsuites.testsuite;
     } else {
-      console.warn("⚠️ No <testsuite> found in XML. Skipping formatting.");
+      console.warn("No <testsuite> found in XML. Skipping formatting.");
       return;
     }
 
@@ -92,13 +98,13 @@ export async function formatXml(
     fs.writeFileSync(outputPath, outputXml);
 
     console.log(
-      "✅ Final formatted XML written with",
+      "Final formatted XML written with",
       testcases.length,
       "test cases →",
       outputPath
     );
   } catch (err) {
-    console.error("❌ Error formatting XML:", err);
+    console.error("Error formatting XML:", err);
   }
 }
 

@@ -22,14 +22,14 @@ function deleteFolderContents(folderPath: string) {
         fs.unlinkSync(fullPath);
       }
     }
-    console.log(`✅ Cleaned: ${folderPath}`);
+    console.log(`Cleaned: ${folderPath}`);
   } else {
-    console.log(`⚠️ Folder not found: ${folderPath}`);
+    console.log(`Folder not found: ${folderPath}`);
   }
 }
 
 // ⬇️ REQUIRED: default export with single async function
 export default async function globalSetup() {
-  console.log("🧹 Cleaning up reports and screenshots...");
+  console.log("Cleaning up reports and screenshots...");
   foldersToClean.forEach(deleteFolderContents);
 }

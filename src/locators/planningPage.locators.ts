@@ -8,4 +8,5 @@ export const PLANNING_PAGE_LOCATORS = {
   tableHeader:
     "//table[contains(@class, 'MsoNormalTable') and contains(@class, 'ke-zeroborder')]//tbody/tr[2]",
   relaseInbox: "//input[@id='release_name_id']",
+  testPlan: "//div//a[@id='sub_tab1_id']",
 };
