@@ -190,11 +190,11 @@ export class HomePage {
   async handleBrowserConfirmationPopup(expectedText?: string) {
     this.page.once("dialog", async (dialog) => {
       const message = dialog.message();
-      console.log(`🔔 Dialog detected: ${message}`);
+      console.log(`Dialog detected: ${message}`);
 
       if (!expectedText || message.includes(expectedText)) {
         await dialog.accept();
-        console.log("✅ Dialog accepted");
+        console.log("Dialog accepted");
       } else {
         await dialog.dismiss();
         console.warn("Dialog dismissed (text mismatch)");
