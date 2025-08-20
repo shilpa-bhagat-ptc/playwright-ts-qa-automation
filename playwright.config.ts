@@ -7,7 +7,7 @@ const hectorOptionsALL = {
   testCategory: "homePageTests", // PLW_HECTOR_CATEGORY
 
   serverUrl:
-    "https://hector.ptcnet.ptc.com/Hector/overview/QALink_L10N_tests/", // PLW_HECTOR_URL
+    "https://hector.ptcnet.ptc.com/Hector", // PLW_HECTOR_URL
   packageId: "demo-package", // PLW_TEST_PACKAGE_ID
   pipelineBuild: 1, // PLW_HECTOR_PIPELINE_BUILD
   developmentBuild: 11, // PLW_HECTOR_DEVELOPMENT_BUILD
