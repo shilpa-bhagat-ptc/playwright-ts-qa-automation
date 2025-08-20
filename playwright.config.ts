@@ -45,7 +45,6 @@ export default defineConfig({
     ["list"],
     ["junit", { outputFile: "reports/test-results/test-results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
-    // 👇 custom hector reporter can consume `hectorOptionsALL`
-    ["./hector-reporter.ts", hectorOptionsALL],
+   
   ],
 });
