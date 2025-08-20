@@ -27,6 +27,22 @@ export default defineConfig({
       },
     },
   ],
+  const hectorOptionsALL = {
+    projectId: 'QALink_L10N_tests',              // PLW_HECTOR_PROJECT_ID
+    releaseStream: 'QALink_Playwright',              // PLW_HECTOR_RELEASE_STREAM
+    releaseBuild: 100,                        // PLW_HECTOR_RELEASE_BUILD
+    testCategory: 'homePageTests',      // PLW_HECTOR_CATEGORY
+
+    serverUrl: 'https://hector.ptcnet.ptc.com/Hector/overview/QALink_L10N_tests/', // PLW_HECTOR_URL
+    packageId: 'demo-package',                 // PLW_TEST_PACKAGE_ID
+    pipelineBuild: 1,                          // PLW_HECTOR_PIPELINE_BUILD
+    developmentBuild: 11,                      // PLW_HECTOR_DEVELOPMENT_BUILD
+
+    logLevel: 'verbose',                       // PLW_HECTOR_REPORTER_LOG_LEVEL
+    outputDir: '/report/test-results',          // PLW_HECTOR_REPORTER_OUTPUT_DIR
+    includeProjectInTestName: true             // PLW_HECTOR_REPORTER_INCLUDE_PROJECT_NAME
+};
+
 
   reporter: [
     ["list"],
