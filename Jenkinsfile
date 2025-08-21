@@ -21,19 +21,9 @@ pipeline {
       }
     }
 
-    stage('Run HomePage Tests') {
+    stage('Run Tests') {
       steps {
-        withEnv(["PLW_HECTOR_CATEGORY=homePageTests"]) {
-          bat 'npx playwright test'
-        }
-      }
-    }
-
-    stage('Run PlanningPage Tests') {
-      steps {
-        withEnv(["PLW_HECTOR_CATEGORY=planningPageTests"]) {
-          bat 'npx playwright test'
-        }
+        bat 'npx playwright test'
       }
     }
 
