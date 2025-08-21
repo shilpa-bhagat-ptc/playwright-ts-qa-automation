@@ -40,8 +40,11 @@ pipeline {
 
     stage('Run Tests') {
       steps {
-        // Run only the selected project
-        bat "npx playwright test --project=${params.TEST_PROJECT}"
+        /// Export TEST_PROJECT value as PLW_HECTOR_CATEGORY for reporter
+        bat """
+          set PLW_HECTOR_CATEGORY=${params.TEST_PROJECT}
+          npx playwright test --project=${params.TEST_PROJECT}
+        """
       }
     }
 
