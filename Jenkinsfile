@@ -1,5 +1,8 @@
 pipeline {
   agent any
+   environment {
+    PLW_HECTOR_PROJECT_ID = 'QALink_L10N_tests'   
+  }
 
   parameters {
     choice(
