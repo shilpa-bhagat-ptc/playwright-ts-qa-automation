@@ -1,11 +1,6 @@
 pipeline {
   agent any
-   environment {
-    PLW_HECTOR_PROJECT_ID = 'QALink_L10N_tests' 
-     PLW_HECTOR_RELEASE_STREAM = 'QALink_Playwright'   
-        PLW_HECTOR_RELEASE_BUILD  = '110'                
-        PLW_HECTOR_SERVER_URL     = 'https://hector.ptcnet.ptc.com/Hector'
-  }
+   
 
   parameters {
     choice(
