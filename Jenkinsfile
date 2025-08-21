@@ -39,7 +39,7 @@ pipeline {
 
     stage('Run Selected Tests') {
       steps {
-        bat "npx playwright test --project=%TEST_CATEGORY%"
+        bat "npx playwright test --project=${params.TEST_CATEGORY}"
       }
     }
 
