@@ -1,10 +1,48 @@
 import { defineConfig, devices } from "@playwright/test";
+import fs from "fs";
+import path from "path";
+import { XMLParser } from "fast-xml-parser";
+
+// map classname prefix → category
+const categoryMap: Record<string, string> = {
+  adminPage: "adminPageTests",
+  queryPage: "queryPageTests",
+  userPage: "userPageTests",
+  reportPage: "reportPageTests",
+  executionPage: "executionPageTests",
+};
+
+// decide category from junit xml
+function resolveCategoryFromJUnit(): string {
+  const junitPath = path.resolve("reports/test-results/results.xml"); // adjust file if needed
+  if (!fs.existsSync(junitPath)) return "";
+
+  const xml = fs.readFileSync(junitPath, "utf-8");
+  const parser = new XMLParser({ ignoreAttributes: false });
+  const parsed = parser.parse(xml);
+
+  const testcases = parsed?.testsuites?.testsuite?.testcase || [];
+  if (!testcases || testcases.length === 0) return "";
+
+  // normalize testcases into array
+  const tcArray = Array.isArray(testcases) ? testcases : [testcases];
+  const classname: string = tcArray[0]["@_classname"] || "";
+
+  // find first matching prefix in our map
+  for (const prefix of Object.keys(categoryMap)) {
+    if (classname.startsWith(prefix)) {
+      return categoryMap[prefix];
+    }
+  }
+
+  return ""; // nothing if no match
+}
 
 const hectorOptionsALL = {
   projectId: "QALink_L10N_tests", // PLW_HECTOR_PROJECT_ID
   releaseStream: "QALink_Playwright", // PLW_HECTOR_RELEASE_STREAM
   releaseBuild: 110, // PLW_HECTOR_RELEASE_BUILD
- 
+ testCategory: resolveCategoryFromJUnit(),
    
 
   serverUrl:
