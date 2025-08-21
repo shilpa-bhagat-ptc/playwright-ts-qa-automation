@@ -1,5 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 import path from "path";
+import fs from "fs";
 
 const hectorBaseOptions = {
   projectId: "QALink_L10N_tests",
@@ -14,22 +15,50 @@ const hectorBaseOptions = {
   includeProjectInTestName: true,
 };
 
-// ✅ Read TEST_PROJECT parameter from Jenkins (passed as env var)
-const selectedProject = process.env.TEST_PROJECT;
+// ✅ Read from Jenkins parameter
+const testCategory = process.env.TEST_PROJECT;
 
-// Map Jenkins param -> folder
-const projectDirMap: Record<string, string> = {
-  homePageTests: "tests/specs/homePage",
-  adminPageTests: "tests/specs/adminPage",
-  planningPageTests: "tests/specs/planningPage",
-  queryPageTests: "tests/specs/queryPage",
-  userPageTests: "tests/specs/userPage",
-  reportPageTests: "tests/specs/reportPage",
-  executionPageTests: "tests/specs/executionPage",
+// ✅ Validate category
+const validCategories = [
+  "homePageTests",
+  "adminPageTests",
+  "planningPageTests",
+  "queryPageTests",
+  "userPageTests",
+  "reportPageTests",
+  "executionPageTests",
+];
+
+if (!testCategory) {
+  throw new Error(`❌ TEST_PROJECT not set. Please provide one of: ${validCategories.join(", ")}`);
+}
+
+if (!validCategories.includes(testCategory)) {
+  throw new Error(`❌ Invalid TEST_PROJECT="${testCategory}". Must be one of: ${validCategories.join(", ")}`);
+}
+
+// ✅ Map TEST_PROJECT → folder
+const folderMap: Record<string, string> = {
+  homePageTests: "homePage",
+  adminPageTests: "adminPage",
+  planningPageTests: "planningPage",
+  queryPageTests: "queryPage",
+  userPageTests: "userPage",
+  reportPageTests: "reportPage",
+  executionPageTests: "executionPage",
 };
 
+const selectedFolder = folderMap[testCategory];
+const testDir = path.join(__dirname, "tests", "specs", selectedFolder);
+
+// ✅ Ensure folder exists
+if (!fs.existsSync(testDir)) {
+  throw new Error(`❌ Test folder does not exist: ${testDir}`);
+}
+
 export default defineConfig({
-  testDir: "./tests/specs",
+  testDir,
+  testMatch: ["*.spec.ts"],
 
   globalSetup: require.resolve("./tests/config/global-setup"),
 
@@ -41,33 +70,16 @@ export default defineConfig({
     screenshot: "on",
   },
 
-  // ✅ Only include the project selected in Jenkins
-  projects: selectedProject
-    ? [
-        {
-          name: selectedProject,
-          testDir: projectDirMap[selectedProject] || "tests/specs",
-          use: { ...devices["Desktop Chrome"] },
-        },
-      ]
-    : Object.entries(projectDirMap).map(([name, dir]) => ({
-        name,
-        testDir: dir,
-        use: { ...devices["Desktop Chrome"] },
-      })),
-
   reporter: [
     ["list"],
     ["junit", { outputFile: "reports/test-results/test-results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
     [
       "@ptc-fusion/playwright-hector-reporter",
-    {
-      ...hectorBaseOptions,
-      // take category from Jenkins parameter
-    testCategory,
-    },
-      }),
+      {
+        ...hectorBaseOptions,
+        testCategory, // ✅ direct from Jenkins param
+      },
     ],
   ],
 });
