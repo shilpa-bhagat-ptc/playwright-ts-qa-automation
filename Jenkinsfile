@@ -1,6 +1,22 @@
 pipeline {
   agent any
 
+  parameters {
+    choice(
+      name: 'TEST_CATEGORY',
+      choices: [
+        'homePageTests',
+        'adminPageTests',
+        'planningPageTests',
+        'queryPageTests',
+        'userPageTests',
+        'reportPageTests',
+        'executionPageTests'
+      ],
+      description: 'Select which test category to run'
+    )
+  }
+
   stages {
     stage('Checkout') {
       steps {
@@ -21,9 +37,9 @@ pipeline {
       }
     }
 
-    stage('Run Tests') {
+    stage('Run Selected Tests') {
       steps {
-        bat 'npx playwright test'
+        bat "npx playwright test --project=%TEST_CATEGORY%"
       }
     }
 
