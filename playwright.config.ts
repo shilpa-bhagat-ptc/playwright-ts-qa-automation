@@ -4,7 +4,16 @@ const hectorOptionsALL = {
   projectId: "QALink_L10N_tests", // PLW_HECTOR_PROJECT_ID
   releaseStream: "QALink_Playwright", // PLW_HECTOR_RELEASE_STREAM
   releaseBuild: 100, // PLW_HECTOR_RELEASE_BUILD
-  testCategory: ["homePageTests", "planningPageTests"], // PLW_HECTOR_CATEGORY
+ 
+   getTestCategory: (testPath: string) => {
+    if (testPath.startsWith("homePage")) {
+      return "homePageTests";
+    }
+    if (testPath.startsWith("planningPage")) {
+      return "planningPageTests";
+    }
+    return "otherTests"; // fallback
+  },
 
   serverUrl:
     "https://hector.ptcnet.ptc.com/Hector", // PLW_HECTOR_URL
