@@ -1,16 +1,17 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const hectorBaseOptions = {
-  projectId: "QALink_L10N_tests", // PLW_HECTOR_PROJECT_ID
-  releaseStream: "QALink_Playwright", // PLW_HECTOR_RELEASE_STREAM
-  releaseBuild: 110, // PLW_HECTOR_RELEASE_BUILD
-  serverUrl: "https://hector.ptcnet.ptc.com/Hector", // PLW_HECTOR_URL
-  packageId: "demo-package", // PLW_TEST_PACKAGE_ID
-  pipelineBuild: 1, // PLW_HECTOR_PIPELINE_BUILD
-  developmentBuild: 11, // PLW_HECTOR_DEVELOPMENT_BUILD
-  logLevel: "verbose", // PLW_HECTOR_REPORTER_LOG_LEVEL
-  outputDir: "reports/test-results", // PLW_HECTOR_REPORTER_OUTPUT_DIR
-  includeProjectInTestName: true, // PLW_HECTOR_REPORTER_INCLUDE_PROJECT_NAME
+  projectId: "QALink_L10N_tests",
+  releaseStream: "QALink_Playwright",
+  releaseBuild: 110,
+  serverUrl: "https://hector.ptcnet.ptc.com/Hector",
+  packageId: "demo-package",
+  pipelineBuild: 1,
+  developmentBuild: 11,
+  logLevel: "verbose",
+  outputDir: "reports/test-results",
+  includeProjectInTestName: true,
+  testCategory: process.env.PLW_HECTOR_CATEGORY || "default", // 👈 auto-matched from Jenkins
 };
 
 export default defineConfig({
@@ -41,13 +42,6 @@ export default defineConfig({
     ["list"],
     ["junit", { outputFile: "reports/test-results/test-results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
-    [
-      "@ptc-fusion/playwright-hector-reporter",
-      // 👇 dynamically set `testCategory` from project.name
-      ({ project }) => ({
-        ...hectorBaseOptions,
-        testCategory: project.name,
-      }),
-    ],
+    ["@ptc-fusion/playwright-hector-reporter", hectorBaseOptions],
   ],
 });
