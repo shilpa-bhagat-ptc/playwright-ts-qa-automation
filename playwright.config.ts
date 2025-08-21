@@ -11,6 +11,7 @@ const baseHector = {
   logLevel: "verbose",
   outputDir: "reports/test-results",
   includeProjectInTestName: true,
+   testCategory: project.name,
 };
 
 // Function to build hector reporter options for a project
