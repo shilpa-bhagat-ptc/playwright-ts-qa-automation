@@ -1,32 +1,29 @@
 import { defineConfig, devices } from "@playwright/test";
-import fs from "fs";
-import path from "path";
-import { XMLParser } from "fast-xml-parser";
 
-
-
-const hectorOptionsALL = {
-  projectId: "QALink_L10N_tests", // PLW_HECTOR_PROJECT_ID
-  releaseStream: "QALink_Playwright", // PLW_HECTOR_RELEASE_STREAM
-  releaseBuild: 110, // PLW_HECTOR_RELEASE_BUILD
- testCategory: homePageTests,
-   
-
-  serverUrl:
-    "https://hector.ptcnet.ptc.com/Hector", // PLW_HECTOR_URL
-  packageId: "demo-package", // PLW_TEST_PACKAGE_ID
-  pipelineBuild: 1, // PLW_HECTOR_PIPELINE_BUILD
-  developmentBuild: 11, // PLW_HECTOR_DEVELOPMENT_BUILD
-
-  logLevel: "verbose", // PLW_HECTOR_REPORTER_LOG_LEVEL
-  outputDir: "reports/test-results", // PLW_HECTOR_REPORTER_OUTPUT_DIR
-  includeProjectInTestName: true, // PLW_HECTOR_REPORTER_INCLUDE_PROJECT_NAME
+const baseHector = {
+  projectId: "QALink_L10N_tests",
+  releaseStream: "QALink_Playwright",
+  releaseBuild: 110,
+  serverUrl: "https://hector.ptcnet.ptc.com/Hector",
+  packageId: "demo-package",
+  pipelineBuild: 1,
+  developmentBuild: 11,
+  logLevel: "verbose",
+  outputDir: "reports/test-results",
+  includeProjectInTestName: true,
 };
+
+// Function to build hector reporter options for a project
+function hectorOptions(testCategory: string) {
+  return {
+    ...baseHector,
+    testCategory,
+  };
+}
 
 export default defineConfig({
   testDir: "./tests/specs",
   testMatch: ["*.spec.ts"],
-
   globalSetup: require.resolve("./tests/config/global-setup"),
 
   use: {
@@ -38,19 +35,20 @@ export default defineConfig({
   },
 
   projects: [
-    {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"],
-        channel: "chrome",
-      },
-    },
+    { name: "adminPageTests", testDir: "tests/specs/adminPage" },
+    { name: "planningPageTests", testDir: "tests/specs/planningPage" },
+    { name: "queryPageTests", testDir: "tests/specs/queryPage" },
+    { name: "userPageTests", testDir: "tests/specs/userPage" },
+    { name: "reportPageTests", testDir: "tests/specs/reportPage" },
+    { name: "executionPageTests", testDir: "tests/specs/executionPage" },
+    { name: "homePageTests", testDir: "tests/specs/homePage" },
   ],
 
   reporter: [
     ["list"],
-    ["junit", { outputFile: "reports/test-results/test-results.xml" }],
+    ["junit", { outputFile: "reports/test-results/results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
-   ['@ptc-fusion/playwright-hector-reporter', hectorOptionsALL]
+    // 👇 reporter picks testCategory dynamically at runtime
+    ["@ptc-fusion/playwright-hector-reporter", hectorOptions(process.env.PW_PROJECT || "default")],
   ],
 });
