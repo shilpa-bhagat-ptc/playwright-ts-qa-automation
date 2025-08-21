@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import path from "path";
 
 const hectorBaseOptions = {
   projectId: "QALink_L10N_tests",
@@ -11,12 +12,24 @@ const hectorBaseOptions = {
   logLevel: "verbose",
   outputDir: "reports/test-results",
   includeProjectInTestName: true,
-  testCategory: process.env.PLW_HECTOR_CATEGORY || "default", // 👈 auto-matched from Jenkins
+};
+
+// ✅ Read TEST_PROJECT parameter from Jenkins (passed as env var)
+const selectedProject = process.env.TEST_PROJECT;
+
+// Map Jenkins param -> folder
+const projectDirMap: Record<string, string> = {
+  homePageTests: "tests/specs/homePage",
+  adminPageTests: "tests/specs/adminPage",
+  planningPageTests: "tests/specs/planningPage",
+  queryPageTests: "tests/specs/queryPage",
+  userPageTests: "tests/specs/userPage",
+  reportPageTests: "tests/specs/reportPage",
+  executionPageTests: "tests/specs/executionPage",
 };
 
 export default defineConfig({
   testDir: "./tests/specs",
-  testMatch: ["*.spec.ts"],
 
   globalSetup: require.resolve("./tests/config/global-setup"),
 
@@ -28,20 +41,31 @@ export default defineConfig({
     screenshot: "on",
   },
 
-  projects: [
-    { name: "homePageTests", use: { ...devices["Desktop Chrome"] } },
-    { name: "adminPageTests", use: { ...devices["Desktop Chrome"] } },
-    { name: "planningPageTests", use: { ...devices["Desktop Chrome"] } },
-    { name: "queryPageTests", use: { ...devices["Desktop Chrome"] } },
-    { name: "userPageTests", use: { ...devices["Desktop Chrome"] } },
-    { name: "reportPageTests", use: { ...devices["Desktop Chrome"] } },
-    { name: "executionPageTests", use: { ...devices["Desktop Chrome"] } },
-  ],
+  // ✅ Only include the project selected in Jenkins
+  projects: selectedProject
+    ? [
+        {
+          name: selectedProject,
+          testDir: projectDirMap[selectedProject] || "tests/specs",
+          use: { ...devices["Desktop Chrome"] },
+        },
+      ]
+    : Object.entries(projectDirMap).map(([name, dir]) => ({
+        name,
+        testDir: dir,
+        use: { ...devices["Desktop Chrome"] },
+      })),
 
   reporter: [
     ["list"],
     ["junit", { outputFile: "reports/test-results/test-results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
-    ["@ptc-fusion/playwright-hector-reporter", hectorBaseOptions],
+    [
+      "@ptc-fusion/playwright-hector-reporter",
+      ({ project }) => ({
+        ...hectorBaseOptions,
+        testCategory: project.name,
+      }),
+    ],
   ],
 });
