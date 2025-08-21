@@ -65,7 +65,7 @@ export default defineConfig({
     {
       ...hectorBaseOptions,
       // take category from Jenkins parameter
-      testCategory: process.env.TEST_PROJECT || "default",
+    testCategory,
     },
       }),
     ],
