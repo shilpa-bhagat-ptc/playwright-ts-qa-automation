@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     choice(
-      name: 'TEST_CATEGORY',
+      name: 'TEST_PROJECT',
       choices: [
         'homePageTests',
         'adminPageTests',
@@ -13,7 +13,7 @@ pipeline {
         'reportPageTests',
         'executionPageTests'
       ],
-      description: 'Select which test category to run'
+      description: 'Select which Playwright test project (class/suite) to run'
     )
   }
 
@@ -37,9 +37,10 @@ pipeline {
       }
     }
 
-    stage('Run Selected Tests') {
+    stage('Run Tests') {
       steps {
-        bat "npx playwright test --project=${params.TEST_CATEGORY}"
+        // Run only the selected project
+        bat "npx playwright test --project=${params.TEST_PROJECT}"
       }
     }
 
