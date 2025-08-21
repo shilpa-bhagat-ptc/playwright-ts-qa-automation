@@ -62,9 +62,11 @@ export default defineConfig({
     ["html", { outputFolder: "reports/html-report", open: "never" }],
     [
       "@ptc-fusion/playwright-hector-reporter",
-      ({ project }) => ({
-        ...hectorBaseOptions,
-        testCategory: project.name,
+    {
+      ...hectorBaseOptions,
+      // take category from Jenkins parameter
+      testCategory: process.env.TEST_PROJECT || "default",
+    },
       }),
     ],
   ],
