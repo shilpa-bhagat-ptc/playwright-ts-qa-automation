@@ -81,7 +81,6 @@ export class HomePage {
     ).toBeVisible();
   }
 
-  //Production Dashboard Methods
   async clickProductionDashboardTab() {
     await this.page.locator(HOME_PAGE_LOCATORS.productionDashboardTab).click();
   }
@@ -160,6 +159,7 @@ export class HomePage {
       await checkbox.check();
     }
   }
+
   async toggleEnableFilterCheckbox(enable: boolean) {
     const checkbox = this.page.locator(
       '//input[@id="prod_dashboard_table_filter"]'
@@ -180,6 +180,7 @@ export class HomePage {
   async selectByVisibleText(page: Page, selector: string, visibleText: string) {
     await page.selectOption(selector, { label: visibleText });
   }
+
   async safeClick(locator: Locator) {
     await locator.waitFor({ state: "visible" });
     await locator.scrollIntoViewIfNeeded();
@@ -201,6 +202,7 @@ export class HomePage {
       }
     });
   }
+
   async enterTextInRichTextIframe(noteText: string) {
     const iframeElement = this.page.frameLocator("iframe.ke-edit-iframe");
     const editorBody = iframeElement.locator("body.ke-content");
@@ -213,25 +215,26 @@ export class HomePage {
   async navigateToWeeklyEditorTab() {
     await this.page.locator(HOME_PAGE_LOCATORS.weeklyEditorTab).click();
   }
+
   async clickSaveWeeklyNoteButton() {
     return this.page.locator(HOME_PAGE_LOCATORS.saveWeeklyNoteButton).click();
   }
+
   async enterTextInTextArea(note: string) {
     await this.page.locator(HOME_PAGE_LOCATORS.editorTextArea).fill(note);
   }
-  async clickDateFromCalendar(day: string) {
-    // Open calendar first (click the Week begins input field);
-    await this.page.locator('input[name="StartDate"]').click(); // Adjust selector if needed
 
-    // Wait for calendar popup to be visible
+  async clickDateFromCalendar(day: string) {
+    await this.page.locator('input[name="StartDate"]').click();
+
     const dateCell = this.page.locator(
       `//td[contains(@class, 'day') and text()="${parseInt(day)}"]`
     );
     await expect(dateCell).toBeVisible({ timeout: 5000 });
 
-    // Click on the date
     await dateCell.click();
   }
+
   async goToTipsSection() {
     await this.page.click("text=Installation Tips");
   }
@@ -244,7 +247,6 @@ export class HomePage {
   async updateTipContent(newContent: string) {
     const [newPage] = await Promise.all([
       this.page.context().waitForEvent("page"),
-      // Submit opens new window
     ]);
 
     await newPage.waitForLoadState("domcontentloaded");

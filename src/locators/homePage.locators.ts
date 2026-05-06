@@ -1,5 +1,22 @@
 export const HOME_PAGE_LOCATORS = {
+  // ── Home Sub-Tabs (extracted via Playwright MCP) ────────────────────
   weeklyNoteTab: "//a[normalize-space(text())='Weekly Note']",
+  productionDashboardTab: "//a[normalize-space(text())='Production Dashboard']",
+  weeklyEditorTab: "//a[normalize-space(text())='Weekly Note Editor']",
+  tipsTab: '//a[normalize-space(text())="Tips"]',
+
+  // ── Release Status Table Headers (extracted via Playwright MCP) ─────
+  releaseStatusTable: "//table[@id='home_release_status']",
+  headerPriority: "//td[normalize-space()='Priority']",
+  headerRank: "//td[normalize-space()='Rank']",
+  headerReleaseName: "//td[normalize-space()='Release Name']",
+  headerQAProjectManager: "//td[normalize-space()='QA Project Manager']",
+  headerCurrentTestPhase: "//td[normalize-space()='Current Test Phase']",
+  headerPhaseStatus: "//td[contains(normalize-space(),'Phase Status')]",
+  headerCurrentWeeklyStatus: "//td[normalize-space()='Current Weekly Status']",
+  headerRTM: "//td[normalize-space()='RTM']",
+
+  // ── Weekly Note Elements ────────────────────────────────────────────
   weeklyNoteText: "//b[normalize-space()='Week begins:']",
   clickOnCalendar: 'input[name="StartDate"]',
   startDate: "//b[text()='Week begins:']/following::input[1]",
@@ -9,11 +26,12 @@ export const HOME_PAGE_LOCATORS = {
   optionLocator: '//option[text()[normalize-space()="${visibleText}"]]',
   selectManager: "//select[@id='weekly_project_manager']",
 
-  // Locators for Production Dashboard
+  // ── Production Dashboard Elements ────────────────────────────────────
   dashboardheaders: "table#prod_dashboard tr.prod_dashboard_tbl_header td",
   prodtableHeaders:
     "//table[@id='prod_dashboard']//tr[@class='prod_dashboard_tbl_header']",
-  productionDashboardTab: "//a[normalize-space(text())='Production Dashboard']",
+  productionDashboardTab1:
+    "//a[normalize-space(text())='Production Dashboard']",
   productionDashboardFromDate: 'input[name="period_from"]',
   productionDashboardToDate: 'input[name="period_to"]',
   productionDashboardLoadButton:
@@ -27,9 +45,10 @@ export const HOME_PAGE_LOCATORS = {
   prodEditor: "//*[@id='prod_dashboard']/tbody/tr[3]/td[12]/img",
   prodSaveButton:
     "(//input[@type='button' and starts-with(@value, 'Save') and not(ancestor::div[contains(@style, 'display:none')])])[1]",
-  weeklyEditorTab: "//a[normalize-space(text())='Weekly Note Editor']",
+  // ── Weekly Note Editor Elements ──────────────────────────────────────
   editorTextArea: "//textarea[@name='note']",
   saveWeeklyNoteButton: "//input[@value='Save Weekly Note']",
+  // ── Tips Elements ────────────────────────────────────────────────────
   tipLinks: 'a[href*="tips.jsp?action=list&category="]',
   tip: '//a[normalize-space(text())="Tips"]',
   tipsCategory: "text=Tips Category",

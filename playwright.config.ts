@@ -61,6 +61,8 @@ export default defineConfig({
   testMatch: ["*.spec.ts"],
 
   globalSetup: require.resolve("./tests/config/global-setup"),
+  timeout: 120000,
+  workers: 1,
 
   use: {
     storageState: ".auth/storageState.json",
@@ -72,7 +74,7 @@ export default defineConfig({
 
   reporter: [
     ["list"],
-    ["junit", { outputFile: "reports/test-results/test-results.xml" }],
+    ["junit", { outputFile: "reports/test-results/results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
     [
       "@ptc-fusion/playwright-hector-reporter",

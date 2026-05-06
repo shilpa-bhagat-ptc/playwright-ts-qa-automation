@@ -10,7 +10,14 @@
     "test": "npx playwright test",
     "test:ui": "npx playwright test --ui",
     "test:debug": "PWDEBUG=1 npx playwright test",
-    "posttest": "npx ts-node tools/formatJUnitReport.ts"
+    "posttest": "npx ts-node tools/formatJUnitReport.ts",
+    "extract:locators": "npx ts-node tools/mcpLocatorExtractor.ts",
+    "crawl:pages": "npx ts-node tools/mcpCrawler.ts",
+    "convert:excel": "npx ts-node tools/excelToSpec.ts",
+    "report:healing": "npx ts-node tools/healingReport.ts",
+    "ai:analyze": "npx ts-node tools/aiFailureAnalyzer.ts",
+    "ai:select": "npx ts-node tools/aiTestSelector.ts",
+    "ai:flaky": "npx ts-node tools/aiFlakyDetector.ts"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +26,7 @@
   "devDependencies": {
     "@playwright/test": "^1.54.1",
     "@ptc-fusion/playwright-hector-reporter": "^1.0.0",
+    "@types/node": "^25.5.0",
     "@types/uuid": "^10.0.0",
     "@types/xml-js": "^0.9.0",
     "@types/xml2js": "^0.4.14",
@@ -29,6 +37,7 @@
     "@faker-js/faker": "^9.9.0",
     "fast-xml-parser": "^4.5.3",
     "uuid": "^11.1.0",
+    "xlsx": "^0.18.5",
     "xml-js": "^1.6.11",
     "xml2js": "^0.6.2"
   }
