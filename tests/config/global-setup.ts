@@ -10,7 +10,7 @@ async function globalSetup(config: FullConfig) {
   const page = await context.newPage();
 
   await page.goto(
-    "http://lqatms-test3.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp"
+    "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp"
   );
 
   await page.fill('input[name="login_id"]', "sbhagat");

@@ -23,8 +23,10 @@ function hectorOptions(testCategory: string) {
 
 export default defineConfig({
   testDir: "./tests/specs",
-  testMatch: ["*.spec.ts"],
+  testMatch: ["*.spec.ts", "*.test.ts"],
   globalSetup: require.resolve("./tests/config/global-setup"),
+  timeout: 120000,
+  workers: 1,
 
   use: {
     storageState: ".auth/storageState.json",
@@ -48,7 +50,7 @@ export default defineConfig({
     ["list"],
     ["junit", { outputFile: "reports/test-results/results.xml" }],
     ["html", { outputFolder: "reports/html-report", open: "never" }],
-    // 👇 reporter picks testCategory dynamically at runtime
+
     [
       "@ptc-fusion/playwright-hector-reporter",
       hectorOptions(process.env.PW_PROJECT || "default"),

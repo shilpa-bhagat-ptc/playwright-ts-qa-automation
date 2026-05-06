@@ -24,6 +24,12 @@
     "Date": "20",
     "fulldate": "07/20/2025"
   },
+  "query": {
+    "release": "AFX 6.0.1.0",
+    "product": "AFX_IFX",
+    "targetRelease": "AFX 6.0.1.0",
+    "targetPhase": "I"
+  },
   "tips": {
     "tips": "Tips",
     "tipsText": "text=Tips text",
