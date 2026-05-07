@@ -40,6 +40,7 @@ test("TC_PLAN001- Verify Release Search Functionality in dropdown", async ({
 
   console.log("Actual Headers:", actualHeaders);
   console.log("Expected Headers:", expectedHeaders);
+  expect(actualHeaders).toEqual(expect.arrayContaining(expectedHeaders));
 });
 
 test('TC_PLAN002- Verify the "Planning" tab is accessible and clickable', async ({

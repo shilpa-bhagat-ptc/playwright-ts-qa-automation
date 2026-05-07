@@ -314,12 +314,8 @@ test("TC_EXE_009 - Verify test case list loads after selecting Release and Phase
 
   console.log("Step 5: Verifying results table is displayed...");
   const resultTable = page.locator(EXECUTION_PAGE_LOCATORS.listResultTable);
-  const tableVisible = await resultTable.isVisible();
-  if (tableVisible) {
-    console.log("Test case assignment list is displayed.");
-  } else {
-    console.log("No records found for selected criteria (server-state dependent).");
-  }
+  await expect(resultTable).toBeVisible({ timeout: 15000 });
+  console.log("Test case assignment list is displayed.");
   await captureStepScreenshot(page, testInfo, "05_result_verified");
 
   console.log("TC_EXE_009 completed successfully.");
@@ -417,12 +413,8 @@ test("TC_EXE_012 - Verify task loads correctly after selecting office and start 
 
   console.log("Step 5: Verifying Weekly Assignment Summary table is displayed...");
   const summaryTable = page.locator(EXECUTION_PAGE_LOCATORS.weeklyAssignmentSummaryTable).first();
-  const tableVisible = await summaryTable.isVisible();
-  if (tableVisible) {
-    console.log("Weekly Assignment Summary table is displayed with Installations, Test Case Executions, SPRs fields.");
-  } else {
-    console.log("No task records found for selected office/date (server-state dependent).");
-  }
+  await expect(summaryTable).toBeVisible({ timeout: 15000 });
+  console.log("Weekly Assignment Summary table is displayed with Installations, Test Case Executions, SPRs fields.");
   await captureStepScreenshot(page, testInfo, "05_summary_table_verified");
 
   console.log("TC_EXE_012 completed successfully.");
@@ -450,22 +442,17 @@ test("TC_EXE_013 - Verify Enable Filter checkbox in Weekly Goal tab", async ({
 
   console.log("Step 3: Checking for Enable Filter checkbox...");
   const enableFilter = page.locator(EXECUTION_PAGE_LOCATORS.weeklyGoalEnableFilter);
-  const filterVisible = await enableFilter.isVisible();
-  if (filterVisible) {
-    console.log("Enable Filter checkbox is visible.");
-    await enableFilter.check();
-    await page.waitForTimeout(500);
-    console.log("Enable Filter checkbox is checked.");
-    await captureStepScreenshot(page, testInfo, "02_filter_enabled");
+  await expect(enableFilter).toBeVisible({ timeout: 15000 });
+  console.log("Enable Filter checkbox is visible.");
+  await enableFilter.check();
+  await page.waitForTimeout(500);
+  console.log("Enable Filter checkbox is checked.");
+  await captureStepScreenshot(page, testInfo, "02_filter_enabled");
 
-    const filterDropdown = page.locator(EXECUTION_PAGE_LOCATORS.weeklyGoalFilterDropdown);
-    const dropdownVisible = await filterDropdown.isVisible();
-    console.log(`Filter dropdown visible: ${dropdownVisible}`);
-    await captureStepScreenshot(page, testInfo, "03_filter_dropdown_checked");
-  } else {
-    console.log("Enable Filter checkbox not visible — no records loaded for selected date/office.");
-    await captureStepScreenshot(page, testInfo, "02_no_records_for_filter");
-  }
+  const filterDropdown = page.locator(EXECUTION_PAGE_LOCATORS.weeklyGoalFilterDropdown);
+  await expect(filterDropdown).toBeVisible({ timeout: 5000 });
+  console.log("Filter dropdown is visible after enabling filter.");
+  await captureStepScreenshot(page, testInfo, "03_filter_dropdown_checked");
 
   console.log("TC_EXE_013 completed successfully.");
 });
@@ -579,26 +566,17 @@ test("TC_EXE_016 - Verify server details load and Enable Filter functionality in
 
   console.log("Step 5: Verifying server details appear...");
   const serverList = page.locator(EXECUTION_PAGE_LOCATORS.qaLabServerList);
-  const serverListVisible = await serverList.isVisible();
-  if (serverListVisible) {
-    console.log("Server URL list is displayed.");
-    await captureStepScreenshot(page, testInfo, "05_server_list_visible");
+  await expect(serverList).toBeVisible({ timeout: 15000 });
+  console.log("Server URL list is displayed.");
+  await captureStepScreenshot(page, testInfo, "05_server_list_visible");
 
-    console.log("Step 6: Verifying Enable Filter checkbox...");
-    const enableFilter = page.locator(EXECUTION_PAGE_LOCATORS.qaLabEnableFilter);
-    const filterVisible = await enableFilter.isVisible();
-    if (filterVisible) {
-      await enableFilter.check();
-      await page.waitForTimeout(500);
-      console.log("Enable Filter checked — filter dropdowns should appear.");
-      await captureStepScreenshot(page, testInfo, "06_filter_applied");
-    } else {
-      console.log("Enable Filter checkbox not found with expected selector.");
-    }
-  } else {
-    console.log("No server records found for selected criteria (server-state dependent).");
-    await captureStepScreenshot(page, testInfo, "05_no_server_records");
-  }
+  console.log("Step 6: Verifying Enable Filter checkbox...");
+  const enableFilter = page.locator(EXECUTION_PAGE_LOCATORS.qaLabEnableFilter);
+  await expect(enableFilter).toBeVisible({ timeout: 5000 });
+  await enableFilter.check();
+  await page.waitForTimeout(500);
+  console.log("Enable Filter checked — filter dropdowns should appear.");
+  await captureStepScreenshot(page, testInfo, "06_filter_applied");
 
   console.log("TC_EXE_016 completed successfully.");
 });
@@ -663,26 +641,16 @@ test("TC_EXE_018 - Verify Edit functionality in QA Lab tab", async ({
 
   console.log("Step 2: Looking for Edit link in server list...");
   const editLink = page.locator(EXECUTION_PAGE_LOCATORS.qaLabEditLink).first();
-  const editVisible = await editLink.isVisible();
-  if (editVisible) {
-    await editLink.click();
-    await page.waitForLoadState("load");
-    await captureStepScreenshot(page, testInfo, "02_edit_clicked");
+  await expect(editLink).toBeVisible({ timeout: 15000 });
+  await editLink.click();
+  await page.waitForLoadState("load");
+  await captureStepScreenshot(page, testInfo, "02_edit_clicked");
 
-    console.log("Step 3: Verifying Edit The Server overlay appears...");
-    const editOverlay = page.locator(EXECUTION_PAGE_LOCATORS.qaLabEditOverlayTitle);
-    const editOverlayVisible = await editOverlay.isVisible();
-    if (editOverlayVisible) {
-      console.log("Edit The Server overlay is displayed.");
-      await captureStepScreenshot(page, testInfo, "03_edit_overlay_visible");
-    } else {
-      console.log("Edit overlay not found with expected selector.");
-      await captureStepScreenshot(page, testInfo, "03_edit_overlay_check");
-    }
-  } else {
-    console.log("No server records available to edit (server-state dependent).");
-    await captureStepScreenshot(page, testInfo, "02_no_edit_records");
-  }
+  console.log("Step 3: Verifying Edit The Server overlay appears...");
+  const editOverlay = page.locator(EXECUTION_PAGE_LOCATORS.qaLabEditOverlayTitle);
+  await expect(editOverlay).toBeVisible({ timeout: 10000 });
+  console.log("Edit The Server overlay is displayed.");
+  await captureStepScreenshot(page, testInfo, "03_edit_overlay_visible");
 
   console.log("TC_EXE_018 completed successfully.");
 });
@@ -786,8 +754,8 @@ test("TC_EXE_021 - Verify Show Page button loads results correctly in Configurat
   await captureStepScreenshot(page, testInfo, "03_results_all_statuses");
 
   const resultTable = page.locator(EXECUTION_PAGE_LOCATORS.configResultTable);
-  const tableVisible = await resultTable.isVisible();
-  console.log(`Results table visible (all statuses): ${tableVisible}`);
+  await expect(resultTable).toBeVisible({ timeout: 15000 });
+  console.log("Results table is visible (all statuses).");
 
   console.log("Step 5: Checking the Active Only checkbox...");
   if (await activeCheckbox.isVisible()) {
@@ -798,19 +766,16 @@ test("TC_EXE_021 - Verify Show Page button loads results correctly in Configurat
   console.log("Step 6: Clicking Show Page (Active Only)...");
   await executionPage.clickShowPage();
   await captureStepScreenshot(page, testInfo, "04_results_active_only");
+  await expect(resultTable).toBeVisible({ timeout: 15000 });
   console.log("Results with Active Only filter applied.");
 
   console.log("Step 7: Checking for Enable Filter checkbox...");
   const enableFilter = page.locator(EXECUTION_PAGE_LOCATORS.configEnableFilter);
-  const filterVisible = await enableFilter.isVisible();
-  if (filterVisible) {
-    await enableFilter.check();
-    await page.waitForTimeout(500);
-    console.log("Enable Filter applied.");
-    await captureStepScreenshot(page, testInfo, "05_config_enable_filter");
-  } else {
-    console.log("Enable Filter checkbox not available.");
-  }
+  await expect(enableFilter).toBeVisible({ timeout: 5000 });
+  await enableFilter.check();
+  await page.waitForTimeout(500);
+  console.log("Enable Filter applied.");
+  await captureStepScreenshot(page, testInfo, "05_config_enable_filter");
 
   console.log("TC_EXE_021 completed successfully.");
 });
@@ -947,25 +912,16 @@ test("TC_EXE_024 - Verify Load Test Case Assignment in Analysis tab loads result
 
   console.log("Step 5: Verifying results table...");
   const resultTable = page.locator(EXECUTION_PAGE_LOCATORS.analysisResultTable);
-  const tableVisible = await resultTable.isVisible();
-  if (tableVisible) {
-    console.log("Analysis result table is displayed.");
+  await expect(resultTable).toBeVisible({ timeout: 15000 });
+  console.log("Analysis result table is displayed.");
 
-    console.log("Step 6: Verifying Enable Filter checkbox...");
-    const enableFilter = page.locator(EXECUTION_PAGE_LOCATORS.analysisEnableFilter);
-    const filterVisible = await enableFilter.isVisible();
-    if (filterVisible) {
-      await enableFilter.check();
-      await page.waitForTimeout(500);
-      console.log("Enable Filter is functional.");
-      await captureStepScreenshot(page, testInfo, "05_filter_applied");
-    } else {
-      console.log("Enable Filter checkbox not found.");
-    }
-  } else {
-    console.log("No records returned for selected criteria (server-state dependent).");
-    await captureStepScreenshot(page, testInfo, "05_no_records");
-  }
+  console.log("Step 6: Verifying Enable Filter checkbox...");
+  const enableFilter = page.locator(EXECUTION_PAGE_LOCATORS.analysisEnableFilter);
+  await expect(enableFilter).toBeVisible({ timeout: 5000 });
+  await enableFilter.check();
+  await page.waitForTimeout(500);
+  console.log("Enable Filter is functional.");
+  await captureStepScreenshot(page, testInfo, "05_filter_applied");
 
   console.log("TC_EXE_024 completed successfully.");
 });
@@ -1122,14 +1078,9 @@ test("TC_EXE_027 - Verify correct loading of search results after clicking Execu
 
   console.log("Step 7: Verifying search results are displayed...");
   const resultTable = page.locator(EXECUTION_PAGE_LOCATORS.searchResultTable);
-  const tableVisible = await resultTable.isVisible();
-  if (tableVisible) {
-    console.log("Search results table is displayed with matching entries.");
-    await captureStepScreenshot(page, testInfo, "06_results_table_visible");
-  } else {
-    console.log("No results found for selected criteria (server-state dependent).");
-    await captureStepScreenshot(page, testInfo, "06_no_results");
-  }
+  await expect(resultTable).toBeVisible({ timeout: 15000 });
+  console.log("Search results table is displayed with matching entries.");
+  await captureStepScreenshot(page, testInfo, "06_results_table_visible");
 
   console.log("TC_EXE_027 completed successfully.");
 });
