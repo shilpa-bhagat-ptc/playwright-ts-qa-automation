@@ -21,6 +21,7 @@ test("TC_HOM_001 - Verify Home Tab Navigation and Content", async ({
   console.log("Verifying successful login...");
   await homePage.waitForHomePageLoaded();
   console.log("Navigating to Home Page...");
+  await expect(page.locator(HOME_PAGE_LOCATORS.weeklyNoteTab)).toBeVisible({ timeout: 15000 });
   console.log("TC_HOM_001 completed successfully.");
 });
 

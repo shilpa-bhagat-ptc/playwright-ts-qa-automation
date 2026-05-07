@@ -266,12 +266,9 @@ test("TC_RPT_005 - Verify Generate CFT Report Functionality using Summary view",
   await captureStepScreenshot(page, testInfo, "08_cft_summary_generated");
 
   console.log("Step 9: Verifying result is displayed...");
-  const resultCount = await page.locator(REPORT_PAGE_LOCATORS.overallResultTable).count();
-  if (resultCount > 0) {
-    console.log(`  ${resultCount} result table(s) found in Summary view.`);
-  } else {
-    console.log("  No result table — criteria may have returned no data.");
-  }
+  const resultTable = page.locator(REPORT_PAGE_LOCATORS.overallResultTable).first();
+  await expect(resultTable).toBeVisible({ timeout: 15000 });
+  console.log("  CFT Summary result table is visible.");
   await captureStepScreenshot(page, testInfo, "09_results_visible");
 
   console.log("TC_RPT_005 completed successfully.");
