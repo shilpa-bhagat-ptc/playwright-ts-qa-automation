@@ -30,6 +30,15 @@
     "targetRelease": "AFX 6.0.1.0",
     "targetPhase": "I"
   },
+  "execution": {
+    "release": "AFX 7.0 F000",
+    "phase": "I",
+    "office": "USA",
+    "product": "AFX_IFX",
+    "weeksBeginDate": "05/13/2026",
+    "qaLabStatus": "All",
+    "searchProjectNo": "12345"
+  },
   "tips": {
     "tips": "Tips",
     "tipsText": "text=Tips text",

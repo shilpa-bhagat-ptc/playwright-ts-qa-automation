@@ -74,7 +74,10 @@ const test = base.extend<Fixtures>({
     await use(planningPageObj);
   },
   executionPage: async ({ page }, use) => {
-    // TODO: Implement navigation and wait for execution page load
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_EXECUTION_URL || `${BASE}/jsp/execution/index.jsp`,
+    );
     const executionPageObj = new ExecutionPage(page);
     await use(executionPageObj);
   },

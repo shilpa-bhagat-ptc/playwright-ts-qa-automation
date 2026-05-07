@@ -54,6 +54,19 @@ export class TestDataGenerator {
     ];
   }
 
+  static executionSubTabs(): string[] {
+    return [
+      "List",
+      "Weekly Goal",
+      "Run",
+      "Test Automation",
+      "QALab",
+      "Configurations",
+      "Analysis",
+      "Search",
+    ];
+  }
+
   // Returns Planning tab sub-options
   static planningTabSubOptions(): string[] {
     return [
