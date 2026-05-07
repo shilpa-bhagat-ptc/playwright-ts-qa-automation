@@ -1,5 +1,22 @@
 pipeline {
   agent any
+   
+
+  parameters {
+    choice(
+      name: 'TEST_PROJECT',
+      choices: [
+        'homePageTests',
+        'adminPageTests',
+        'planningPageTests',
+        'queryPageTests',
+        'userPageTests',
+        'reportPageTests',
+        'executionPageTests'
+      ],
+      description: 'Select which Playwright test project (class/suite) to run'
+    )
+  }
 
   stages {
     stage('Checkout') {
@@ -23,7 +40,11 @@ pipeline {
 
     stage('Run Tests') {
       steps {
-        bat 'npx playwright test'
+        
+    bat """
+      set TEST_PROJECT=${params.TEST_PROJECT}
+      npx playwright test
+    """
       }
     }
 
