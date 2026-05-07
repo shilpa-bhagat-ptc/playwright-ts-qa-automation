@@ -62,6 +62,7 @@ export default defineConfig({
 
   globalSetup: require.resolve("./tests/config/global-setup"),
   timeout: 120000,
+  retries: 1,
   workers: 1,
 
   use: {

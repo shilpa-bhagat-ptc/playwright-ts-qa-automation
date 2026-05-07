@@ -1,4 +1,97 @@
 export const REPORT_PAGE_LOCATORS = {
-  // ── Report Sub-Tabs (placeholder - page timed out during MCP extraction) ──
-  // TODO: Extract locators via MCP when Report page is accessible
+  // ── Main Nav ──────────────────────────────────────────────────────────
+  reportTab: "(//a[normalize-space(text())='Report'])[1]",
+
+  // ── Report Sub-Tabs (class: main_sub_menu / main_sub_menu_selected) ──
+  overallTab: "//a[normalize-space()='Overall']",
+  buildPeriodTab: "//a[normalize-space()='Build/Period']",
+  executionReportTab: "//a[normalize-space()='Execution Report']",
+  cftReportTab: "//a[normalize-space()='CFT Report']",
+  testCaseInfoTab: "//a[normalize-space()='TestCase Info']",
+  sprReportTab: "//a[normalize-space()='SPR Report']",
+  weeklyReportTab: "//a[normalize-space()='Weekly Report']",
+  timeReportTab: "//a[normalize-space()='TimeReport']",
+  projectIdV1EpicTab: "//a[normalize-space()='Project ID/V1Epic']",
+  roiReportTab: "//a[normalize-space()='ROI Report']",
+
+  // ── Overall Tab ───────────────────────────────────────────────────────
+  overallReleaseSelect: "select[name='release']",
+  overallPhaseSelect: "select[name='phase']",
+  overallSelectedPhasesSelect: "select[name='release_phase']",
+  overallProductSelect: "select[name='product']",
+  overallPmSelect: "select[name='pm']",
+  overallOfficeSelect: "select[name='office_id']",
+  overallPhaseAddArrow: "input[name='add_release_phase']",
+  overallPhaseRemoveArrow: "input[name='del_release_phase']",
+  overallLoadButton: "input[name='submit_query'][value='Load Execution Summary']",
+  overallResultTable: "//table[contains(@class,'list_table')]",
+
+  // ── CFT Report Tab ────────────────────────────────────────────────────
+  cftReportSelect: "select[name='cft_id']",
+  cftReleaseSelect: "select[id='sel_release']",
+  cftPhaseSelect: "select[id='sel_phase']",
+  cftSelectedPhasesSelect: "select[name='active_rel_phase']",
+  cftProductSelect: "select[name='sel_product']",
+  cftPmSelect: "select[name='sel_pm']",
+  cftAllComponentsSelect: "select[id='sel_allcomponents']",
+  cftSelectedComponentsSelect: "select[id='sel_component']",
+  cftPhaseAddArrow: "input[name='add_release_phase']",
+  cftPhaseRemoveArrow: "input[name='del_release_phase']",
+  cftComponentAddArrow: "input[name='add_component']",
+  cftComponentRemoveArrow: "input[name='del_component']",
+  cftViewDetailRadio: "input[name='mode'][value='0']",
+  cftViewSummaryRadio: "input[name='mode'][value='1']",
+  cftGenerateButton: "input[name='submit_query'][value='Generate CFT Status']",
+
+  // ── TestCase Info Tab ─────────────────────────────────────────────────
+  testCaseInfoReleaseSelect: "//td[normalize-space(.)='Release:']/following-sibling::td[1]/select",
+  testCaseInfoPhaseSelect: "//td[normalize-space(.)='Phase:']/following-sibling::td[1]/select",
+  testCaseInfoProductSelect: "//td[normalize-space(.)='Product:']/following-sibling::td[1]/select",
+  testCaseInfoPmSelect: "//td[normalize-space(.)='Project Manager:']/following-sibling::td[1]/select",
+  testCaseInfoPublicRadio: "input[name='type'][value='1']",
+  testCaseInfoPersonalRadio: "input[name='type'][value='2']",
+  testCaseInfoLoadButton: "input[value='Load Test Case Info']",
+  testCaseInfoResultTable: "//table[contains(@class,'list_table')]",
+
+  // ── Weekly Report Tab ─────────────────────────────────────────────────
+  weeklyReportOfficeSelect: "select[name='office_id']",
+  weeklyReportStartDateInput: "input[name='StartDate']",
+  weeklyReportViewDetailRadio: "input[name='mode'][value='0']",
+  weeklyReportViewSummaryRadio: "input[name='mode'][value='1']",
+  weeklyReportLoadButton: "input[value='Load Tasks']",
+  weeklyReportSaveButton: "//input[@value='Save']",
+  weeklyReportSendMailButton: "//input[@value='Send Mail']",
+  weeklyReportPushTrackerButton: "//input[contains(@value,'Push') and contains(@value,'Time')]",
+  weeklyReportTimeTrackerButton: "//input[@value='Time Tracker Report']",
+  weeklyReportResultTable: "//table[contains(@class,'list_table') or .//th[contains(normalize-space(),'Weekly')]]",
+  // Send Mail popup elements
+  sendMailToInput: "input[name='to']",
+  sendMailCcInput: "input[name='cc']",
+  sendMailSubjectInput: "input[name='subject']",
+  sendMailSendButton: "//input[@value='Send']",
+  sendMailPreviewButton: "//input[@value='Preview']",
+
+  // ── TimeReport Tab ────────────────────────────────────────────────────
+  timeReportReleaseSelect: "select[id='release']",
+  timeReportOfficeSelect: "//td[normalize-space(.)='Office:']/following-sibling::td[1]/select",
+  timeReportQaEngineerSelect: "//td[normalize-space(.)='QA Engineer :']/following-sibling::td[1]/select",
+  timeReportPeriodFromInput: "input[name='period_from']",
+  timeReportPeriodToInput: "input[name='period_to']",
+  timeReportViewDetailRadio: "input[name='mode'][value='0']",
+  timeReportViewSummaryRadio: "input[name='mode'][value='1']",
+  timeReportLoadButton: "input[name='submit_query']",
+  timeReportResultTable: "//table[contains(@class,'list_table')]",
+  timeReportExportButton: "//input[contains(@value,'Export')]",
+
+  // ── ROI Report Tab ────────────────────────────────────────────────────
+  roiOfficeSelect: "select[id='office']",
+  roiSprSourceSelect: "select[id='spr_source']",
+  roiProductLineSelect: "select[id='product_line']",
+  roiReleaseSelect: "select[id='release']",
+  roiPmSelect: "select[id='pm']",
+  roiQaEngineerSelect: "select[id='qa_engineer']",
+  roiStartDateInput: "input[id='start_date']",
+  roiEndDateInput: "input[id='end_date']",
+  roiLoadButton: "input[id='load_roi_data']",
+  roiResultTable: "//table[contains(@class,'list_table') or .//th[contains(normalize-space(),'ROI')]]",
 };
