@@ -1,4 +1,5 @@
 import { test as base, Page } from "@playwright/test";
+import { testData } from "../../src/data/testData";
 import { HomePage } from "../../src/pages/HomePage";
 import { LoginPage } from "../../src/pages/LoginPage";
 import { PlanningPage } from "../../src/pages/PlanningPage";
@@ -7,6 +8,37 @@ import { ExecutionPage } from "../../src/pages/executionPage";
 import { QueryPage } from "../../src/pages/queryPage";
 import { ReportPage } from "../../src/pages/reportPage";
 import { UserPage } from "../../src/pages/userPage";
+
+const BASE = "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+
+// Navigates to targetUrl, re-authenticates if the server session has expired.
+// Detects two cases: (1) redirect to login.jsp, (2) app serves degraded content
+// with a "Login =>" link instead of "Logout =>" without redirecting.
+async function navigateAuthenticated(page: Page, targetUrl: string) {
+  await page.goto(targetUrl);
+  await page.waitForLoadState("networkidle");
+
+  const onLoginPage = page.url().includes("login.jsp");
+  // When authenticated, the nav bar shows a "Logout" link; a session expiry without redirect
+  // replaces it with a "Login" link. Require both: no logout link AND a login link present.
+  const hasLogoutLink = !onLoginPage && (await page.locator('a[href*="logout.jsp"]').count()) > 0;
+  const hasLoginLink = !onLoginPage && !hasLogoutLink && (await page.locator('a[href*="login.jsp"]').count()) > 0;
+
+  if (onLoginPage || hasLoginLink) {
+    if (hasLoginLink) {
+      await page.goto(`${BASE}/jsp/home/login.jsp`);
+      await page.waitForLoadState("networkidle");
+    }
+    await page.fill('input[name="login_id"]', testData.validUser.username);
+    await page.fill('input[name="password"]', testData.validUser.password);
+    await page.click('input[type="submit"][value="Log In"]');
+    await page.waitForLoadState("networkidle");
+    // Always navigate to targetUrl after login — server may redirect to home,
+    // not necessarily back to the original target page.
+    await page.goto(targetUrl);
+    await page.waitForLoadState("networkidle");
+  }
+}
 
 type Fixtures = {
   loginPage: LoginPage;
@@ -26,18 +58,17 @@ const test = base.extend<Fixtures>({
     await use(loginPageObj);
   },
   homePage: async ({ page }, use) => {
-    await page.goto(
-      process.env.TEST_BASE_URL ||
-        "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/",
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_BASE_URL || `${BASE}/jsp/home/`,
     );
     const homePageObj = new HomePage(page);
-    await homePageObj.waitForHomePageLoaded();
     await use(homePageObj);
   },
   planningPage: async ({ page }, use) => {
-    await page.goto(
-      process.env.TEST_BASE_URL ||
-        "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/planning/",
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_PLANNING_URL || `${BASE}/jsp/planning/`,
     );
     const planningPageObj = new PlanningPage(page);
     await use(planningPageObj);
@@ -48,11 +79,10 @@ const test = base.extend<Fixtures>({
     await use(executionPageObj);
   },
   queryPage: async ({ page }, use) => {
-    await page.goto(
-      process.env.TEST_QUERY_URL ||
-        "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/query/index.jsp",
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_QUERY_URL || `${BASE}/jsp/query/index.jsp`,
     );
-    await page.waitForLoadState("networkidle");
     const queryPageObj = new QueryPage(page);
     await use(queryPageObj);
   },

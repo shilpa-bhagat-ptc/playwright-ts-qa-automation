@@ -10,15 +10,15 @@ async function globalSetup(config: FullConfig) {
   const page = await context.newPage();
 
   await page.goto(
-    "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp"
+    "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?"
   );
+  await page.waitForSelector('input[name="login_id"]');
 
   await page.fill('input[name="login_id"]', "sbhagat");
   await page.fill('input[name="password"]', "123");
-  await Promise.all([
-    page.click('input[type="submit"]'),
-    await page.waitForLoadState("networkidle"), // ⏳ Wait for redirect
-  ]);
+  await page.click('input[type="submit"][value="Log In"]');
+  await page.waitForLoadState("networkidle");
+  console.log(`Logged in. Current URL: ${page.url()}`);
   const storagePath = path.resolve(process.cwd(), ".auth/storageState.json");
   await page.context().storageState({ path: storagePath });
   console.log(`Storage state will be saved to: ${storagePath}`);

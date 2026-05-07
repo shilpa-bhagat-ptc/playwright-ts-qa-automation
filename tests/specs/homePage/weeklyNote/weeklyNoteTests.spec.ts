@@ -16,7 +16,6 @@ test("TC_HOM_001 - Verify Home Tab Navigation and Content", async ({
   });
 
   console.log("Navigating to login pageb...");
-  await loginPage.navigate;
   console.log("Logging in with valid credentials...");
   await captureStepScreenshot(page, testInfo, "Login with valid credentials");
   console.log("Verifying successful login...");
@@ -26,19 +25,26 @@ test("TC_HOM_001 - Verify Home Tab Navigation and Content", async ({
 });
 
 test("TC_HOME002 - Invalid login using Faker-generated credentials", async ({
-  page,
+  browser,
 }) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.navigate();
-  await loginPage.login(
-    TestDataGenerator.username(),
-    TestDataGenerator.password()
-  );
+  const context = await browser.newContext();
+  const page = await context.newPage();
 
-  console.log(" Attempting to log in with invalid credentials...");
-  const errorMessage = page.locator("text=Login Incorrect!");
-  await expect(errorMessage).toBeVisible();
-  console.log("TC_HOM_002 completed successfully.");
+  try {
+    const loginPage = new LoginPage(page);
+    await loginPage.navigate();
+    await loginPage.login(
+      TestDataGenerator.username(),
+      TestDataGenerator.password()
+    );
+
+    console.log(" Attempting to log in with invalid credentials...");
+    const errorMessage = page.locator("text=Login Incorrect!");
+    await expect(errorMessage).toBeVisible();
+    console.log("TC_HOM_002 completed successfully.");
+  } finally {
+    await context.close();
+  }
 });
 
 test("TC_HOM_003 - Verify Weekly Note Functionality", async ({
@@ -65,8 +71,6 @@ test("TC_HOM_003 - Verify Weekly Note Functionality", async ({
     .isVisible();
   expect(weeklyNoteTabHeader).toBeTruthy();
 
-  console.log(" Opening calendar...");
-  await homePage.openCalendar();
   await captureStepScreenshot(page, testInfo, "04_open-calendar");
 
   console.log(` Selecting date: ${commonProperties.dateFormat.date}`);

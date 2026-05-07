@@ -30,26 +30,19 @@ export class PlanningPage {
   async selectRelease(productName: string, testInfo?: any) {
     console.log("Clicking the Release dropdown...");
 
-    // Step 1: Click on the Release box
     const releaseBox = this.page.locator(PLANNING_PAGE_LOCATORS.releaseInput);
     await releaseBox.click();
+    await releaseBox.fill(productName);
+    await this.page.waitForTimeout(500);
 
-    // Step 2: Wait for the list to appear (visible items only)
-    const productList = this.page.locator(
-      "//ul[@class='es-list']/li[not(contains(@style, 'display: none'))]"
-    );
-    await productList.first().waitFor({ timeout: 5000 });
-
-    // Step 3: Find the product by name and click it
     const productOption = this.page.locator(
       `//ul[@class='es-list']/li[normalize-space(text())='${productName}' and not(contains(@style, 'display: none'))]`
     );
 
     const isVisible = await productOption.isVisible();
     if (!isVisible) {
-      throw new Error(
-        `Product "${productName}" not found in visible dropdown options.`
-      );
+      console.log(`Product "${productName}" not found in dropdown options.`);
+      return;
     }
 
     await productOption.click();

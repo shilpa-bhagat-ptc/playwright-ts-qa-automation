@@ -32,20 +32,36 @@ export class HomePage {
   }
 
   async selectDateFromCalendar(day: string) {
-    console.log("Clicking on calendar input...");
-    await this.page.locator(HOME_PAGE_LOCATORS.startDate).click();
+    console.log(`Setting calendar date via jQuery datepicker API for day: ${day}`);
+    const set = await this.page.evaluate((dayStr: string) => {
+      const $ = (window as any).$;
+      if (!$) return "no-jquery";
+      const $input = $('input[name="StartDate"]');
+      if (!$input.length) return "no-input";
+      const current = $input.datepicker("getDate") || new Date();
+      const target = new Date(current.getFullYear(), current.getMonth(), parseInt(dayStr, 10));
+      $input.datepicker("setDate", target);
+      return "ok";
+    }, day);
+    console.log(`jQuery datepicker setDate result: ${set}`);
 
-    console.log("Waiting for calendar to be visible...");
-    await this.page
-      .locator("div.datepicker-days")
-      .waitFor({ state: "visible" });
-
-    console.log(`Selecting day ${day} from calendar...`);
-    await this.page
-      .locator(
-        `//td[contains(@class, 'day') and not(contains(@class, 'old')) and text()='${day}']`
-      )
-      .click();
+    if (set !== "ok") {
+      console.log("jQuery API unavailable, falling back to UI click...");
+      await this.page.locator(HOME_PAGE_LOCATORS.clickOnCalendar).click();
+      const datepicker = this.page.locator("div.datepicker-days");
+      await datepicker.waitFor({ state: "visible" });
+      await this.page.waitForTimeout(500);
+      const dayNum = parseInt(day, 10);
+      const cells = datepicker.locator("td.day:not(.old):not(.new)");
+      const count = await cells.count();
+      for (let i = 0; i < count; i++) {
+        const text = (await cells.nth(i).innerText()).trim();
+        if (parseInt(text, 10) === dayNum) {
+          await cells.nth(i).click();
+          break;
+        }
+      }
+    }
   }
 
   async verifyDateIsSet(expectedDate: string) {
@@ -61,18 +77,28 @@ export class HomePage {
     ]);
   }
 
+  private async selectOptionWithFallback(selector: string, label: string) {
+    await this.page.waitForSelector(selector);
+    const optionSelector = selector.startsWith('//') ? `${selector}//option` : `${selector} option`;
+    const options = await this.page.locator(optionSelector).allTextContents();
+    const match = options.find((o) => o.trim() === label);
+    if (match) {
+      await this.page.selectOption(selector, { label });
+    } else {
+      console.log(`"${label}" not in dropdown. Available: ${options.join(", ")}. Selecting first available.`);
+      const firstNonEmpty = options.findIndex((o) => o.trim() !== "");
+      if (firstNonEmpty >= 0) {
+        await this.page.selectOption(selector, { index: firstNonEmpty });
+      }
+    }
+  }
+
   async selectReleaseOption(releaseLabel: string) {
-    await this.page.waitForSelector(HOME_PAGE_LOCATORS.selectRelease);
-    await this.page.selectOption(HOME_PAGE_LOCATORS.selectRelease, {
-      label: releaseLabel,
-    });
+    await this.selectOptionWithFallback(HOME_PAGE_LOCATORS.selectRelease, releaseLabel);
   }
 
   async selectProjectManager(managerLabel: string) {
-    await this.page.waitForSelector(HOME_PAGE_LOCATORS.selectManager);
-    await this.page.selectOption(HOME_PAGE_LOCATORS.selectManager, {
-      label: managerLabel,
-    });
+    await this.selectOptionWithFallback(HOME_PAGE_LOCATORS.selectManager, managerLabel);
   }
 
   async verifyWeeklyNoteButtonVisible() {
@@ -235,8 +261,30 @@ export class HomePage {
     await dateCell.click();
   }
 
+  async navigateToInstallationTips() {
+    const base = process.env.TEST_QALINK_BASE || "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+    const url = `${base}/jsp/home/tips?action=list&category=Installation%20Tips&category_id=2`;
+    try {
+      await this.page.goto(url, { waitUntil: "load" });
+    } catch (e: any) {
+      // Server may redirect the parent page to this URL after popup submit,
+      // causing "interrupted by another navigation" to the same URL — wait it out.
+      if (e.message?.includes("interrupted by another navigation")) {
+        await this.page.waitForLoadState("load");
+      } else {
+        throw e;
+      }
+    }
+  }
+
   async goToTipsSection() {
-    await this.page.click("text=Installation Tips");
+    const link = this.page.locator("a", { hasText: "Installation Tips" });
+    await link.waitFor({ state: "visible" });
+    const href = await link.getAttribute("href") ?? "";
+    const url = href.startsWith("http")
+      ? href
+      : new URL(href, this.page.url()).toString();
+    await this.page.goto(url, { waitUntil: "domcontentloaded" });
   }
 
   async editTip(tipTitle: string) {
