@@ -16,7 +16,9 @@ const BASE = "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
 // with a "Login =>" link instead of "Logout =>" without redirecting.
 async function navigateAuthenticated(page: Page, targetUrl: string) {
   await page.goto(targetUrl);
-  await page.waitForLoadState("networkidle");
+  // Cap networkidle wait to 30s — the app can have long-running background XHR that never settles,
+  // which would otherwise consume the entire 120s test timeout before the test body even starts.
+  await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
 
   const onLoginPage = page.url().includes("login.jsp");
   // When authenticated, the nav bar shows a "Logout" link; a session expiry without redirect
@@ -27,16 +29,16 @@ async function navigateAuthenticated(page: Page, targetUrl: string) {
   if (onLoginPage || hasLoginLink) {
     if (hasLoginLink) {
       await page.goto(`${BASE}/jsp/home/login.jsp`);
-      await page.waitForLoadState("networkidle");
+      await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
     }
     await page.fill('input[name="login_id"]', testData.validUser.username);
     await page.fill('input[name="password"]', testData.validUser.password);
     await page.click('input[type="submit"][value="Log In"]');
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
     // Always navigate to targetUrl after login — server may redirect to home,
     // not necessarily back to the original target page.
     await page.goto(targetUrl);
-    await page.waitForLoadState("networkidle");
+    await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
   }
 }
 
@@ -90,7 +92,10 @@ const test = base.extend<Fixtures>({
     await use(queryPageObj);
   },
   reportPage: async ({ page }, use) => {
-    // TODO: Implement navigation and wait for report page load
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_REPORT_URL || `${BASE}/jsp/report/overall.jsp`,
+    );
     const reportPageObj = new ReportPage(page);
     await use(reportPageObj);
   },

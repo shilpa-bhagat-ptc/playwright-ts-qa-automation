@@ -54,6 +54,21 @@ export class TestDataGenerator {
     ];
   }
 
+  static reportSubTabs(): string[] {
+    return [
+      "Overall",
+      "Build/Period",
+      "Execution Report",
+      "CFT Report",
+      "TestCase Info",
+      "SPR Report",
+      "Weekly Report",
+      "TimeReport",
+      "Project ID/V1Epic",
+      "ROI Report",
+    ];
+  }
+
   static executionSubTabs(): string[] {
     return [
       "List",

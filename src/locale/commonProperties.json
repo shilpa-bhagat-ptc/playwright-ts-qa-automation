@@ -39,6 +39,21 @@
     "qaLabStatus": "All",
     "searchProjectNo": "12345"
   },
+  "report": {
+    "release": "AFX 7.0 F000",
+    "office": "Pune",
+    "cftRelease": "Atlas FY 24",
+    "cftPhase": "0.83_II",
+    "testCaseInfoRelease": "ALD 12.3.1.0",
+    "weeklyOffice": "Pune",
+    "weeklyStartDate": "04/27/2025",
+    "timeReportOffice": "Pune",
+    "timeReportPeriodFrom": "10/01/2023",
+    "timeReportPeriodTo": "04/29/2025",
+    "roiOffice": "DT Services",
+    "roiStartDate": "01/01/2023",
+    "roiEndDate": "05/06/2025"
+  },
   "tips": {
     "tips": "Tips",
     "tipsText": "text=Tips text",
