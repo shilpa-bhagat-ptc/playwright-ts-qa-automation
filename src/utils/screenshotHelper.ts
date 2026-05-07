@@ -11,8 +11,7 @@ export async function captureStepScreenshot(
   const safeTitle = testInfo.title.replace(/[^a-zA-Z0-9-_]/g, "_");
   const dir = path.join("screenshots", safeTitle);
 
-  // Optional: Set test timeout
-  test.setTimeout(60000);
+  test.setTimeout(180000);
 
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });

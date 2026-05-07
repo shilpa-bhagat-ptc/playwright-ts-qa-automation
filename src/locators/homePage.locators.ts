@@ -1,8 +1,8 @@
 export const HOME_PAGE_LOCATORS = {
   // ── Home Sub-Tabs (extracted via Playwright MCP) ────────────────────
   weeklyNoteTab: "//a[normalize-space(text())='Weekly Note']",
-  productionDashboardTab: "//a[normalize-space(text())='Production Dashboard']",
-  weeklyEditorTab: "//a[normalize-space(text())='Weekly Note Editor']",
+  productionDashboardTab: "//a[contains(., 'Production') and contains(., 'Dashboard')]",
+  weeklyEditorTab: "//a[contains(., 'Weekly') and contains(., 'Editor')]",
   tipsTab: '//a[normalize-space(text())="Tips"]',
 
   // ── Release Status Table Headers (extracted via Playwright MCP) ─────
@@ -31,7 +31,7 @@ export const HOME_PAGE_LOCATORS = {
   prodtableHeaders:
     "//table[@id='prod_dashboard']//tr[@class='prod_dashboard_tbl_header']",
   productionDashboardTab1:
-    "//a[normalize-space(text())='Production Dashboard']",
+    "//a[contains(., 'Production') and contains(., 'Dashboard')]",
   productionDashboardFromDate: 'input[name="period_from"]',
   productionDashboardToDate: 'input[name="period_to"]',
   productionDashboardLoadButton:
@@ -49,7 +49,7 @@ export const HOME_PAGE_LOCATORS = {
   editorTextArea: "//textarea[@name='note']",
   saveWeeklyNoteButton: "//input[@value='Save Weekly Note']",
   // ── Tips Elements ────────────────────────────────────────────────────
-  tipLinks: 'a[href*="tips.jsp?action=list&category="]',
+  tipLinks: 'a[href*="tips.jsp"]',
   tip: '//a[normalize-space(text())="Tips"]',
   tipsCategory: "text=Tips Category",
   tipRowByTipText: (tip: string) =>
