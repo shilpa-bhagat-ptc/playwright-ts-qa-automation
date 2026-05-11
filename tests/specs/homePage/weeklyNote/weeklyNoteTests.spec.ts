@@ -25,7 +25,7 @@ test("TC_HOM_001 - Verify Home Tab Navigation and Content", async ({
   console.log("TC_HOM_001 completed successfully.");
 });
 
-test("TC_HOME002 - Invalid login using Faker-generated credentials", async ({
+test("TC_HOM_002 - Invalid login using Faker-generated credentials", async ({
   browser,
 }) => {
   const context = await browser.newContext();
@@ -106,6 +106,21 @@ test("TC_HOM_003 - Verify Weekly Note Functionality", async ({
     commonProperties.projectManagers.Gadge_Praful
   );
   await captureStepScreenshot(page, testInfo, "08_select-project-manager");
+
+  console.log(" Verifying weekly data is displayed after release+manager selection (manual case 1 step 5)...");
+  await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => {});
+  const bodyText = (await page.locator("body").textContent()) ?? "";
+  expect(
+    /Priority/i.test(bodyText),
+    "expected 'Priority' heading/label to appear in weekly data",
+  ).toBeTruthy();
+  expect(
+    /Status/i.test(bodyText),
+    "expected 'Status' heading/label to appear in weekly data",
+  ).toBeTruthy();
+  const linkCount = await page.locator("a[href]").count();
+  console.log(`  Page contains ${linkCount} hyperlinks total.`);
+  expect(linkCount, "expected hyperlinks to be present on weekly note page").toBeGreaterThan(0);
 
   console.log("TC_HOM_003 completed successfully.");
 });

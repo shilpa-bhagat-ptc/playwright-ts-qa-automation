@@ -4,7 +4,7 @@ import { captureStepScreenshot } from "../../../../src/utils/screenshotHelper";
 import { TestDataGenerator } from "../../../../src/utils/testDataGenerator";
 import { expect, test } from "../../../fixtures/fixture";
 
-test("TC-HOM007 - Validate Tips Tab Links and Category Section", async ({
+test("TC_HOM_007 - Validate Tips Tab Links and Category Section", async ({
   homePage: _,
   page,
 }, testInfo) => {
@@ -44,7 +44,7 @@ test("TC-HOM007 - Validate Tips Tab Links and Category Section", async ({
   console.log("TC_HOM_007 completed successfully.");
 });
 
-test("TC-HOM008 - Validate Installation Tips and associated Edit/Delete icons", async ({
+test("TC_HOM_008 - Validate Installation Tips and associated Edit/Delete icons", async ({
   homePage: _,
   page,
 }) => {
@@ -56,31 +56,43 @@ test("TC-HOM008 - Validate Installation Tips and associated Edit/Delete icons", 
   await expect(installationTipsLink).toBeVisible();
   await installationTipsLink.click();
 
-  // Step 3: Validate tips
   const tips = TestDataGenerator.installationTips();
+
+  // Permission gate: check the FIRST tip's edit icon once. If not visible, skip
+  // the whole test (user likely lacks edit permissions) — don't bail mid-loop.
+  const firstTip = tips[0];
+  const firstEditIcon = page.locator(HOME_PAGE_LOCATORS.editIconByTip(firstTip));
+  await page.locator(HOME_PAGE_LOCATORS.tipRowByTipText(firstTip)).waitFor({
+    state: "visible",
+    timeout: 15000,
+  });
+  if (!(await firstEditIcon.isVisible().catch(() => false))) {
+    test.skip(true, "Edit icons not visible — user likely lacks edit permissions");
+    return;
+  }
 
   for (const tip of tips) {
     console.log(`Validating tip: "${tip}"`);
 
     const tipRow = page.locator(HOME_PAGE_LOCATORS.tipRowByTipText(tip));
-    await expect(tipRow).toBeVisible();
+    await expect(tipRow, `tip row for "${tip}" should be visible`).toBeVisible({
+      timeout: 10000,
+    });
 
     const editIcon = page.locator(HOME_PAGE_LOCATORS.editIconByTip(tip));
-    const editVisible = await editIcon.isVisible();
-    if (!editVisible) {
-      console.log(`Edit icon not visible for "${tip}" — user may lack edit permissions`);
-      test.skip(true, "Edit/Delete icons not visible — likely insufficient permissions for this user");
-    }
-    console.log(`Edit icon is visible for "${tip}"`);
+    await expect(editIcon, `Edit icon should be visible for "${tip}"`).toBeVisible({
+      timeout: 10000,
+    });
 
     const deleteIcon = page.locator(HOME_PAGE_LOCATORS.deleteIconByTip(tip));
-    await expect(deleteIcon).toBeVisible();
-    console.log(`Delete icon is visible for "${tip}"`);
-    console.log("TC_HOM_008 completed successfully.");
+    await expect(deleteIcon, `Delete icon should be visible for "${tip}"`).toBeVisible({
+      timeout: 10000,
+    });
   }
+  console.log("TC_HOM_008 completed successfully.");
 });
 
-test("TC-HOM009 - Edit tip and verify updated datetime", async ({
+test("TC_HOM_009 - Edit tip and verify updated datetime", async ({
   page,
   homePage,
 }) => {
@@ -124,10 +136,11 @@ test("TC-HOM009 - Edit tip and verify updated datetime", async ({
   );
   console.log("Title field validated");
 
+  const updatedNote = commonProperties.tips.tipUpdateText + new Date().toLocaleString();
   await popup
     .frameLocator("iframe.ke-edit-iframe")
     .locator("body")
-    .fill(commonProperties.tips.tipUpdateText + new Date().toLocaleString());
+    .fill(updatedNote);
   console.log("Note updated inside editor");
 
   await popup.screenshot({ path: "screenshots/tip-edit-filled.png" });
@@ -138,29 +151,25 @@ test("TC-HOM009 - Edit tip and verify updated datetime", async ({
   await homePage.navigateToInstallationTips();
   console.log("Returned to Tips section after submission");
 
+  console.log("Re-opening the same tip's edit popup to verify the update persisted...");
+  const reopenPopupPromise = page.waitForEvent("popup", { timeout: 15000 }).catch(() => null);
+  await homePage.editTip(commonProperties.tips.tipTitle);
+  const reopenPopup = await reopenPopupPromise;
+  if (reopenPopup) {
+    const persistedText = await reopenPopup
+      .frameLocator("iframe.ke-edit-iframe")
+      .locator("body")
+      .innerText();
+    console.log(`Persisted text snippet: "${persistedText.substring(0, 60)}..."`);
+    expect(
+      persistedText,
+      "expected the saved tip update text to persist after re-opening",
+    ).toContain(commonProperties.tips.tipUpdateText);
+    await reopenPopup.close();
+  } else {
+    throw new Error("Edit popup did not re-open — cannot verify update persistence");
+  }
+
   await page.screenshot({ path: "screenshots/tips-after-update.png" });
   console.log("TC_HOM_009 completed successfully.");
-});
-test("TC-HOM010 - Validate Tips Tab Links", async ({
-  homePage: _,
-  page,
-}, testInfo) => {
-  testInfo.annotations.push({
-    type: "description",
-    description:
-      "Validate all visible tip links and the Tips Category section. @owner:Shilpa Bhagat",
-  });
-
-  console.log("Navigating to Tips tab...");
-  await page.click(HOME_PAGE_LOCATORS.tip);
-  await captureStepScreenshot(page, testInfo, "01_tips_tab_clicked");
-
-  console.log('Verifying "Tips Category" section is visible...');
-  await expect(page.locator(HOME_PAGE_LOCATORS.tipsCategory)).toBeVisible();
-  await captureStepScreenshot(page, testInfo, "02_tips_category_visible");
-
-  console.log("Checking all visible tip links...");
-  const tipLinks = page.locator(HOME_PAGE_LOCATORS.tipLinks);
-  const linkCount = await tipLinks.count();
-  expect(linkCount).toBeGreaterThan(0);
 });

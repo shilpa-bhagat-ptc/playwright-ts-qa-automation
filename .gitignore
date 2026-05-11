@@ -4,12 +4,37 @@ test-results/
 reports/html-report/
 allure-report/
 allure-results/
-allure-report/
+playwright-report/
 
 # Node dependencies
 node_modules/
+
+# Build output
+dist/
+
+# Auth state (regenerated at runtime)
+.auth/
+
+# Secrets — never commit
+.env
+.env.local
+
+# Debug / inspection scripts
+inspect-*.ts
+inspect-*.log
+
+# Test logs
+*.log
+
+# Stray binaries / one-off artifacts
+*.xlsx
+report-page-screenshot.png
 
 # OS / Editor junk
 .DS_Store
 Thumbs.db
 .vscode/
+
+# Claude / Copilot working dirs
+.claude/
+.copilot-tracking/
