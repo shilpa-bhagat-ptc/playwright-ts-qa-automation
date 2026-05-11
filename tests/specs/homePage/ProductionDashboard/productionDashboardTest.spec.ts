@@ -61,6 +61,25 @@ test("TC_HOM_004 - Validate the Production Dashboard Functionality", async ({
 
   expect(actualHeaders).toEqual(expectedHeaders);
 
+  console.log("Validating filter / status dropdowns / Coverage % presence by page-text scan (manual steps 5-9)...");
+  const bodyText = (await page.locator("body").textContent()) ?? "";
+  expect(
+    /Filter/i.test(bodyText),
+    "expected some 'Filter' label on dashboard (Enable Filter / This Week Only)",
+  ).toBeTruthy();
+  expect(
+    /\bPlan\b/i.test(bodyText) && /\bExecution\b/i.test(bodyText),
+    "expected Production Status options Plan / Execution to appear",
+  ).toBeTruthy();
+  expect(
+    /\bDone\b/i.test(bodyText) || /N\/A/i.test(bodyText),
+    "expected Production Status options Done / N/A to appear",
+  ).toBeTruthy();
+  expect(
+    /0\.0\s*%|0%/.test(bodyText),
+    "expected initial Coverage % indicator (0.0% or 0%) on dashboard",
+  ).toBeTruthy();
+
   console.log("TC_HOM_004 completed successfully.");
 });
 

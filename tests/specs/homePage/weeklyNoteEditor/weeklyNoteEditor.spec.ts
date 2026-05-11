@@ -3,7 +3,7 @@ import { HOME_PAGE_LOCATORS } from "../../../../src/locators/homePage.locators";
 import { captureStepScreenshot } from "../../../../src/utils/screenshotHelper";
 import { expect, test } from "../../../fixtures/fixture";
 
-test("TC_HOME006 - Verify Weekly Note Editor Functionality", async ({
+test("TC_HOM_006 - Verify Weekly Note Editor Functionality", async ({
   loginPage,
   homePage,
   page,
@@ -40,6 +40,11 @@ test("TC_HOME006 - Verify Weekly Note Editor Functionality", async ({
   console.log("Clicking Load Weekly Note and waiting...");
   await homePage.clickWeeklyNoteButtonAndWait();
 
+  // Capture the editor URL we landed on after Load so we can return here
+  // exactly to verify the saved note persists.
+  const editorLoadedUrl = page.url();
+  console.log(`Editor URL after Load: ${editorLoadedUrl}`);
+
   console.log(
     `Entering weekly note text: "${commonProperties.editorText.enterText}"`
   );
@@ -66,11 +71,17 @@ test("TC_HOME006 - Verify Weekly Note Editor Functionality", async ({
   console.log("Verifying 'Load Weekly Note' button is visible...");
   await expect(page.locator("text=Load Weekly Note")).toBeVisible();
 
-  console.log("Verifying selected date value is correct...");
-  // await expect(page.locator("input[name='StartDate']")).toHaveValue(
-  //  "07/20/2025"
-  //);
+  console.log(`Re-loading the same week via captured URL and verifying saved note text persists (manual step 6)...`);
+  console.log(`Returning to: ${editorLoadedUrl}`);
+  await page.goto(editorLoadedUrl, { waitUntil: "load" });
+  await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => {});
 
-  console.log("Weekly Note Editor functionality verified.");
+  const textArea = page.locator(HOME_PAGE_LOCATORS.editorTextArea);
+  await expect(
+    textArea.first(),
+    "expected saved note text to persist in textarea after navigate-away-and-reload",
+  ).toHaveValue(new RegExp(commonProperties.editorText.enterText), { timeout: 15000 });
+
+  console.log("Weekly Note Editor functionality verified — note persistence confirmed.");
   console.log("TC_HOM_006 completed successfully.");
 });
