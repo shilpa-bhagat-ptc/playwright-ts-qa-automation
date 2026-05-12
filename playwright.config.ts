@@ -1,6 +1,6 @@
-import { defineConfig, devices } from "@playwright/test";
-import path from "path";
+import { defineConfig } from "@playwright/test";
 import fs from "fs";
+import path from "path";
 
 const hectorBaseOptions = {
   projectId: "QALink_L10N_tests",
@@ -9,7 +9,7 @@ const hectorBaseOptions = {
   serverUrl: "https://hector.ptcnet.ptc.com/Hector",
   packageId: "demo-package",
   pipelineBuild: 1,
-  developmentBuild: 12,
+  developmentBuild: 13,
   logLevel: "verbose",
   outputDir: "reports/test-results",
   includeProjectInTestName: true,
@@ -30,11 +30,15 @@ const validCategories = [
 ];
 
 if (!testCategory) {
-  throw new Error(`❌ TEST_PROJECT not set. Please provide one of: ${validCategories.join(", ")}`);
+  throw new Error(
+    `❌ TEST_PROJECT not set. Please provide one of: ${validCategories.join(", ")}`,
+  );
 }
 
 if (!validCategories.includes(testCategory)) {
-  throw new Error(`❌ Invalid TEST_PROJECT="${testCategory}". Must be one of: ${validCategories.join(", ")}`);
+  throw new Error(
+    `❌ Invalid TEST_PROJECT="${testCategory}". Must be one of: ${validCategories.join(", ")}`,
+  );
 }
 
 // ✅ Map TEST_PROJECT → folder
