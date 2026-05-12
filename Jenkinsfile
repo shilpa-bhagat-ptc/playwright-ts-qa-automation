@@ -19,13 +19,6 @@ pipeline {
   }
 
   stages {
-    stage('Checkout') {
-      steps {
-        git branch: 'main',
-            url: 'https://github.com/shilpa-bhagat-ptc/playwright-ts-qa-automation.git'
-      }
-    }
-
     stage('Install Dependencies') {
       steps {
         bat 'npm ci'
