@@ -1,11 +1,11 @@
 pipeline {
   agent { label 'qalink-agent' }
-   
 
   parameters {
     choice(
       name: 'TEST_PROJECT',
       choices: [
+        'ALL',
         'homePageTests',
         'adminPageTests',
         'planningPageTests',
@@ -14,7 +14,7 @@ pipeline {
         'reportPageTests',
         'executionPageTests'
       ],
-      description: 'Select which Playwright test project (class/suite) to run'
+      description: 'Select which Playwright test project to run, or ALL to run every suite sequentially'
     )
   }
 
@@ -33,11 +33,24 @@ pipeline {
 
     stage('Run Tests') {
       steps {
-        
-    bat """
-      set TEST_PROJECT=${params.TEST_PROJECT}
-      npx playwright test
-    """
+        script {
+          if (params.TEST_PROJECT == 'ALL') {
+            def suites = [
+              'homePageTests',
+              'adminPageTests',
+              'planningPageTests',
+              'queryPageTests',
+              'userPageTests',
+              'reportPageTests',
+              'executionPageTests'
+            ]
+            for (suite in suites) {
+              bat "set TEST_PROJECT=${suite}\nnpx playwright test"
+            }
+          } else {
+            bat "set TEST_PROJECT=${params.TEST_PROJECT}\nnpx playwright test"
+          }
+        }
       }
     }
 
