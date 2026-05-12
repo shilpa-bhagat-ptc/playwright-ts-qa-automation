@@ -1,14 +1,10 @@
 // global-setup.ts
 import { chromium, FullConfig } from "@playwright/test";
-import dns from "dns/promises";
-import net from "net";
 import path from "path";
 import { formatXml } from "../../tools/formatJUnitReport";
 
 const LOGIN_URL =
   "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?";
-const TARGET_HOST = "lqatms-test4.ptcnet.ptc.com";
-const TARGET_PORT = 8080;
 const MAX_RETRIES = 3;
 const GOTO_TIMEOUT_MS = 60_000;
 const RETRY_DELAY_MS = 5_000;
@@ -17,61 +13,8 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/** Resolves the hostname to verify DNS is reachable from this machine. */
-async function checkDns(host: string): Promise<void> {
-  try {
-    const addresses = await dns.lookup(host);
-    console.log(`DNS OK: ${host} → ${addresses.address}`);
-  } catch (err) {
-    throw new Error(
-      `DNS resolution failed for "${host}". The Jenkins machine cannot resolve this hostname. ` +
-        `Check that the Jenkins agent has access to the internal DNS server. Underlying: ${(err as Error).message}`,
-    );
-  }
-}
-
-/** Opens a raw TCP socket to verify port reachability before launching a browser. */
-async function checkTcpPort(host: string, port: number): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const socket = new net.Socket();
-    const timeout = 10_000;
-
-    socket.setTimeout(timeout);
-
-    socket.connect(port, host, () => {
-      console.log(`TCP OK: ${host}:${port} is reachable.`);
-      socket.destroy();
-      resolve();
-    });
-
-    socket.on("timeout", () => {
-      socket.destroy();
-      reject(
-        new Error(
-          `TCP connection to ${host}:${port} timed out after ${timeout / 1000}s. ` +
-            `A firewall or network policy on the Jenkins agent is likely blocking outbound port ${port}.`,
-        ),
-      );
-    });
-
-    socket.on("error", (err) => {
-      socket.destroy();
-      reject(
-        new Error(
-          `TCP connection to ${host}:${port} failed: ${err.message}. ` +
-            `Verify that the Jenkins agent has network access to this host and port.`,
-        ),
-      );
-    });
-  });
-}
-
 async function globalSetup(config: FullConfig) {
   console.log("Global setup...");
-
-  // --- Pre-flight checks: diagnose connectivity before launching a browser ---
-  await checkDns(TARGET_HOST);
-  await checkTcpPort(TARGET_HOST, TARGET_PORT);
 
   const browser = await chromium.launch({ headless: true });
 
