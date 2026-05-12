@@ -100,12 +100,18 @@ const test = base.extend<Fixtures>({
     await use(reportPageObj);
   },
   userPage: async ({ page }, use) => {
-    // TODO: Implement navigation and wait for user page load
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_USER_URL || `${BASE}/jsp/user/index.jsp`,
+    );
     const userPageObj = new UserPage(page);
     await use(userPageObj);
   },
   adminPage: async ({ page }, use) => {
-    // TODO: Implement navigation and wait for admin page load
+    await navigateAuthenticated(
+      page,
+      process.env.TEST_ADMIN_URL || `${BASE}/jsp/admin/`,
+    );
     const adminPageObj = new AdminPage(page);
     await use(adminPageObj);
   },

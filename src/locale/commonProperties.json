@@ -54,6 +54,22 @@
     "roiStartDate": "01/01/2023",
     "roiEndDate": "05/06/2025"
   },
+  "admin": {
+    "office": "USA",
+    "configRelease": "AFX 7.0 F000",
+    "platformRelease": "AFX 7.0 F000"
+  },
+  "user": {
+    "resourceOffice": "Pune",
+    "resourceAdjType": "PTO",
+    "resourceStartDate": "01/01/2024",
+    "resourceEndDate": "05/10/2026",
+    "sprRelease": "FlexPLM 13.0.3.0 (Q2)",
+    "sprPhaseIndex": 0,
+    "sprComplexityIndex": 0,
+    "sprAssignedExeNo": "5",
+    "sprNote": "Automated SPR verification task"
+  },
   "tips": {
     "tips": "Tips",
     "tipsText": "text=Tips text",

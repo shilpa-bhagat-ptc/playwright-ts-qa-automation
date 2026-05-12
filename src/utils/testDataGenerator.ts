@@ -69,6 +69,36 @@ export class TestDataGenerator {
     ];
   }
 
+  static adminSubTabs(): string[] {
+    return [
+      "Users",
+      "Offices",
+      "Configurations",
+      "Languages",
+      "Platforms",
+      "Products",
+      "Components",
+      "Test Types",
+      "CFT Report",
+      "App Type",
+      "Application",
+      "Release",
+      "Capacity",
+      "Exe Type",
+      "Test Plan Template",
+    ];
+  }
+
+  static userSubTabs(): string[] {
+    return [
+      "My Tasks",
+      "My SPRs",
+      "My Weekly Goal",
+      "Resource",
+      "My Profile",
+    ];
+  }
+
   static executionSubTabs(): string[] {
     return [
       "List",

@@ -53,7 +53,7 @@ export const EXECUTION_PAGE_LOCATORS = {
   configTypeClientRadio: "//input[@type='radio' and @value='Client']",
   configActiveOnlyCheckbox: "input[type='checkbox'][name='active_only']",
   configShowPageButton: "//input[@value='Show Page']",
-  configResultTable: "//table[contains(@class,'list_table')]",
+  configResultTable: "//table[@id='tbl_config' or contains(@class,'list_table')]",
   configEnableFilter: "input[type='checkbox'][name='chk_filter']",
 
   // ── Analysis Tab ─────────────────────────────────────────────────────
