@@ -1153,23 +1153,23 @@ test("TC_ADM_024 - Verify Add, Edit, and Delete buttons under the CFT Report tab
   await adminPage.clickAdd();
   await captureStepScreenshot(page, testInfo, "02_add_form");
 
-  console.log("Step 3: Back to CFT Report and asserting Edit-without-selection shows \"You didn't choose any CFT Report.\"");
+  console.log("Step 3: Back to CFT Report and asserting Edit-without-selection shows \"You didn't choose any CTF Report.\"");
   await page.goBack();
   await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
   await expectMissingSelectionError(
     page,
     page.locator(ADMIN_PAGE_LOCATORS.editButton),
-    "cft",
+    "ctf",
   );
   await captureStepScreenshot(page, testInfo, "03_edit_no_selection");
 
-  console.log("Step 4: Delete without selection — expecting \"You didn't choose any CFT Report.\"");
+  console.log("Step 4: Delete without selection — expecting \"You didn't choose any CTF Report.\"");
   await page.goBack().catch(() => {});
   await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
   await expectMissingSelectionError(
     page,
     page.locator(ADMIN_PAGE_LOCATORS.deleteButton),
-    "cft",
+    "ctf",
   );
   await captureStepScreenshot(page, testInfo, "04_delete_no_selection");
 
