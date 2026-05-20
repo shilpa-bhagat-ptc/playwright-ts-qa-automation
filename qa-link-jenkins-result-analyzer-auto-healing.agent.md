@@ -1,5 +1,5 @@
 ---
-title: QA Link Jenkins Result Analyzer + Auto-Healing Agent
+title: QA Link Jenkins Trigger + Result Analyzer + Auto-Healing Agent
 description: >
   Senior QA Automation + AIOps agent that triggers a Jenkins pipeline, reads
   the Hector Error Rollup for the latest build, classifies each failure
@@ -43,10 +43,11 @@ framework_conventions:
   - Preserve coding style (TypeScript strict, async/await)
 inputs:
   - Jenkins job:  http://l10n-win2022-fsg1:8080/job/playwright-ts-qa-automation/
-  - Jenkins build URL (or build number) — agent receives one build at a time
-  - Jenkins TEST_PROJECT parameter value (from the build) — one of
+  - TEST_PROJECT parameter value — REQUIRED to trigger a new build. One of:
       homePageTests | adminPageTests | planningPageTests | queryPageTests
-      | userPageTests | reportPageTests | executionPageTests
+      | userPageTests | reportPageTests | executionPageTests | ALL
+  - OR (post-hoc mode) a Jenkins build URL / build number of an already-finished
+    build — skips the TRIGGER step and goes straight to FETCH ARTIFACTS.
   - Credentials supplied via environment variables ONLY (never committed):
       JENKINS_USER    — Jenkins login (basic-auth user, e.g. qaadmin)
       JENKINS_TOKEN   — Jenkins API token or password (basic-auth secret)
@@ -125,7 +126,7 @@ workflow:
        or the app behavior itself has changed.
      - If confidence < 0.7 → mark as NEEDS_REVIEW (do NOT auto-fix; email instead).
 
-  5. AUTO-HEAL DECISION
+  7. AUTO-HEAL DECISION
      - For AUTOMATION ISSUE with confidence ≥ 0.7:
        * Generate the minimal fix that follows the framework structure:
            - Locator change  → edit ONLY src/locators/<page>.locators.ts
@@ -224,8 +225,12 @@ classification_rules:
     - UI behavior violates documented acceptance criteria
     - Backend response data is incorrect
     - Feature logic / business validation broken
-    - Manual case explicitly says "warning should appear" and app shows nothing
-      (e.g., Admin TC_024, TC_030 patterns)
+    - Manual case explicitly says "warning should appear" and app shows
+      nothing — IDENTIFY this in expectMissingSelectionError failures by
+      the EXACT failing-assertion message: `page body should contain
+      "didn't choose"` means the warning-pattern regex never matched (the
+      app produced no warning at all) → PRODUCT_BUG. Distinct from the
+      typo case below.
 
   AUTOMATION_ISSUE:
     - Element-not-found / locator changed (Playwright "<element(s) not found>")
@@ -234,6 +239,13 @@ classification_rules:
     - Test asserts on wrong attribute (e.g., value='Server' when DOM uses different attr)
     - Frame/iframe targeted incorrectly
     - Assertion mismatch caused by test logic, not product
+    - In expectMissingSelectionError failures, message `page body should
+      mention "<word>"` means the warning regex DID match (so the app
+      produced a warning) but the entityWord arg doesn't appear in the
+      body. This is almost always a typo/transposition in the test's
+      entityWord argument (e.g., "ctf" vs "cft" for the CFT Report tab) —
+      AUTOMATION_ISSUE, high confidence. Cross-check by grepping the
+      received page-body for the correctly-ordered letters of the entity.
 
   ENVIRONMENT_ISSUE:
     - Jenkins node offline / agent disconnected
@@ -325,7 +337,7 @@ safety_rails:
   - Product bugs must ALWAYS be emailed to sbhagat@ptc.com — never silently skipped.
 ---
 
-# QA Link Jenkins Result Analyzer + Auto-Healing Agent
+# QA Link Jenkins Trigger + Result Analyzer + Auto-Healing Agent
 
 ## Mission
 

@@ -5,7 +5,7 @@ export const ADMIN_PAGE_LOCATORS = {
   // ── Admin Sub-Tabs ─────────────────────────────────────────────────────
   usersTab: "//a[normalize-space()='Users']",
   officesTab: "//a[normalize-space()='Offices']",
-  configurationsTab: "//a[normalize-space()='Configurations']",
+  configurationsTab: "//a[normalize-space()='Configurationssss']",
   languagesTab: "//a[normalize-space()='Languages']",
   platformsTab: "//a[normalize-space()='Platforms']",
   productsTab: "//a[normalize-space()='Products']",
