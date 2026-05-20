@@ -38,3 +38,13 @@ Thumbs.db
 # Claude / Copilot working dirs
 .claude/
 .copilot-tracking/
+
+# Agent scratch (Jenkins auto-heal agent local state)
+.agent-*.tmp
+.agent-run/
+.agent-worktree/
+.agent-worktree-*/
+.jenkins-build-info.tmp
+
+# Jenkins agent binary (re-downloaded from controller)
+agent.jar
