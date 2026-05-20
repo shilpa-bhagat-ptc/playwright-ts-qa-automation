@@ -34,21 +34,37 @@ pipeline {
     stage('Run Tests') {
       steps {
         script {
-          if (params.TEST_PROJECT == 'ALL') {
-            def suites = [
-              'homePageTests',
-              'adminPageTests',
-              'planningPageTests',
-              'queryPageTests',
-              'userPageTests',
-              'reportPageTests',
-              'executionPageTests'
-            ]
-            for (suite in suites) {
-              bat "set TEST_PROJECT=${suite}\nnpx playwright test"
+          def suites = (params.TEST_PROJECT == 'ALL') ? [
+            'homePageTests',
+            'adminPageTests',
+            'planningPageTests',
+            'queryPageTests',
+            'userPageTests',
+            'reportPageTests',
+            'executionPageTests'
+          ] : [params.TEST_PROJECT]
+
+          def results = [:]
+
+          for (suite in suites) {
+            stage("Suite: ${suite}") {
+              try {
+                bat "set TEST_PROJECT=${suite}\nnpx playwright test"
+                results[suite] = 'PASSED'
+              } catch (err) {
+                results[suite] = 'FAILED'
+                currentBuild.result = 'FAILURE'
+                echo "Suite ${suite} FAILED: ${err.getMessage()} — pipeline will continue with next suite."
+              }
             }
-          } else {
-            bat "set TEST_PROJECT=${params.TEST_PROJECT}\nnpx playwright test"
+          }
+
+          echo "=== Per-suite results ==="
+          results.each { k, v -> echo "  ${k}: ${v}" }
+
+          def failedCount = results.count { entry -> entry.value == 'FAILED' }
+          if (failedCount > 0) {
+            echo "${failedCount} of ${results.size()} suite(s) failed; build marked FAILURE but downstream stages will still run."
           }
         }
       }
