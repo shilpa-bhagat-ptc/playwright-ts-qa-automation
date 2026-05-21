@@ -1,0 +1,20 @@
+{
+  "name": "ghcp-plugin-qa-auto-heal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub Copilot Extension that embeds the QA Link Jenkins auto-heal agent as a chat agent (@qa-auto-heal).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "repl": "node src/repl.js",
+    "sync-spec": "node -e \"import('node:fs').then(fs => fs.copyFileSync('../qa-link-jenkins-result-analyzer-auto-healing.agent.md', 'agent-spec/qa-link-jenkins-auto-heal.md'))\""
+  },
+  "dependencies": {
+    "@copilot-extensions/preview-sdk": "^5.0.0",
+    "express": "^4.19.2"
+  }
+}

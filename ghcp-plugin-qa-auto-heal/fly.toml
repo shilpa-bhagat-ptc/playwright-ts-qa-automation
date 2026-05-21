@@ -1,0 +1,21 @@
+# Sample Fly.io deploy config. Run `fly launch --no-deploy` to generate a
+# real one for your account; this is here so engineers see the shape.
+app = "qa-auto-heal"
+primary_region = "iad"
+
+[build]
+
+[env]
+  PORT = "3000"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
