@@ -1,0 +1,70 @@
+{
+  "name": "playwright-qa-copilot",
+  "displayName": "Playwright QA — Copilot Framework",
+  "description": "Installs GitHub Copilot instructions, prompts, agents and skills for Playwright TypeScript QA automation (POM pattern, storageState auth, TC ID format, Jenkins/Hector reporting).",
+  "version": "1.0.0",
+  "publisher": "ptc-qa",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Testing",
+    "AI"
+  ],
+  "keywords": [
+    "playwright",
+    "typescript",
+    "qa",
+    "automation",
+    "copilot",
+    "page-object-model",
+    "test-automation"
+  ],
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ptc-qa/playwright-qa-ghcp-plugin"
+  },
+  "license": "MIT",
+  "activationEvents": [
+    "onCommand:playwright-qa.installTemplates"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "playwright-qa.installTemplates",
+        "title": "Playwright QA: Install Copilot Templates",
+        "category": "Playwright QA"
+      },
+      {
+        "command": "playwright-qa.showGuide",
+        "title": "Playwright QA: Show Framework Guide",
+        "category": "Playwright QA"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "playwright-qa.installTemplates"
+        },
+        {
+          "command": "playwright-qa.showGuide"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.4.0",
+    "@vscode/vsce": "^2.24.0"
+  }
+}

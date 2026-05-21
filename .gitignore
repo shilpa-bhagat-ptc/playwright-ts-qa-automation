@@ -44,7 +44,14 @@ Thumbs.db
 .agent-run/
 .agent-worktree/
 .agent-worktree-*/
+.agent-build-*/
 .jenkins-build-info.tmp
 
 # Jenkins agent binary (re-downloaded from controller)
 agent.jar
+
+# Jenkins agent connect helper — contains a join secret; keep local-only
+start-jenkins-agent.ps1
+
+# Nested working clone (see CLAUDE.md "Not in version control")
+/playwright-ts-qa-automation/

@@ -1,0 +1,19 @@
+{
+  "name": "qa-auto-heal",
+  "url": "https://github.com/REPLACE_WITH_YOUR_ORG/playwright-ts-qa-automation/tree/main/ghcp-plugin-qa-auto-heal",
+  "hook_attributes": {
+    "url": "https://REPLACE_WITH_YOUR_HOSTED_URL/"
+  },
+  "redirect_url": "https://REPLACE_WITH_YOUR_HOSTED_URL/auth/callback",
+  "callback_urls": [
+    "https://REPLACE_WITH_YOUR_HOSTED_URL/auth/callback"
+  ],
+  "public": false,
+  "default_permissions": {
+    "contents": "read",
+    "issues": "read",
+    "metadata": "read",
+    "pull_requests": "read"
+  },
+  "default_events": []
+}
