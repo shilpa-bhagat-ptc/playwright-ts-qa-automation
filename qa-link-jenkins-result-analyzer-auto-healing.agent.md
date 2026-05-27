@@ -126,7 +126,7 @@ workflow:
        or the app behavior itself has changed.
      - If confidence < 0.7 → mark as NEEDS_REVIEW (do NOT auto-fix; email instead).
 
-  7. AUTO-HEAL DECISION
+  5. AUTO-HEAL DECISION
      - For AUTOMATION ISSUE with confidence ≥ 0.7:
        * Generate the minimal fix that follows the framework structure:
            - Locator change  → edit ONLY src/locators/<page>.locators.ts
@@ -141,7 +141,7 @@ workflow:
            - Use expect(locator).toBeVisible() / .toHaveText() — not waitForTimeout
            - Locators must be defined in the locators file, not inline in the spec
        * Run `npx tsc --noEmit` — fix must compile with zero errors.
-     - For PRODUCT / ENVIRONMENT / TEST DATA → no fix; go directly to step 8 (email).
+     - For PRODUCT / ENVIRONMENT / TEST DATA → no fix; go directly to step 9 (email).
 
   6. COMMIT + PUSH + MERGE
      - Create branch: `auto-heal/<jobName>-build-<buildNumber>-<yyyyMMddHHmm>`
@@ -459,6 +459,3 @@ These mirror real fixes from this repo's audit history and should be the agent's
 
 Even when no auto-fix is applied, sections 4 and 5 are emitted with explicit
 "none — classified as <bucket>".
-9. Email Summary
-
-Even when no auto-fix is applied, sections 4 and 5 are emitted with explicit "none — classified as <bucket>".

@@ -3,9 +3,9 @@ export const QUERY_PAGE_LOCATORS = {
   queryTab: "(//a[normalize-space(text())='Query'])[1]",
 
   // ── Query Sub-Tabs ───────────────────────────────────────────────────
-  basicTab: "//a[normalize-space()='Basic']",
-  advancedTab: "//a[normalize-space()='Advanced']",
-  updateTab: "//a[normalize-space()='Update']",
+  basicTab: "//a[normalize-space()='Basics']",
+  advancedTab: "//a[normalize-space()='Advanceds']",
+  updateTab: "//a[normalize-space()='Updates']",
   queryTabSubOptions: "a.main_sub_menu",
 
   // ── Basic / Update Tab — Release ─────────────────────────────────────
@@ -33,23 +33,31 @@ export const QUERY_PAGE_LOCATORS = {
   componentSelectionBox: "select#sel_component",
 
   // ── Basic Tab — Test Case Document List ──────────────────────────────
-  documentListHeading: "//h3[contains(normalize-space(),'Test Case Document List')]",
+  documentListHeading:
+    "//h3[contains(normalize-space(),'Test Case Document List')]",
   searchByProjectInput: "input[type='text'][name]",
   searchButton: "//input[@value='Search']",
-  documentListTable: "//table[contains(@class,'list_table') or @id='query_list']",
-  documentListRows: "//table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//tr[position()>1]",
-  documentListHeaders: "//table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//tr[1]//td | //table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//tr[1]//th",
-  documentTitleLinks: "//table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//td//a",
+  documentListTable:
+    "//table[contains(@class,'list_table') or @id='query_list']",
+  documentListRows:
+    "//table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//tr[position()>1]",
+  documentListHeaders:
+    "//table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//tr[1]//td | //table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//tr[1]//th",
+  documentTitleLinks:
+    "//table[.//td[normalize-space()='NO'] or .//th[normalize-space()='NO']]//td//a",
 
   // ── Test Case Detail List ─────────────────────────────────────────────
   enableFilterCheckbox: "input[type='checkbox'][name='chk_othertask']",
-  filterDropdowns: "//table[.//th[normalize-space()='T/C NO'] or .//td[normalize-space()='T/C NO']]//select",
+  filterDropdowns:
+    "//table[.//th[normalize-space()='T/C NO'] or .//td[normalize-space()='T/C NO']]//select",
   testCaseDetailTable:
     "//table[.//th[normalize-space()='T/C NO'] or .//td[normalize-space()='T/C NO']]",
 
   // ── Update Tab — Test Case Document Query List ───────────────────────
-  queryListHeading: "//h3[contains(normalize-space(),'Test Case Document Query List')]",
-  queryListTable: "//table[.//*[normalize-space()='Title'] and .//*[normalize-space()='Duplicate']]",
+  queryListHeading:
+    "//h3[contains(normalize-space(),'Test Case Document Query List')]",
+  queryListTable:
+    "//table[.//*[normalize-space()='Title'] and .//*[normalize-space()='Duplicate']]",
   queryListTitleLinks:
     "//table[.//*[normalize-space()='Title'] and .//*[normalize-space()='Duplicate']]//td//a[not(normalize-space()='Duplicate') and not(normalize-space()='Review') and not(normalize-space()='Not Review')]",
   queryListReviewLinks:
@@ -59,7 +67,8 @@ export const QUERY_PAGE_LOCATORS = {
   updateButton: "//input[@value='Update']",
 
   // ── Test Case Document Update List ───────────────────────────────────
-  updateListHeading: "//h3[contains(normalize-space(),'Test Case Document Update List')]",
+  updateListHeading:
+    "//h3[contains(normalize-space(),'Test Case Document Update List')]",
   updateListTable: "//table[.//select[contains(@name,'tc_status')]]",
   reviewStatusDropdown: "select[name*='tc_status']",
   saveAllButton: "//input[@value='Save All']",
