@@ -541,7 +541,7 @@ test("TC_ADM_011 - Verify Functionality of Add, Edit, and Delete Buttons in Conf
   await captureStepScreenshot(page, testInfo, "03_add_form_fields");
 
   console.log("Step 3: Navigating to Configurations results and testing Edit without selection...");
-  const adminBase = process.env.TEST_QALINK_BASE || "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+  const adminBase = process.env.TEST_QALINK_BASE || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
   await page.goto(`${adminBase}/jsp/admin/`);
   await page.waitForLoadState("networkidle", { timeout: 30000 }).catch(() => {});
   await adminPage.clickConfigurationsTab();

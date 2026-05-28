@@ -62,7 +62,7 @@ async function extractTabLocators(page: Page, tabSelector: string) {
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  await page.goto("http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/query/");
+  await page.goto("http://lqatms-test5.ptcnet.ptc.com:8080/QALink/jsp/query/");
 
   // Example: crawl Query page tabs
   const tabSelectors = [

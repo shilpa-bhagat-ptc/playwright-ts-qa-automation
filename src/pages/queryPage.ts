@@ -15,7 +15,7 @@ export class QueryPage {
   async clickBasicTab() {
     const base =
       process.env.TEST_QALINK_BASE ||
-      "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+      "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
     await this.page.goto(`${base}/jsp/query/basic.jsp`);
     await this.page.waitForLoadState("domcontentloaded");
     await this.page.waitForSelector(QUERY_PAGE_LOCATORS.releaseSelect, {
@@ -27,7 +27,7 @@ export class QueryPage {
   async clickUpdateTab() {
     const base =
       process.env.TEST_QALINK_BASE ||
-      "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+      "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
     await this.page.goto(`${base}/jsp/query/update.jsp`);
     await this.page.waitForLoadState("domcontentloaded");
     await this.page.waitForSelector(QUERY_PAGE_LOCATORS.releaseSelect, {
@@ -184,7 +184,7 @@ export class QueryPage {
     const link = this.page.locator(QUERY_PAGE_LOCATORS.documentTitleLinks).first();
     const href = await link.getAttribute("href");
     if (href) {
-      const base = process.env.TEST_QALINK_BASE || "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+      const base = process.env.TEST_QALINK_BASE || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
       const url = href.startsWith("http") ? href : `${base}/jsp/query/${href.replace(/^\.\//, "")}`;
       await this.page.goto(url);
     } else {

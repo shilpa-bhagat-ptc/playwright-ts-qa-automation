@@ -11,7 +11,7 @@ export class LoginPage {
     await this.page.goto(
       process.env.TEST_QALINK_BASE
         ? `${process.env.TEST_QALINK_BASE}/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?`
-        : "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?"
+        : "http://lqatms-test5.ptcnet.ptc.com:8080/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?"
     );
     await this.page.waitForTimeout(6000);
   }

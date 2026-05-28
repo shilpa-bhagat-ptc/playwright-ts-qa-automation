@@ -262,7 +262,7 @@ export class HomePage {
   }
 
   async navigateToInstallationTips() {
-    const base = process.env.TEST_QALINK_BASE || "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+    const base = process.env.TEST_QALINK_BASE || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
     const url = `${base}/jsp/home/tips?action=list&category=Installation%20Tips&category_id=2`;
     try {
       await this.page.goto(url, { waitUntil: "load" });

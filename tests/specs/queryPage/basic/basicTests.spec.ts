@@ -18,7 +18,7 @@ test("TC_QRY_001 - Verify the presence and functionality of the Query tab and it
   console.log("Navigating to home page...");
   await page.goto(
     process.env.TEST_BASE_URL ||
-      "http://lqatms-test4.ptcnet.ptc.com:8080/QALink/jsp/home/"
+      "http://lqatms-test5.ptcnet.ptc.com:8080/QALink/jsp/home/"
   );
   await page.waitForLoadState("networkidle");
 
@@ -31,7 +31,7 @@ test("TC_QRY_001 - Verify the presence and functionality of the Query tab and it
   await page.waitForLoadState("networkidle");
 
   // Navigate directly to query index.jsp so all 3 sub-tabs (Basic/Advanced/Update) are present in the DOM
-  const base = process.env.TEST_QALINK_BASE || "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+  const base = process.env.TEST_QALINK_BASE || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
   await page.goto(`${base}/jsp/query/index.jsp`);
   await page.waitForLoadState("networkidle");
   await captureStepScreenshot(page, testInfo, "02_query_tab_clicked");
