@@ -44,7 +44,7 @@ Posttest hook runs `tools/formatJUnitReport.ts` automatically via `npm test`; if
 
 Do not add login steps inside individual tests. The only exception is invalid-login tests, which instantiate `new LoginPage(page)` directly.
 
-The base URL is hardcoded in [tests/fixtures/fixture.ts:12](tests/fixtures/fixture.ts#L12): `http://lqatms-test4.ptcnet.ptc.com:8080/QALink`. Each fixture supports a per-page env override (`TEST_HOME_URL`, `TEST_PLANNING_URL`, etc.).
+The base URL is hardcoded in [tests/fixtures/fixture.ts:12](tests/fixtures/fixture.ts#L12): `http://lqatms-test5.ptcnet.ptc.com:8080/QALink`. Each fixture supports a per-page env override (`TEST_HOME_URL`, `TEST_PLANNING_URL`, etc.).
 
 ### Fixtures auto-navigate
 

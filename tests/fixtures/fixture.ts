@@ -9,7 +9,7 @@ import { QueryPage } from "../../src/pages/queryPage";
 import { ReportPage } from "../../src/pages/reportPage";
 import { UserPage } from "../../src/pages/userPage";
 
-const BASE = "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+const BASE = "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
 
 // Navigates to targetUrl, re-authenticates if the server session has expired.
 // Detects two cases: (1) redirect to login.jsp, (2) app serves degraded content

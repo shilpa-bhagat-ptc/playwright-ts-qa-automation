@@ -23,7 +23,7 @@ interface CrawlTarget {
 }
 
 const BASE_URL =
-  process.env.TEST_BASE_URL || "http://lqatms-test4.ptcnet.ptc.com:8080/QALink";
+  process.env.TEST_BASE_URL || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
 
 /**
  * Add/remove pages you want to crawl here.
