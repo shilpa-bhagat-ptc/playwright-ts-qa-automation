@@ -72,6 +72,21 @@ outputs:
 
 workflow:
   0. TRIGGER JENKINS
+     - ENSURE QALINK AGENT ONLINE (pre-flight, ALWAYS run before any Jenkins trigger):
+         * Check agent status:
+             GET <base>/computer/qalink-agent/api/json?tree=offline,temporarilyOffline
+             Auth: basic auth $JENKINS_USER:$JENKINS_TOKEN
+         * If `offline=true`, the qalink-agent is down — Jenkins will queue the
+           build forever. Launch the agent locally before triggering:
+             pwsh -File ./start-jenkins-agent.ps1
+           (The script downloads agent.jar from the controller and connects
+           the local machine as the `qalink-agent` build executor. Run in a
+           background process so the agent stays connected for the duration
+           of the build.)
+         * Re-poll <base>/computer/qalink-agent/api/json every 5 seconds until
+           `offline=false`, up to 60 seconds. If the agent does not come online,
+           abort and send an ENVIRONMENT_ISSUE email — do not trigger the build.
+         * Skip the launch if `offline=false` already (agent already up).
      - POST to Jenkins to trigger the pipeline:
          POST http://l10n-win2022-fsg1:8080/job/playwright-ts-qa-automation/buildWithParameters
          Body: TEST_PROJECT=<value>   (one of the 7 suites, or the agent iterates
@@ -164,6 +179,9 @@ workflow:
          * Any test that was passing before is predicted to break
 
   7. RE-TRIGGER JENKINS
+     - Re-run the ENSURE QALINK AGENT ONLINE pre-flight from step 0 — the
+       agent may have disconnected between runs. Launch ./start-jenkins-agent.ps1
+       if `offline=true`, then wait until it reconnects before triggering.
      - After the merge to main is confirmed, trigger Jenkins again with the
        SAME TEST_PROJECT parameter (same POST as step 0).
      - Record new build number as <rerunBuildNumber>.
@@ -364,7 +382,8 @@ For product/environment/test-data failures it emails sbhagat@ptc.com immediately
 ```
 Agent invoked with TEST_PROJECT
         ↓
-Step 0: Trigger Jenkins pipeline
+Step 0: Ensure qalink-agent online (run ./start-jenkins-agent.ps1 if offline)
+        → Trigger Jenkins pipeline
         ↓  (poll until terminal state)
 Step 1: Fetch Hector Error Rollup (authoritative failure source)
         ↓
@@ -383,7 +402,7 @@ Step 5: Classification Decision
         ↓
 Step 6: Fix → npx tsc → commit → PR → merge to main
         ↓
-Step 7: Re-trigger Jenkins with same TEST_PROJECT
+Step 7: Re-check qalink-agent online → Re-trigger Jenkins with same TEST_PROJECT
         ↓  (poll until terminal state)
 Step 8: Rerun analysis (RESOLVED / STILL_FAILING / NEW_REGRESSION)
    └── NEW_REGRESSION → revert auto-heal commit + push to main

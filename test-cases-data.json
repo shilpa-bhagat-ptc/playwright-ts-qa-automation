@@ -1,0 +1,1556 @@
+{
+  "HomeTab_TC": [
+    {
+      "id": 1,
+      "summary": "Verify Home Tab Navigation and Content",
+      "area": "Home",
+      "steps": "1.Navigate to the **Home** tab \r\n2.Ensure **Weekly Note** sub-tab is selected\r\n3. Enter a valid date (e.g., `04/06/2025`) in the **Week begins** field  \r\n4.Click the **Load Weekly Note** button \r\n5. Verify the presence of weekly data for projects (AUTO, PDF\\_CD, HC\\_Toolkit, etc.)\r\n6. Check if **Priority** and **Status** headings are displayed \r\n7.Validate that links are clickable \r\n8.Review status messages \r\n9. Scroll to the bottom of the section and verify visibility of all expected links and data",
+      "expected": "Home tab becomes active\r\n Weekly Note section is visible      \r\n Date field accepts the input \r\n Page refreshes with weekly data displayed  \r\n Multiple rows of projects with details like date range, volume, coverage status, etc. are shown\r\n Headings like \"\\[Priority: High]\" and \"Status:\" appear as expected\r\n All hyperlinks are functional and open in a new tab/window\r\n Messages are correctly shown under \"Status\" section",
+      "priority": "",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 2,
+      "summary": "Validate the \"Production Dashboard\" Functionality",
+      "area": "Home/Production Dashboard",
+      "steps": "1.Click the Production Dashboard tab from the top menu\t\r\n2.Enter valid From and To dates (e.g., 05/04/2025 to 05/13/2025)\t\r\n3.Click the Load Production Dashboard button\t\r\n4.Check that each row displays: Release, Project Manager, Batch, Dates, Volume, Statuses, etc.\t\r\n5.Verify the Enable Filter This Week Only checkbox toggles filtering\t\r\n6.Check the Translation Status dropdown in any row\t\r\n7.Check the Production Status dropdown\tOptions like Plan, Execution, N/A, Done should be listed\r\n8.Check the Testing Status dropdown\t\r\n9.Verify that Coverage % and Total Done values are displayed as 0.0% and 0 (initial state)\t\r\n10.Click on the 📋 icon beside any row",
+      "expected": "The Production Dashboard page loads with date filters and data grid\r\nDates are accepted and editable\r\nDashboard data loads for the specified period\r\nAll data columns are displayed properly without layout breaks\r\nWhen checked, only entries for the current week should appear\r\nDropdown displays correct options: Plan, Execution, Delay, Blocked, Done, N/A\r\nDialog box will open to add data",
+      "priority": "",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": "",
+      "summary": "Verify Weekly Note Editor Functionality",
+      "area": "Home/Weekly Note Editor",
+      "steps": "Navigate to the \"Weekly Note Editor\" tab.\r\n\r\nEnter a valid date (e.g., 05/18/2025) in the \"Week begins\" field.\r\n\r\nClick the \"Load Weekly Note\" button.\r\n\r\nType a sample note (e.g., \"Completed regression testing.\") in the note editor.\r\n\r\nClick the \"Save Weekly Note\" button.\r\n\r\nRefresh the page or navigate away and come back to the Weekly Note Editor.",
+      "expected": "The Weekly Note Editor interface loads successfully.\r\n\r\nThe date field accepts valid date input.\r\n\r\nExisting notes for the selected week (if any) are loaded into the text area.\r\n\r\nText is successfully entered and visible in the editor.\r\n\r\nClicking \"Save Weekly Note\" stores the note,",
+      "priority": "",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": "",
+      "summary": "Verify Functionality of Tips Category Section",
+      "area": "Home=>Tips",
+      "steps": "Navigate to the “Tips” tab from the top menu.\r\n\r\nClick on an existing Tip Category (e.g., \"Installation Tips\") link.\r\n\r\nClick the edit icon (📝) next to a category name.\r\n\r\nClick the delete icon (❌) next to a category name.\r\n\r\nClick on a tip category name with zero tips (e.g., \"Upgrade\") and observe behavior.\r\n\r\nHover over the description text and attempt to edit it if allowed.\r\n\r\nVerify UI alignment and spacing for all icons and text.",
+      "expected": "The Tips Category page loads successfully showing a list of categories and icons.\r\n\r\nClicking a category name opens the list of tips under that category.\r\n\r\nClicking the edit icon allows renaming or editing description for the category.\r\n\r\nClicking the delete icon prompts for confirmation and deletes the entire category.",
+      "priority": "",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    }
+  ],
+  "QueryTab_TC": [
+    {
+      "id": 1,
+      "summary": "Verify the presence and functionality of the \"Query\" tab and its sub-tabs after login",
+      "area": "Query Tab",
+      "steps": "1. Navigate to the URL.  \r\n2. Login with valid credentials.  \r\n3. Wait for the dashboard to load completely.  \r\n4. Check for the presence of the \"Query\" tab on the screen.  \r\n5. Verify that the \"Query\" tab is clickable.  \r\n6. Click on the \"Query\" tab.  \r\n7. Observe the UI for the appearance of sub-tabs.",
+      "expected": "1. The \"Query\" tab should be visible on the screen after login.  \r\n2. The \"Query\" tab should be clickable.  \r\n3. Upon clicking the \"Query\" tab, three sub-tabs should appear:  \r\n   Basic  \r\n   Advance  \r\n   Update",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 2,
+      "summary": "Verify the functionality of the \"Basic\" tab under the \"Query\" section",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Click on the \"Query\" tab.  \r\n4. Click on the \"Basic\" tab.  \r\n5. Verify that the \"Basic\" tab is clickable and opens the corresponding section.  \r\n6. Check for the presence of the following fields:\r\n   - Release\r\n   - Phase\r\n   - Product  \r\n7. Verify the \"Release\" field is a text box.  \r\n8. Click inside the \"Release\" text box and check if a dropdown appears with selectable release values.  \r\n9. Verify the \"Product\" field is a text box.  \r\n10. Click inside the \"Product\" text box and check if a dropdown appears with selectable product values.  \r\n11. Check for the presence of the \"Load Test Case Document\" option.",
+      "expected": "1. The \"Basic\" tab should be clickable and should open the relevant section.  \r\n2. The fields \"Release\", \"Phase\", and \"Product\" should be visible.  \r\n3. The \"Release\" field should be a text box that shows a dropdown with release values when clicked.  \r\n4. The \"Product\" field should be a text box that shows a dropdown with product values when clicked.  \r\n5. The \"Load Test Case Document\" option should be present on the screen.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 3,
+      "summary": "Verify that selecting Release, Product, and Phase, then clicking \"Load Test Case Document\" displays the correct document list",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Click on the \"Query\" tab.  \r\n4. Click on the \"Basic\" tab.  \r\n5. Select a value from the \"Release\" dropdown.  \r\n6. Select a value from the \"Product\" dropdown.  \r\n7. Select a value from the \"Phase\" dropdown.  \r\n8. Click the \"Load Test Case Document\" button.  \r\n9. Observe the section titled \"Test Case Document List.\"  \r\n10. Verify that a Search bar labeled \"Search by project no:\" is visible along with a Search button.  \r\n11. Verify that a table appears with the following columns:\r\n    - NO\r\n    - Product\r\n    - Component\r\n    - Title\r\n    - Main ProjID\r\n    - Last Update\r\n    - Total T/C  \r\n12. Verify that each row in the table contains valid data and that the \"Title\" field is hyperlinked.",
+      "expected": "1. Upon selecting valid values for Release, Product, and Phase, and clicking \"Load Test Case Document\":\r\n  - A section titled \"Test Case Document List\" should appear.\r\n  - A Search bar with a Search button should be visible for filtering by project number.\r\n  - A table should display relevant test case documents matching the selected criteria.\r\n  - Each row should include:\r\n    - A serial number (NO)\r\n    - Product name\r\n    - Component name\r\n    - A hyperlinked Title\r\n    - Main ProjID (can be empty)\r\n    - Last Update date\r\n    - Total T/C (Total Test Cases)",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 4,
+      "summary": "Verify that clicking on a hyperlinked Title opens the test case list and allows filtering using the \"Enable Filter\" checkbox",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Click on the \"Query\" tab.  \r\n4. Click on the \"Basic\" tab.  \r\n5. Select values for Release, Product, and Phase.  \r\n6. Click the \"Load Test Case Document\" button.  \r\n7. In the \"Test Case Document List\" table, click on any hyperlinked Title.  \r\n8. Verify that a new page or section opens showing a detailed list of test cases.  \r\n9. Check for the presence of an **\"Enable Filter\"** checkbox above or near the test case table.  \r\n10. Click the \"Enable Filter\" checkbox.  \r\n11. Verify that dropdown filters appear for one or more columns (e.g., Priority, Severity, Execution Status).  \r\n12. Select a filter value from one of the dropdowns.  \r\n13. Observe the table to confirm that the results are filtered accordingly.",
+      "expected": "- Clicking on a hyperlinked Title should open a detailed test case list.  \r\n- The list should include columns like:\r\n  - Test Case No  \r\n  - Short Desp  \r\n  - LONG DESC  \r\n  - Input Data  \r\n  - Expected Result  \r\n  - Project No  \r\n  - Priority\r\n  -Functional area  \r\n- An \"Enable Filter\" checkbox should be visible.  \r\n- When checked, dropdown filters should appear.  \r\n- Selecting a filter should update the table to show only the matching test cases.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 5,
+      "summary": "Verify the functionality of the \"Update\" tab and its associated fields",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Click on the \"Query\" tab.  \r\n4. Click on the \"Update\" tab.  \r\n5. Verify that the \"Update\" tab is clickable and opens the corresponding section.  \r\n6. Check for the presence of the \"Release\" field:\r\n   - Confirm it is a text box.\r\n   - Click inside the field and verify that a dropdown appears with release names.  \r\n7. Check for the presence of the \"Product\" field:\r\n   - Click inside the field and verify that a dropdown appears with product values.  \r\n8. Check for the presence of the \"Component\" field:\r\n   - Click inside the field and verify that a dropdown appears with multiple component values.\r\n   - Select one or more components.\r\n   - Use the '>>' arrow to transfer selected components to the selection box.\r\n   - Use the '<<' arrow to remove them from the selection box.  \r\n9. Check for the presence of the \"Phase\" field:\r\n   - Confirm it includes a dropdown and '>>' and '<<' arrows.\r\n   - Select a release value and verify that the phase dropdown populates with values corresponding to the selected release.\r\n   - Use the arrows to transfer or remove selected phases.  \r\n10. Verify the presence of the \"Load Test Case Document\" button.",
+      "expected": "1. The \"Update\" tab should be clickable and open the correct section.  \r\n2. The \"Release\" field should be a text box with a dropdown of release names.  \r\n3. The \"Product\" field should be a text box with a dropdown of product values.  \r\n4. The \"Component\" field should:\r\n  - Show a dropdown with multiple values.\r\n  - Allow selection and transfer of components using '>>' and '<<' arrows.  \r\n5. The \"Phase\" field should:\r\n  - Show a dropdown populated based on the selected release.\r\n  - Allow transfer of selected phases using '>>' and '<<' arrows.  \r\n6. The \"Load Test Case Document\" button should be clearly visible and accessible.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 6,
+      "summary": "Verify the Test Case Document Query List section is loaded correctly with hyperlinks on clicking the \"Load Test Case Document\" button",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Navigate to the \"Update\" tab under the \"Query\" section.  \r\n4. Select appropriate values for Release, Phase, and Product.  \r\n5. Click the \"Load Test Case Document\" button.  \r\n6. Observe the section labeled \"Test Case Document Query List.\"  \r\n7. Verify the following elements are present:  \r\n   - A search input field labeled \"Search by project no:\"  \r\n   - A search button next to the input field, allowing filtering by project number(s), including CSV input  \r\n   - A table displaying the list of test case documents with the following columns:  \r\n     - Release  \r\n     - Phase  \r\n     - Product  \r\n     - Component  \r\n     - Title\r\n     - Duplicate\r\n     - Main ProjID\t \r\n     - Complexity  \r\n     - QA Author  \r\n     - Last Updated  \r\n     - Total TC  \r\n     - Review Status\r\n\t - Reviewer Comments  \r\n   - A hyperlinked File Name or Title field that allows navigation to detailed test case information  \r\n   - A hyperlinked Review Status field that allows users to view or update reviewer comments or status \r\n   - A hyperlinked \"Duplicate\"  under the \"Duplicate\" column   \r\n   - An \"Update\" button near or within the section",
+      "expected": "1. The Test Case Document Query List section should load correctly after clicking the \"Load Test Case Document\" button.\r\n2. A search input field and search button should be clearly visible and functional.\r\n3. The table should display complete and accurate information for each test case document.\r\n4. The Title field should be hyperlinked for navigation to detailed test case data.\r\n5. The Review Status field should contain hyperlinks for accessing reviewer feedback.\r\n6. The \"Duplicate\" hyperlink under the Duplicate column should be clickable and lead to the appropriate action or detail view.\r\n7. An \"Update\" button should be present, indicating the ability to modify or update the listed test case documents.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 7,
+      "summary": "Verify the review functionality of test cases accessed via the Review hyperlink in the Test Case Document Query List",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Navigate to the \"Update\" tab under the \"Query\" section.  \r\n4. Select appropriate values for Release, Phase, and Product.  \r\n5. Click the \"Load Test Case Document\" button.  \r\n6. In the \"Test Case Document Query List\" section, locate the \"Review Status\" column.  \r\n7. Click on the hyperlink under the Review Status (e.g., Review).  \r\n8. Verify that it navigates to a page displaying detailed test case information.  \r\n9. In the new page, locate the \"Action\" column and click the \"Edit\" hyperlink for any test case.  \r\n10. Verify that a \"Test Case Update\" overlay appears.  \r\n11. Edit any field in the overlay (e.g., title, steps, expected result).  \r\n12. Click the \"Update\" button within the overlay to save changes for that specific test case.  \r\n13. Close the overlay.  \r\n14. Verify the presence of a \"Save All\" button on the main page.  \r\n15. Click the \"Save All\" button to confirm that all updated test case information is saved.  \r\n16. Verify that the changes are reflected in the test case list.  \r\n17. Check for the presence of an \"Enable Filter\" checkbox above the test case table.  \r\n18. Check the \"Enable Filter\" checkbox.  \r\n19. Verify that dropdown filters appear next to each column.  \r\n20. Select a filter value from any dropdown and confirm that the table updates to show only matching records.",
+      "expected": "1. Clicking the Review hyperlink should navigate to a detailed test case view.  \r\n2. The \"Edit\" link under the Action column should open a Test Case Update overlay.  \r\n3. The overlay should allow editing and updating of individual test case details.  \r\n4. After closing the overlay, a \"Save All\" button should be visible and functional to save all changes.  \r\n5. The updated information should be reflected in the test case list.  \r\n6. The \"Enable Filter\" checkbox should display dropdowns next to columns when checked.  \r\n7. Selecting a filter should correctly update the table to show filtered results.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 8,
+      "summary": "Verify the functionality of the Update button under the Test Case Document Query List section",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Navigate to the \"Update\" tab under the \"Query\" section.  \r\n4. Select appropriate values for Release, Phase, and Product.  \r\n5. Click the \"Load Test Case Document\" button.  \r\n6. In the \"Test Case Document Query List\" section, locate and click the \"Update\" button.  \r\n7. Verify that a new section titled \"Test Case Document Update List\" appears.  \r\n8. In the update list, verify the presence of editable fields for each test case:\r\n   - Release\r\n   - Phase   \r\n   - Product  \r\n   - Component  \r\n   - Title  \r\n   - Complexity  \r\n   - Review Status  \r\n   - Comment  \r\n9. Click into the \"Review Status\" dropdown and verify that the following values are available:\r\n   - In review  \r\n   - Reviewed  \r\n   - Ready to Run  \r\n   - Not Localized  \r\n10. Edit one or more fields for a test case.  \r\n11. Enter a comment if applicable.  \r\n12. Click the \"Save All\" button.  \r\n13. Verify that the updated information is saved and reflected in the list.",
+      "expected": "1. Clicking the \"Update\" button should open the \"Test Case Document Update List\" section.  \r\n2. All relevant fields (Release Name, Product, Component, Title, Complexity, Review Status, Comment) should be editable.  \r\n3. The \"Review Status\" dropdown should contain the values: In review, Reviewed, Ready to Run, Not Localized.  \r\n4. The \"Save All\" button should be present and functional, saving all changes made.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 9,
+      "summary": "Verify the functionality of the Duplicate hyperlink and the duplication process of a test case document to another release and phase",
+      "area": "",
+      "steps": "1. Launch the QA Link application.  \r\n2. Login with valid credentials.  \r\n3. Navigate to the \"Update\" tab and load the Test Case Document Query List.  \r\n4. Locate the \"Duplicate\" hyperlink under the \"Duplicate\" column for any test case document.  \r\n5. Click the \"Duplicate\" hyperlink.  \r\n6. Verify that an overlay appears titled \"The target info of source test case document:\".  \r\n7. In the overlay, verify the presence of the following fields:\r\n   - Release (dropdown to select target release)  \r\n   - Phase (dropdown to select corresponding phase)  \r\n   - Title (editable or pre-filled)  \r\n   - Duplicate button  \r\n8. Select a target Release and Phase from the dropdowns.  \r\n9. Optionally update the Title if needed.  \r\n10. Click the \"Duplicate\" button.  \r\n11. Verify that the same test case document is duplicated and appears under the selected Release and Phase in the Test Case Document Query List.",
+      "expected": "1. Clicking the \"Duplicate\" hyperlink should open an overlay titled \"The target info of source test case document:\".  \r\n2. The overlay should contain fields for selecting Release, Phase, and editing the Title, along with a Duplicate button.  \r\n3. Upon filling in the details and clicking the Duplicate button, the test case document should be successfully duplicated to the specified Release and Phase.  \r\n4. The duplicated document should appear in the Test Case Document Query List with the updated Release and Phase values.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    }
+  ],
+  "ExecutionTab_TC": [
+    {
+      "id": 1,
+      "summary": "Verify that the \"Execution\" tab is displayed in the header menu and is clickable.",
+      "area": "Execution Tab",
+      "steps": "1. Navigate to the URL in a web browser.\r\n2. Select the Login tab.\r\n3. Enter your username and password.\r\n4. Click the Login button.\r\n5. Verify if the Execution Tab is visible.\"\r\n6. Click on the Execution Tab.",
+      "expected": "The \"Execution\" tab should be visible, clickable, and opens the corresponding page.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 2,
+      "summary": "Verify the tabs present under the Execution tab",
+      "area": "Execution Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the \"Execution\" tab.\r\n4. Observe the tabs displayed under the Execution tab.",
+      "expected": "The following tabs should be present under the Execution tab:\r\nList\r\nWeekly Goal\r\nRun\r\nTest Automation\r\nQALab\r\nConfigurations\r\nAnalysis\r\nSearch",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 3,
+      "summary": "Verify the List tab is clickable and user has access to it",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"List\" tab.",
+      "expected": "1. The List tab should be clickable.\r\n2. The user should be able to access the List tab without any errors.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 4,
+      "summary": "Verify the fields present under the List tab",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"List\" tab.\r\n5. Verify the presence of the following fields under the List tab:\r\n   Release\r\n   Phase\r\n   Project Manager\r\n   Product\r\n   Office",
+      "expected": "The following fields should be present under the List tab:\r\n  Release\r\n  Phase\r\n  Project Manager\r\n  Product\r\n  Office",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 5,
+      "summary": "Verify the Load Test Case Assignment tab is present under the List tab",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"List\" tab.\r\n5. Verify the presence of the \"Load Test Case Assignment\" tab under the List tab.",
+      "expected": "The \"Load Test Case Assignment\" tab should be present under the List tab.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 6,
+      "summary": "Verify the Release field dropdown and scroll bar functionality",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"List\" tab.\r\n5. Locate the \"Release\" field.\r\n6. Click on the dropdown arrow in the Release field.\r\n7. Verify that a list of releases is displayed in the dropdown.\r\n8. Verify that a scroll bar is present in the dropdown.\r\n9. Use the scroll bar to scroll up and down the list of releases.",
+      "expected": "1. The Release field should have a dropdown arrow.\r\n2. On clicking the dropdown arrow, a list of releases should be displayed.\r\n3. A scroll bar should be present in the dropdown.\r\n4. The scroll bar should allow the user to scroll up and down the list of releases.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 7,
+      "summary": "Verify the Phase field dropdown, conditional values based on Release selection, and scroll bar functionality",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n4. Click on the \"Execution\" tab.\r\n5. Click on the \"List\" tab.\r\n6. Locate the \"Phase\" field.\r\n7. Verify that the Phase field has a dropdown arrow.\r\n8. Without selecting a Release value, click on the Phase dropdown arrow.\r\n9. Verify that no values are displayed in the Phase dropdown.\r\n10. Select a value from the Release dropdown.\r\n11. Click on the Phase dropdown arrow again.\r\n12. Verify that values are now displayed in the Phase dropdown.\r\n13. Verify that a scroll bar is present in the Phase dropdown.\r\n14. Use the scroll bar to scroll up and down the list of Phase values.",
+      "expected": "1. The Phase field should have a dropdown arrow.\r\n2. Without selecting a Release value, the Phase dropdown should not display any values.\r\n3. After selecting a Release value, the Phase dropdown should display values.\r\n4. A scroll bar should be present in the Phase dropdown.\r\n5. The scroll bar should allow the user to scroll up and down the list of Phase values.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 8,
+      "summary": "Verify the scroll bar presence for Product, Project Manager, and Office fields",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"List\" tab.\r\n5. Locate the \"Product\" field.\r\n6. Verify that a scroll bar is present in the Product dropdown.\r\n7. Locate the \"Project Manager\" field.\r\n8. Verify that a scroll bar is present in the Project Manager dropdown.\r\n9. Locate the \"Office\" field.\r\n10. Verify that a scroll bar is present in the Office dropdown.",
+      "expected": "1. The Product field should have a scroll bar in its dropdown.\r\n2. The Project Manager field should have a scroll bar in its dropdown.\r\n3. The Office field should have a scroll bar in its dropdown.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 9,
+      "summary": "Verify that the list of test cases loads correctly when the 'Load Test Case Assignment' tab is clicked after selecting the Release and Phase",
+      "area": "Execution Tab/ List Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"List\" tab.\r\n5. Select a value from the \"Release\" dropdown.\r\n6. Select a value from the \"Phase\" dropdown.\r\n7. Click on the \"Load Test Case Assignment\" tab.\r\n8. Verify that the list of test cases performed in the selected release and phase is displayed.",
+      "expected": "The list of test cases performed in the selected release and phase should be displayed when the \"Load Test Case Assignment\" tab is clicked.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 10,
+      "summary": "Verify the \"Weekly Goal\" tab is present under the \"Execution\" tab and is clickable.",
+      "area": "Execution Tab/Weekly Goal",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"\"Execution\"\" tab.\r\n4.Check if the \"Weekly Goal\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"Weekly Goal\" tab.",
+      "expected": "1. The Weekly Goal tab must be visible and clickable.\r\n2. Users should be able to access the tab without encountering any errors.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 11,
+      "summary": "Verify fields under \"Weekly Goal\" tab",
+      "area": "Execution Tab/Weekly Goal",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Navigate to the Weekly Goal Tab\r\n5. Locate the \"Office\" field\r\n6. Test the scroll functionality of the \"Office\" field\r\n7. Locate the \"Weeks Begin\" field\r\n8. Verify date selection in the \"Weeks Begin\" field\r\n9. Locate the \"Load Task\" Tab",
+      "expected": "1. The \"Office\" field should be present with a scroll bar visible.\r\n2. The scroll bar should function smoothly, and the options should be fully scrollable.\r\n3. The \"Weeks Begin\" field should be displayed and allow date selection.\r\n4. The \"Load Task\" tab should be present",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 12,
+      "summary": "Verify that the task loads correctly when \"Load Task\" is clicked after selecting an office and a start date.",
+      "area": "Execution Tab/Weekly Goal",
+      "steps": ". Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Navigate to the Weekly Goal Tab\r\n5. Select an office from the \"Office\" field.\r\n6. Select a start date in the \"Weeks Begin\" field\r\n7. Click the \"Load Task\" button.\r\n8. Verify the task list is loaded correctly\r\n9.Verify that the Weekly Assignment Summary table is displayed after tasks are loaded.\r\n10.Verify the presence of the following fields in the Weekly Assignment Summary table:\r\n   Installations\r\n   Test Case Executions\r\n   SPRs\r\n   Other Tasks\r\n   Assignment",
+      "expected": "1. The system should load the relevant tasks based on the selected office and the selected start date.\r\n2. The Weekly Assignment Summary table should be displayed correctly with all specified fields",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 13,
+      "summary": "Verify the presence of the Enable Filter checkbox and validate its functionality",
+      "area": "Execution Tab/Weekly Goal",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Navigate to the Weekly Goal Tab\r\n5. Select an office from the \"Office\" field.\r\n6. Select a start date in the \"Weeks Begin\" field\r\n7. Click the \"Load Task\" button.\r\n8. The task list is loaded and Weekly Assignment Summary table is displayed\r\n9. Verify the Enable Filter Checkbox next to Test Case Execution and Other task Table.\r\n10.Check the checkbox and verify that a dropdown appears next to the field values within the table.\r\n11.Select any filter from the dropdown and ensure that the values are displayed according to the selected filter.",
+      "expected": "1. The Enable Filter checkbox should be functional, and it should display a dropdown.\r\n2. Selecting a value from the dropdown should filter the results in the respective tables accordingly.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 14,
+      "summary": "Verify the \"QA Lab\" tab is present under the \"Execution\" tab and is clickable.",
+      "area": "Execution Tab/QA Lab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4.Check if the \"QA Lab\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"QA Lab\" tab.",
+      "expected": "1. The QA Lab tab must be visible and clickable.\r\n2. Users should be able to access the tab without encountering any errors.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 15,
+      "summary": "Verify Fields and Functionalities in QA Lab Tab",
+      "area": "Execution Tab/QA Lab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"QA Lab\" tab.\r\n5. Verify the presence of the following fields:\r\n   Release\r\n   Status\r\n   Product\r\n   Office\r\n   Load tab\r\n   Add tab\r\n6. Ensure that the \"Release\" and \"Status\" fields are dropdown menus and verify their functionality.\r\n7. Check that the \"Product\" and \"Office\" fields have scroll bars, and verify they function correctly.",
+      "expected": "1. All specified fields (Release, Status, Product, Office, Load tab, Add tab) should be present and functional.\r\n2. The dropdown menus in the Release and Status fields should work correctly.\r\n3. The scroll bars in the Product and Office fields should function properly.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 16,
+      "summary": "Verify Server Details Load Correctly and Enable Filter Functionality in QA Lab Tab",
+      "area": "Execution Tab/QA Lab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Check if the \"QA Lab\" tab is visible under the \"Execution\" tab.\r\n5. Click on the \"QA Lab\" tab.\r\n6.Select a value from the Release dropdown.\r\n7. Select a value from the Status dropdown.\r\n8. Select a value from the Office field.\r\n9. Select a value from the Product field.\r\n10. Click on the Load tab.\r\n11. Verify that the details regarding the Server URL appear.\r\n12. Verify the presence of the Enable Filter checkbox next to the Server URL List.\r\n13. Check the Enable Filter checkbox.\r\n14. Verify that a dropdown appears next to the fields present in Server URL List.\r\n15. Select a value from the dropdown.\r\n16. Verify that the Server URL List is filtered according to the selected value.",
+      "expected": "1. The Server URL details should appear upon selecting values from the Release, Status, Office, and Product fields and clicking the Load tab.\r\n2. The Enable Filter checkbox should be present and functional.\r\n3. Checking the Enable Filter checkbox should display a dropdown.\r\n4. Selecting a value from the dropdown should filter the Server URL List accordingly.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 17,
+      "summary": "Verify 'Add New Server' Overlay Appears on Clicking Add Button in QA Lab Tab",
+      "area": "Execution Tab/QA Lab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"QA Lab\" tab.\r\n5. Click on the Add button in the QA Lab tab.\r\n6. Verify that the \"Add New Server\" overlay appears.\r\n7. Fill in all the required details in the \"Add New Server\" overlay such as server name, Product, Configuration, URL. .\r\n8. Select the appropriate Release while adding the new server.\r\n9. Click on the Submit button.\r\n10. Verify that the new server details are added to the list under the specified Release.\r\n11. Verify that the overlay closes upon successful submission.\r\n12. Repeat steps 1-3, leaving one required field blank.\r\n13. Click on the Submit button.\r\n14. Verify that an error message is displayed indicating the missing required field.",
+      "expected": "1. The \"Add New Server\" overlay should appear upon clicking the Add button.\r\n2. All details entered in the overlay should be correctly submitted.\r\n3. The new server details should be added to the list under the specified Release.\r\n4. The overlay should close upon successful submission.\r\n5. An error message should be displayed if any required field is left blank.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 18,
+      "summary": "Verify 'Edit' Functionality in QA Lab Tab",
+      "area": "Execution Tab/QA Lab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"QA Lab\" tab.\r\n5. Once the server details table is loaded after selecting the Release, office and Product.\r\n6. Locate the Edit option under the Actions field in the server details table.\r\n7. Click on the Edit option.\r\n8. Verify that the \"Edit The Server\" overlay appears.\r\n9. Edit the server information in the overlay.\r\n10. Click on the Submit button.\r\n11. Verify that the updated server information is reflected in the server details table.",
+      "expected": "1. The \"Edit The Server\" overlay should appear upon clicking the Edit option.\r\n2. Server information should be editable in the overlay.\r\n3. The updated server information should be correctly reflected in the server details table upon submission.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 19,
+      "summary": "Verify the \"Configuration\" tab is present under the \"Execution\" tab and is clickable.",
+      "area": "Execution Tab/Configuration",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4.Check if the \"Configuration\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"Configuration\" tab.",
+      "expected": "1. The Configuration tab must be visible and clickable.\r\n2. Users should be able to access the tab without encountering any errors.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 20,
+      "summary": "Verify Fields and Functionalities in Configuration Tab",
+      "area": "Execution Tab/Configuration",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Configuration\" tab.\"\r\n5. Verify the presence of the Release field.\r\n6. Check that the Release field contains multiple release values.\r\n7. Verify that the Release field has a scroll bar and that it functions correctly.\r\n8. Verify the presence of the Type field.\r\n9. Check that the Type field has two radio button options: Server and Client.\r\n10. Verify the presence of the Active Page checkbox.\r\n11. Verify the presence of the Show Page button.",
+      "expected": "1. The Release field should be present, contain multiple values, and have a functional scroll bar.\r\n2. The Type field should be present with two radio button options (Server and Client) that function correctly.\r\n3. The Active Page checkbox and Show Page button should be present and functional.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 21,
+      "summary": "Verify Show Page Button Loads Results Correctly in Configuration Tab",
+      "area": "Execution Tab/Configuration",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Check if the \"Configuration\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"Configuration\" tab.\r\n6. Select a value from the Release field.\r\n7. Select a value from the Type field.\r\n8. Ensure the Active Only checkbox is not checked.\r\n9. Click on the Show Page button.\r\n10. Verify that the results include both Active and Inactive statuses.\r\n11. Check the Active Only checkbox.\r\n12. Click on the Show Page button again.\r\n13. Verify that the results now only show Active status configurations.\r\n14. Verify the presence of the Enable Filter checkbox when the results are loaded.\r\n15. Check the Enable Filter checkbox.\r\n16. Verify that a dropdown appears next to the relevant field.\r\n17. Select a value from the dropdown.\r\n18. Verify that the results are filtered according to the selected value.",
+      "expected": "1. When the Active Only checkbox is not checked, the Show Page button should load results with both Active and Inactive statuses.\r\n2. When the Active Only checkbox is checked, the Show Page button should load results with only Active status configurations.\r\n3. The Enable Filter checkbox should appear when results are loaded, and its functionality should allow filtering of results based on the selected value from the dropdown.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 22,
+      "summary": "Verify the \"Analysis\" tab is present under the \"Execution\" tab and is clickable.",
+      "area": "Execution Tab/Analysis",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4.Check if the \"Analysis\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"Analysis\" tab.",
+      "expected": "1. The Analysis tab must be visible and clickable.\r\n2. Users should be able to access the tab without encountering any errors.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 23,
+      "summary": "Verify Fields and Functionalities in Analysis Tab",
+      "area": "Execution Tab/Analysis",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Analysis\" tab.\r\n5. Verify the presence of the Release field.\r\n6. Check that the Release field has a dropdown with multiple release values.\r\n7. Verify the presence of the Phase field.\r\n8. Check that the Phase field has a dropdown with phase values.\r\n9. Verify the functionality of the >> and << arrows for selecting and deselecting phases.\r\n10. Verify the presence of the Product field.\r\n11. Check that the Product field has a scroll bar and that it functions correctly.\r\n12. Verify the presence of the Project Manager field.\r\n13. Check that the Project Manager field has a scroll bar and that it functions correctly.\r\n14. Verify the presence of the Office field.\r\n15. Check that the Office field has a scroll bar and that it functions correctly.\r\n16. Verify the presence of the Test Engineer field.\r\n17. Check that the Test Engineer field has a dropdown.\r\n18. Verify the presence of the Load Test Case Assignment tab.\r\n19. Verify the presence of the Download Green Batch tab.",
+      "expected": "1. The Release field should be present with a dropdown containing multiple release values.\r\n2. The Phase field should be present with a dropdown and functional >> and << arrows for phase selection.\r\n3. The Product, Project Manager, and Office fields should be present with functional scroll bars.\r\n4. The Test Engineer field should be present with a dropdown.\r\n5. The Load Test Case Assignment and Download Green Batch tabs should be present and functional.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 24,
+      "summary": "Verify Load Test Case Assignment Tab Loads Results Correctly Based on Selected Field Values",
+      "area": "Execution Tab/Analysis",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Analysis\" tab.\r\n5. Select a value from the Release dropdown.\r\n6. Select a value from the Phase dropdown.\r\n7. Select a value from the Product field.\r\n8. Select a value from the Project Manager field.\r\n9. Select a value from the Office field.\r\n10. Select a value from the Test Engineer dropdown.\r\n11. Click on the Load Test Case Assignment button.\r\n12. Verify that the results are loaded correctly based on the selected field values.\r\n13. Verify the presence of the Enable Filter checkbox.\r\n14. Check the Enable Filter checkbox.\r\n15. Verify that a dropdown appears next to the relevant field.\r\n16. Select a value from the dropdown.\r\n17. Verify that the results are filtered according to the selected value.",
+      "expected": "1. The Load Test Case Assignment tab should load results correctly based on the selected field values.\r\n2. The Enable Filter checkbox should appear when results are loaded, and its functionality should allow filtering of results based on the selected value from the dropdown.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 25,
+      "summary": "Verify the \"Search\" tab is present under the \"Execution\" tab and is clickable.",
+      "area": "Execution Tab/Search",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4.Check if the \"Search\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"Search\" tab.",
+      "expected": "1. The Search tab must be visible and clickable.\r\n2. Users should be able to access the tab without encountering any errors.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 26,
+      "summary": "Verify Fields and Functionalities in Search Tab",
+      "area": "Execution Tab/Search",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Search\" tab.\r\n5. Verify the presence of the \"Test Execution Search\" string.\r\n6. Verify the presence and functionality of the Release field:\r\n   Ensure the Release field is visible.\r\n   Verify that it has a scroll bar.\r\n   Scroll through the Release field to ensure the scroll bar functions correctly.\r\n7. Verify the presence and functionality of the Product field:\r\n   Ensure the Product field is visible.\r\n   Verify that it has a scroll bar.\r\n   Scroll through the Product field to ensure the scroll bar functions correctly.\r\n8. Verify the presence and functionality of the Vertical App field:\r\n   Ensure the Vertical App field is visible.\r\n   Verify that it has a scroll bar.\r\n   Scroll through the Vertical App field to ensure the scroll bar functions correctly.\r\n9. Verify the presence and functionality of the Language field:\r\n   Ensure the Language field is visible.\r\n   Verify that it has a scroll bar.\r\n   Scroll through the Language field to ensure the scroll bar functions correctly.\r\n10. Verify the presence and functionality of the Project/Story No (CSV) text field:\r\n   Ensure the Project/Story No (CSV) text field is visible.\r\n   Enter a value into the Project/Story No (CSV) text field to verify it accepts input correctly.\r\n11. Verify the presence and functionality of the Test Case Keyword Search (CSV) text fields:\r\n    Ensure the Test Case Keyword Search (CSV) text fields are visible.\r\n    Enter values into the Test Case Keyword Search (CSV) text fields to verify they accept input correctly and support AND query searches.\r\n12. Verify the presence of the Execution Search tab:\r\n    Ensure the Execution Search tab is visible and clickable.",
+      "expected": "1. The \"Test Execution Search\" string should be visible.\r\n2. The Release, Product, Vertical App, and Language fields should be present with functional scroll bars.\r\n3. The Project/Story No (CSV) text field should be present and functional.\r\n4. The Test Case Keyword Search (CSV) text fields should be present and functional, allowing for AND query searches.\r\n5. The Execution Search tab should be present and functional.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 27,
+      "summary": "Verify Correct Loading of Search Results After Clicking on \"Execution Search\" Tab",
+      "area": "Execution Tab/Search",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Search\" tab.\r\n5.Select a value from the Release field.\r\n6. Select a value from the Product field.\r\n7. Select a value from the Vertical App field.\r\n8. Select a value from the Language field.\r\n9. Enter a value into the Project/Story No (CSV) text field.\r\n10 Enter values into the Test Case Keyword Search (CSV) text fields.\r\n11. Click on the Execution Search button.\r\n12. Verify that the search results are displayed correctly:\r\n13. Ensure that the search results match the criteria entered.\r\n14. Verify that the search results are relevant and accurate.\r\n15.Verify that the search results are displayed in a readable and organized manner.",
+      "expected": "The search results should load correctly, matching the entered criteria, and be displayed in a readable and organized manner.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    }
+  ],
+  "PlanningTab_TC": [
+    {
+      "id": 1,
+      "summary": "Verify the \"Planning\" tab is accessible and clickable",
+      "area": "Planning tab",
+      "steps": "1.Open the QA link\r\n2.Observe the top navigation menu.\r\n3.Verify that the Planning tab is present.\r\n4. Click on the \"Planning\" tab.",
+      "expected": "The \"Planning\" tab should be accessible and clickable.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 2,
+      "summary": "Verify the \"Planning\" tab loads correct sub-options",
+      "area": "Planning tab",
+      "steps": "1.Click on the \"Planning\" tab.\r\n\r\n2.Verify the presence of the following sub-options:\r\n  Release\r\n  Resource Capacity\r\n  Analyze\r\n  Select\r\n  Advance Select\r\n  Test Automation\r\n  Drop\r\n  Delegate\r\n  Weekly Goal\r\n  Assign\r\n  Weekly Assign",
+      "expected": "All sub-options should be present and correctly displayed under the Planning tab.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 3,
+      "summary": "check Release Search Functionality",
+      "area": "Planning tab",
+      "steps": "1.Navigate to the Release Search dropdown field.\r\n2.Click on search option.\r\n3.Type a partial product name (e.g., \"wind\" for \"Windchill\").\r\n4.Observe the search results displayed in the dropdown.\r\n5.Verify that the dropdown suggests all relevant product releases matching the entered keyword.\r\n6.Ensure that different releases of the same product (e.g., Windchill 11.1, 11.2, 12.0, etc.) are displayed.\r\n7.Click on one of the search results and check if the selection is properly dis.\r\n8.Try searching with an incorrect or non-existing product name and verify that no invalid results appear.\r\n9.Ensure that the search is case-insensitive (e.g., \"wind\", \"WIND\", \"Wind\" should return the same results).",
+      "expected": "The search dropdown should list all available releases of the entered product name.\r\nThe user should be able to select a release from the list without errors.\r\nNo irrelevant products should appear in the results.\r\nIf no matching product exists, the dropdown should remain empty.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 4,
+      "summary": "Verify Product Details Display in Test Plan After Selecting a Release",
+      "area": "Planning tab",
+      "steps": "1.Navigate to the Planning tab in the application.\r\n2.Click on the Release dropdown field.\r\n3.In the search box, type a product name (e.g., \"ALD 12.2.1.0\") and select the desired product release from the suggestions.\r\n4.Click on the Test Plan tab.\r\n5.Verify that the product details are displayed correctly, including:\r\n6.Objective title with product-specific information.\r\n7.A table with tasks, duration, planned start date, planned end date, and holidays.\r\n8.Click on the dropdown menu (on the right side of the Test Plan page).\r\n9.Verify that the dropdown contains all expected categories, such as:\r\n Objective\r\n Prerequisite\r\n Test Approach\r\n Test Automation\r\n Test Configuration\r\n Resource Capacity\r\n Linguistic Test\r\n Bug Reporting\r\n Test Execution Reports\r\n Contacts\r\n Risk Mitigation\r\n Project Notes\r\n Specification\r\n Select different options from the dropdown and confirm that the corresponding sections are displayed correctly.",
+      "expected": "After selecting a product from the Release dropdown, clicking on Test Plan should display the correct product details.\r\nThe Objective section should be visible with relevant information.\r\nThe table should show task details, dates, and holidays.\r\nThe dropdown menu should contain all expected sections, and selecting any option should update the content accordingly.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 5,
+      "summary": "Verify Test Plan from upcoming Release",
+      "area": "Planning tab",
+      "steps": "1.Login to QA link\r\n2.Navigate to Planning tab.\r\n3.Select Product with upcoming release\r\n4. click on Test Plan\r\n5. click button \"Copy from test plan template\" and \"Copy from a release\" working and load data.",
+      "expected": "As release data not present so it should show error in red color \"No record found currently\"\r\n\"Copy from test plan template\" & \"Copy fro a release\" working and loading data.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 6,
+      "summary": "Verify Milestone and Phase Setup in Test Schedule",
+      "area": "Planning tab",
+      "steps": "Navigate to the Planning tab.\r\n1.Click on the Release dropdown and select a product release.\r\n2.Click on the Test Schedule tab.\r\n3.In the Milestone No. column, enter a milestone number (e.g., Milestone 1).\r\n4.In the Name (Phase) field, enter a milestone name (e.g., \"CD\").\r\n5.In the Description field, enter a description (e.g., \"CD validation\").\r\n6.Click on the Start Date field and select a date from the calendar (e.g., 01/16/2023).\r\n7.Click on the End Date field and select an appropriate date (e.g., 01/20/2023).\r\n8.Enter values for:\r\n Total Working Days\r\n Daily Capacity/Engineer (Manual & Auto)\r\n Adjustment (for install, SPR, Training)%\r\nTotal Planned # of Test Cases (Manual & Auto)\r\nTotal Required Engineers\r\nCoverage %\r\nPass Rate %\r\n9.Scroll down and click on the Save Test Schedule button.\r\n10.Verify that a success message is displayed confirming the schedule is saved.\r\n11. \"Total (no of milestone) records are saved.\" message should appear on UI\r\n12.Refresh the page and confirm that the milestone and phase details persist correctly.",
+      "expected": "The user should be able to enter milestone details, select dates, and input test execution data.\r\nClicking Save Test Schedule should save the details successfully.\r\nThe milestone data should remain intact after refreshing the page.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 7,
+      "summary": "Veify Delete Milestone Functionality in Test Schedule",
+      "area": "Planning tab",
+      "steps": "1.login to QALink\r\n2. go to planning tab=> Release=> Select Release=> Test Schedule\r\n3. add new milestone with fields Name, Start Date, End Date,Daily Capacity/Engineer, Adjustment,Total Planned # of test cases\r\n4. click on button \"Save Test Schedule\"\r\n5. Go to \"Delete the Milestone\" icon and click\r\n6. click \"OK\"",
+      "expected": "After step 4th added milestone get appear in the Test Schedule with message \"Total 1 records are saved\"\r\nAfter step 5th pop up with message \"Do you want to delete Phase AUTO ?\"\r\nAfter 6th Step Milestone get deleted and message displayed \"The record is already deleted.\"",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 8,
+      "summary": "Verify Selection of Production Plan from Previous Release",
+      "area": "Planning tab",
+      "steps": "1.Navigate to Production Plan under the Planning tab.\r\n2.Click on the dropdown to select a production plan from a previous release.\r\n3.Select any available production plan from the list.\r\n4.Click the Copy button.\r\n5.Verify that the Production Scope, Help, and Screens, Requirements & schedule,CD build information,Bug Reporting,PM Note details are displayed.\r\n6. linktext \"Link to test plan Bug Reporting section\" on the Production Plan page should redirected to the Test Plan => Bug Reporting section",
+      "expected": "The selected production plan should be copied successfully.\r\nAll relevant details should be populated in the current release.\r\nThe production plan details should be visible without missing or incorrect data.\r\nLink should open the correct corresponding page without errors.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 9,
+      "summary": "Verify edit Production Plan content functionality",
+      "area": "",
+      "steps": "1. login to QALink\r\n2. go to planning tab=> Release=> Select Release=> Production Plan\r\n3. click on \"Edit production plan content\" icon\r\n4. edit content in iframe and do some text formatting\r\n5. click on \"Save\" button",
+      "expected": "edit iframe get opened\r\nafter step 4th content is editable and text formatting working\r\nafter step 5th applied changes appeared",
+      "priority": "",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 10,
+      "summary": "Verify  update production schedule types functionality",
+      "area": "Planning tab",
+      "steps": "1.Navigate to the Production Schedule tab .\r\n2.Verify all below fields are present in table No, Phase(Batch),Type,Description,Start Date,End Date,Total Working Days,Start Date,End Date,Total Working Days,Test Case Excecution,\r\nDaily Capacity/Engineer,Other Production Work(Day), Total Planned # of Screen/Production,Total Required Engineers,Total Done,Coverage %,Translation Status, Production Status,Testing Status \r\n3.Click on the Type dropdown for any existing row.\t\r\n4.Select an option (e.g., \"Help Builds - Online Help\") from the dropdown.\t\r\n5.Click on the Add More Rows button.\t\r\n6.Enter values in the new row fields such as Phase (Batch), Description, Start Date, End Date, Total Working Days, etc.\t\r\n7.Click on Translation status or Production Status or Testing Status check dropdown having Plan,Execution,Delay , Blocked,Done, NA values\r\n8.Click on the Save button.\t\r\n9.Refresh the page and verify if the changes persist.\t\r\n10.Try selecting an invalid type or entering invalid data (e.g., a past start date) and Save.                                                                                                                        11. Try to delete row by clicking left delete image",
+      "expected": "Production Schedule page should load data correctly\r\nDropdown values should be displayed correctly\r\nFor saving incorrect date should throw error\r\nDelete row functionality should work                It should give error mesage \"Production schedule start date cannot be greater than end date\"",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 11,
+      "summary": "verify Manage Production Schedule Categories functionality",
+      "area": "Planning tab",
+      "steps": "1. login to QALink\r\n2. go to planning tab=> Release=> Select Release=> Production Schedule\r\n3. click on \"Type\" linktext\r\n4. edit \"Name\" and uncheck \"Active\" checkbox \r\n5. Click on \"Add New Row\" button\r\n6. click on \"Submit\"",
+      "expected": "\"Type\" is clickable\r\n\"Manage Production Schedule Categories\" dialog box displayed\r\nafter step 4th by deault categories names displayed with Active checkbox checked\r\nafter step 5th new row added",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 12,
+      "summary": "Verify Delete Phase from Production Schedule",
+      "area": "Planning tab",
+      "steps": "Navigate to the “Production Schedule” tab.\r\n\r\nIdentify the phase you want to delete (e.g., Batch_1_OLH).\r\n\r\nClick the red \"X\" (delete icon) corresponding to the phase.\r\n\r\nObserve the confirmation popup:\r\n\"Do you want to delete Phase Batch_1_OLH?\"\r\n\r\nClick “Cancel” in the popup.\r\n\r\nVerify that the phase is still visible in the list.\r\n\r\nClick the red \"X\" again for the same phase.\r\n\r\nThis time, click “OK” in the confirmation popup.\r\n\r\nObserve the behavior and check if the phase is removed.",
+      "expected": "Production Schedule screen loads successfully.\r\n\r\nClicking the delete icon prompts a confirmation dialog with the correct phase name.\r\n\r\nClicking \"Cancel\" should abort deletion, and the phase should remain unchanged.\r\n\r\nClicking \"OK\" should remove the selected phase from the table.\r\n\r\nThe table updates immediately or after refresh, showing the phase no longer exists.\r\n\r\nNo unintended phases are deleted.\r\n\r\nSystem handles deletion without errors or broken UI.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 13,
+      "summary": "Verify Product Group Tab Functionality",
+      "area": "Planning tab",
+      "steps": "1.Navigate to the Product Group tab\r\n2. check the relevent data should load automatically.\r\n3. add Product Group 2 insert all required field and click on 'Save Product Group' button\r\n4. 'Total 2 records are saved.' message should be displayed.",
+      "expected": "Product Group tab should load data correctly\r\nSave Product Group' button should work",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 15,
+      "summary": "Verify Load Execution Plan Tab Functionality",
+      "area": "Planning tab",
+      "steps": "1.Navigate to the QALink application and log in with valid credentials.\t\r\n2.Click on the Release tab in the navigation menu.\t\r\n3.Select a valid Release from the dropdown (e.g., \"FlexPLM 13.0.3.0(Q2)\").\t\r\n4.Click on the Execution Plan tab.\t\r\n5.Select a Phase from the dropdown (e.g., \"Production\").\t\r\n6.Click on the Load button.\tThe system should display the execution plan for the selected phase.\r\n7.If no execution plan is available, verify that the message \"No Execution Plan found.\" is displayed.\t\r\n8.Click on the Update button after selecting a phase.\t\r\n9.Verify that the Phase Production Total Planned value is displayed correctly.\t\r\n10.Test dropdown options under Phase (e.g., \"PM\", \"AUTO\", \"I\", \"Production\", etc.).\t\r\n11.Check 'Update' button working",
+      "expected": "The Release tab should open successfully.\r\nThe selected release should be displayed.\r\nThe Execution Plan page should load.\r\nThe selected phase should be displayed in the dropdown.\r\nThe message should appear in red if no plan is found,  \"No Execution Plan found.\" is displayed.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 16,
+      "summary": "Verify Update Execution Plan Tab Functionality",
+      "area": "Planning tab",
+      "steps": "Navigate to Planning → Release.\r\n\r\nClick on the Execution Plan tab.\r\n\r\nSelect a Release (e.g., Windchill RVS 13.3.0.0) from the dropdown.\r\n\r\nSelect a Phase (e.g., PM) from the dropdown.\r\n\r\nClick the Update button.\r\n\r\nObserve that a table appears showing Week No., Date, Planned %, Actual %, etc.\r\n\r\nIn the Planned % column, modify values for multiple weeks (e.g., update Week 1 to 40, Week 2 to 20, etc.).\r\n\r\nClick the Save Execution Plan button.\r\n\r\nObserve the confirmation message.",
+      "expected": "Execution Plan tab loads and displays release and phase options.\r\n\r\nOn clicking Update, the execution table for selected phase is displayed.\r\n\r\nUser is able to modify the Planned % and other editable fields.\r\n\r\nOn clicking Save Execution Plan, the data is validated and saved.\r\n\r\nSystem displays the message:\r\n“Total 25 records are saved.”\r\n\r\nUpdated values are retained upon refreshing the page.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 17,
+      "summary": "Verify Load Weekly Note Functionality",
+      "area": "Planning tab",
+      "steps": "1.Navigate to the Planning tab and select Weekly Note\t\r\n2.Select a Release from the dropdown (e.g., \"Arbortext 8.3.1.0\")\t\r\n3.Enter a Week begins date (e.g., 03/09/2025)\t\r\n4.Click on the Load Weekly Note button\t\r\n5.check Priority Assessment dropdown values (Low, Medium, High,Automation)\r\n6.Edit the text in the Weekly Note editor (e.g., add or modify content)\t\r\n7.Click the Save button\t\r\n8.Refresh the page and reload the weekly note\r\n8.Click the Remove button\r\n9.Attempt to save an empty note\t\r\n10.Verify the formatting options in the text editor (bold, italics, bullet points, etc.)",
+      "expected": "Note page should load successfully.\r\nThe selected release should be displayed.\r\nThe date should be accepted, and the \"Load Weekly Note\" button should be enabled.\r\nweekly note data should load in the text editor if available.\r\nThe text should be editable.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 18,
+      "summary": "Verify Retrieve Previous Note Weekly Note Functionality",
+      "area": "Planning → Release → Weekly Note",
+      "steps": "Navigate to Planning → Release.\r\n\r\nClick the Weekly Note tab.\r\n\r\nSelect a Release from the dropdown (e.g., Windchill RVS 13.3.0.0).\r\n\r\nIn the Week begins field, enter a future date (e.g., 05/25/2025).\r\n\r\nClick the Load Weekly Note button.\r\n\r\nObserve that the planning_weekly_note_form dialog box is displayed.\r\n\r\nClick the Retrieve Previous Note button.\r\n\r\nObserve the editor area.",
+      "expected": "The weekly note form appears for the selected release and week.\r\n\r\nOn clicking Retrieve Previous Note, the system should:\r\n\r\nRetrieve the last saved note for the same release/product.\r\n\r\nPopulate the editor with the retrieved content (e.g., test updates, task completion notes).\r\n\r\nUser should be able to edit or save the note after retrieval.",
+      "priority": "",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 19,
+      "summary": "Verify Fiscal Year Selection and Capacity Loading",
+      "area": "Resource Capacity Tab",
+      "steps": "1.Login QA link\r\n2.Go to Planning tab\r\n3.Navigate to Resource Capacity.\r\n4.Select the Fiscal Year from the dropdown (e.g., 2026).\r\n5.Click the Load button.                                                                                                                6.verify the fiscal year starts from October and ends in September",
+      "expected": "1.The Resource Capacity for the selected fiscal year should be displayed.\r\n2.The data should include Overall Team Resources, Resource Testing Capacity Estimate, Test Days Estimate.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 20,
+      "summary": "Verify PTO (Planned Time Off) & Holidays Display",
+      "area": "Resource Capacity Tab",
+      "steps": "1.Login QA link\r\n2.Go to Planning tab\r\n3.Navigate to Resource Capacity.\r\n4.The Resource Capacity for the selected fiscal year should be displayed.\r\n5.Scroll to the PTO (Planned Time Off) & Holidays section.\r\n6.Check if PTO & Holidays values for different offices (e.g., USA, Shanghai, Pune, etc.) are displayed correctly.",
+      "expected": "PTO & Holidays values should be displayed for each month and each office/team.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 21,
+      "summary": "Verify Link Navigation for Resource Gap Analysis",
+      "area": "Resource Capacity Tab",
+      "steps": "1.Login QA link\r\n2.Go to Planning tab\r\n3.Navigate to Resource Capacity.\r\n4.The Resource Capacity for the selected fiscal year should be displayed.     5.Locate and click on the Resource Gap Analysis link.\r\n6.Verify that the page navigates to the Resource Gap Analysis section.\r\n7.On navigated page select year and Month from dropdown and click on button \"Load QAE Work Days\"",
+      "expected": "1.The user should be redirected to the Resource Gap Analysis page.\r\n2.The page should display relevant resource gap data.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 22,
+      "summary": "Verify Analyze Test Cases Button Functionality",
+      "area": "Analyze Tab",
+      "steps": "1.Login to QA link.\r\n2.Go to Planning tab\r\n3.Select Analyze menu\r\n4. Click on Release dropdown\r\n5. Select a Release version\r\n6. Select any Phase from dropdown (Auto, CD,I,II,OLH/PDF 1,OLH/PDF 2,OLH/PDF 3,PM)\r\n7.Select Product from the list\r\n8. Select Type(Public,Personal)\r\n9.Check the Analyze Test Cases button working or not.",
+      "expected": "The dropdown should display available releases.\r\nThe product list should be displayed correctly.\r\nThe dropdown should display available phases.\r\nAnalyze Test Cases button should work.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 23,
+      "summary": "verify Save Analysis button functionality",
+      "area": "Analyze Tab",
+      "steps": "1.Login to QA link.\r\n2.Go to Planning tab\r\n3.Select Analyze menu\r\n4. Click on Release dropdown\r\n5. Select a Release version\r\n6. Select any Phase from dropdown (Auto, CD,I,II,OLH/PDF 1,OLH/PDF 2,OLH/PDF 3,PM)\r\n7.Select Product from the list\r\n8. Select Type(Public,Personal)\r\n9.Click the Analyze Test Cases button.\r\n10. verify data table displayed with fields\r\n  No, Product, Component,Title, Main ProjID,Last Update Total T/C Test Case Category\r\n11. Save any Type check box Public and Personal\r\n12. click on Save Analysis button",
+      "expected": "On step 9th Analyze Test Cases button should work\r\non step 10th data should displayed correctly\r\nOn step 11th checkbox should be selectable\r\nOn step 12th it show message in Red color \"[Message] Test case analysis results have been saved in Public data as below.\"\r\n   \"[Message] Test case analysis results have been saved in Personal data as below.\"",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 25,
+      "summary": "Verify Select Functionality for Test Case Filtering",
+      "area": "Select Tab",
+      "steps": "1. Navigate to the Planning tab and click on Select\t\r\n2. From the Release dropdown, select a release (e.g., Windchill(PTC) RVS 13.4.0.0)\t\r\n3. From the Phase dropdown, select AUTO\t\r\n4. From the Product list box, select product (e.g., Integrity Lifecycle Manager)\t\r\n5. From the Project Manager list box, select manager\t\r\n6. Click the Load Test Case Document button\t\r\n7. All data should display Language Delegation,Test Case Base Overlap, Test Case Informantion\r\n8. Verify the displayed test case details such as Title, Component, Complexity, Review Status, etc.\t\r\n9. Use the checkbox filters (Component, Related Project, Project Manager, Test Theme) to narrow down results\t\r\n10.Change the Complexity dropdown of a test case",
+      "expected": "The Select Test Case screen is displayed\r\nThe screen reloads or updates to reflect selected release-specific data\r\nThe test cases shown belong to the AUTO phase\r\nThe test cases related to the selected products are shown\r\nOnly test cases for selected managers are displayed\r\nTest case data is loaded and displayed in the table below\r\nDisplayed data corresponds correctly to the applied filters\r\nResults are updated according to selected filters\r\nThe complexity value is updated and editable",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 26,
+      "summary": "Validate Language Delegation Data",
+      "area": "Select Tab",
+      "steps": "1. Navigate to the Planning tab and click on Select\t\r\n2. From the Release dropdown, select a release (e.g., Windchill(PTC) RVS 13.4.0.0)\t\r\n3. From the Phase dropdown, select AUTO\t\r\n4. From the Product list box, select product (e.g., Integrity Lifecycle Manager)\t\r\n5. From the Project Manager list box, select manager\t\r\n6. Click the Load Test Case Document button\t\r\n7. from Test Case Information data table go to Languages click on any language checkbox\r\n8.click on \"Create Test Case Execution\" button",
+      "expected": "on Step no 7 once click on language checkbox that language should display in Language Delegation Table\r\non step no 8 \"Test case execution instances have been created.\" message should display\r\ngo to same Same Release, Phase, Product, Project Manager configuration and check saved Test case Execution data displayed",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 27,
+      "summary": "Display Checkbox Toggles Column Visibility",
+      "area": "Select Tab",
+      "steps": "1. Navigate to the Planning tab and click on Select\t\r\n2. From the Release dropdown, select a release (e.g., Windchill(PTC) RVS 13.4.0.0)\t\r\n3. From the Phase dropdown, select AUTO\t\r\n4. From the Product list box, select product (e.g., Integrity Lifecycle Manager)\t\r\n5. From the Project Manager list box, select manager\t\r\n6. Click the Load Test Case Document button go to Test Case Informantion\r\n7. Ensure all checkboxes under the \"Display:\" label are unchecked.\r\n8. Observe that \"Component\", \"Related Project\", \"Project Manager\", and \"Test Theme\" columns are hidden.\r\n9.Check the Component checkbox.\r\n10.Check the Related Project checkbox.\r\n11.Check the Project Manager checkbox.\r\n12.Check the Test Theme checkbox.",
+      "expected": "On step 9th Verify that the Component column is now visible in the test case table.\r\nOn step 10th Verify that the Related Project column is now visible.\r\nOn step 11th Verify that the Project Manager column is now visible with selectable Dropdown having names of Manager.\r\nOn step 12th Verify that the Test Theme column is now visible with selectable Dropdown.\r\nWhen unchecked, the column should hide again.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 28,
+      "summary": "Verify Advance Select Functionality",
+      "area": "Select Tab",
+      "steps": "1. Navigate to the Planning tab and click on  Advance Select\t\r\n2. From the Release dropdown, select a release (e.g., Windchill(PTC) RVS 13.4.0.0)\t\r\n3. From the Phase dropdown, select AUTO\t\r\n4. From the Product list box, select product (e.g., Integrity Lifecycle Manager)\t\r\n5. From the Project Manager list box, select manager\t\r\n6. Click the Load Test Case Info button",
+      "expected": "The screen reloads or updates to reflect selected release-specific data",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 29,
+      "summary": "Verify Set Default Category button Functionality",
+      "area": "Advance Select",
+      "steps": "1. Navigate to the Planning tab and click on Advance Select\t\r\n2. From the Release dropdown, select a release (e.g., Windchill(PTC) RVS 13.4.0.0)\t\r\n3. From the Phase dropdown, select AUTO\t\r\n4. From the Product list box, select product (e.g., Integrity Lifecycle Manager)\t\r\n5. From the Project Manager list box, select manager\t\r\n6. Click on \"Set Default Category\" button\r\n7. Preset of Default Category will appear\r\n8. having Category (F/A,S/C,FQA,L10N,Auto), Priority(High/Absol),Total click on any Category checkbox and reset \r\nclick Save button view changes\r\n9.click on any Category,Priority checkbox and Click Cancel button view changes\r\n10. verify add and remove Category list button working",
+      "expected": "Verify list of Checkbox under Category\r\nVerify list of Checkbox under Priority\r\nCheckbox under Category should be present and clickable\r\ncheckbox under Priority should be present and clickable\r\nadd and remove Category list button should be working\r\nSave and Cancel button should be working",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 30,
+      "summary": "verify source Radio buttons selectable in Test Automation",
+      "area": "Test Automation",
+      "steps": "1. Navigate to the Planning tab and click on Test Automation\r\n2. click on Integrity1 radio button\r\n3. click on Integrity1 \r\n4. click on JIRA Radio button\r\n5. click on JIRA",
+      "expected": "radio buttons should be working\r\non 3rd step excel with name Integrity_test_cases.xlsx should get downloaded\r\non 5th step excel with name JIRA_test_cases.xlsx should get downloaded",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 31,
+      "summary": "Upload Test Cases in QALink via Test Automation Tab for Integrity",
+      "area": "Test Automation",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Test Automation\r\n4. select source Integrity1\r\n5. select release, Phase, Product, Project Manager\r\n6. click on Choose files\r\n7. choose excel file with correct format to upload\r\n8. click on Upload button\r\n9. from  Table with name \"Test Case Document Uploading Result\" select office,language, click on Delegate button\r\n10. click on remove button \r\n11. check Query and Cancel buttons are working",
+      "expected": "When click on Choose files dialog box should appear to slect file\r\nwhen click on Upload button, Table with name \"Test Case Document Uploading Result\"  should appear on UI\r\nwhen click on \"Delegate\" button table with name \"Test Case Execution Delegation Result:\" should appear with correct selected language\r\nwhen click on remove button pop up message \"please choose the test case documents you want to remove\" should appear\r\nQuery buton should show result\r\ncancel button should remove entered details ex Release, Product, Phase,Project Manager",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 32,
+      "summary": "Upload Test Cases failed in QALink via Test Automation Tab",
+      "area": "Test Automation",
+      "steps": "",
+      "expected": "",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 34,
+      "summary": "Verify \"Drop\" tab functionality",
+      "area": "Drop",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Drop\r\n4. Select Release, select Phase,Product and Project Manager\r\n5. Click on \"Load Test case Execution\" button\r\n6. Test case Excecution data should be able to select single or mutliple rows\r\n7. click on \"Drop Test Case Execution Instance(s)\" button",
+      "expected": "1.\"Load Test case Execution\" button should be working\r\n2. once click on button it should Table with title \"Test Case Excecution\"\r\n3. Test case Excecution data able to select single or mutliple rows\r\n4. \"Drop Test Case Execution Instance(s)\" button working \r\n5. Success message should display \"[Message] Test case execution instances have been dropped.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 35,
+      "summary": "Verify \"Weekly goal\" tab functionality",
+      "area": "Weekly Gooal",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Goal\r\n4. select Release,Phase,Product,Project Manager,Component,Office,Week begins\r\n5.click on Load Tasks button",
+      "expected": "Load Tasks button should work\r\nWeekly Assignment Summary table,Test case Excution, Other Tasks should display",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 36,
+      "summary": "Verify Error for no test case execution Record functionality",
+      "area": "Weekly Gooal",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Goal\r\n4. select Release,Phase,Product,Project Manager,Component\r\n5. For Week begins select future date \r\n6. click on Load Tasks button\r\n7. go to Test Case Excution table",
+      "expected": "1. Future dates should be selectable from the calender\r\n2. Test Case Excution table should show error message \"No Test Case Execution Records found for Release (ex.Codebeamer 3.0.0.0)\"",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 37,
+      "summary": "Verify \"Import from excel\" and \"Download template\" functionality from Weekly goal tab",
+      "area": "Weekly Gooal",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Goal\r\n4. select Release,Phase,Product,Project Manager,Component\r\n5. For Week begins select future date \r\n6. click on Load Tasks button\r\n7. go to Other Tasks click on \"Import from excel button\"\r\n8. click on \"Choose File\" button from the dialog box \r\n9. click on Import button from the dialog box\r\n10. verify Cancel button working on Dialog box\r\n11.click on \"Download template\" linktext",
+      "expected": "on Step 7th dialog box with title \"Import Other Task\"\r\non step 8th should able to select file from system\r\nOn step 10 dialog box diappear once click on cancel\r\non step 11 th should download excel sheet with name \"other_task_template.xlsm\"",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 38,
+      "summary": "Assign Test Case Execution",
+      "area": "Assign",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Assign\r\n4. select Release,Phase, Product,Project Manager and Office\r\n5. click on \"Load Test Case Execution\"\r\n6. click on Duplicate\r\n7. In \"Duplicate Test Case Execution & Assign dialog box from Test Engineer dropdown select Engineer\r\n8. Click on \"Duplicate Execution\"",
+      "expected": "on step 5th Test Case Execution will be displayed\r\non Step 6th dialog box \"Duplicate Test Case Execution & Assign\" will be displayed\r\nOn Step 7th user should able to select different Engineer\r\non Step 8th Engineer name to whom Duplicate Execution assigned should be displayed in Test Case Execution",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 39,
+      "summary": "Verify Weekly Assign Tasks functionality",
+      "area": "Weekly Assign",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Assign\r\n4. select Office and Week begins\r\n5. clcik on \"Load Tasks\" button\r\n6. Verify Weeky Assignment Summary table title and Fields should reflect correct week of date, Office wise resources and capacity\r\n7. Click on \"Assign Test Case Executions and Other Tasks\" without any changes",
+      "expected": "on step 5th \"Weeky Assignment Summary\" , \"Assigned Resource Capacity\" , \"Test Case Executions \", \"Other Tasks\" Table\r\nOn step 6th Data displayed correctly\r\non step 7th \"[Message] Weekly assignment instances have been assigned.\" , Total 0 assignments are assigned.\" messages will be displayed",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 40,
+      "summary": "Verify Weekly Assign Tasks functionality for Past Dates",
+      "area": "Weekly Assign",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Assign\r\n4. select Office \r\n5. select Week Begins past date\r\n6. clcik on \"Load Tasks\" button\r\n7. Go to Bottom of the page",
+      "expected": "error message \"This is a past week weely assignment record.\" should be displayed",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 41,
+      "summary": "Verify Break other Task functionality from the assigned hours",
+      "area": "Weekly Assign",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Assign\r\n4. select Office \r\n5. select Week Begins date\r\n6. click on \"Load Tasks\" button\r\n7. Go to Other Tasks\r\n8. from any row click on \"Break\" button\r\n9. Verify all dropdown values are selectable from Table (ex Complexity, Release, Phase, Project Manager, QA Engineer)\r\n10. verify we can edit values and add note from Assigne Exe No and Note comment box\r\n11. click on \"More Rows\" button\r\n12. Click on \"Submit\" button\r\n13. In other Task table observe changes done reflected or not",
+      "expected": "on step 8th child window will appear with titlr \"Break Tasks\"\r\nOn step 9th All dropdown values should be selectable\r\non step 10th should able to add and edit values and comments\r\non step 11th more rows should be added in the table\r\non step 12th child window should get closed and redirect to Weekly Assign page \r\nOn step 13th changes should be reflected",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 42,
+      "summary": "Verify Weekly Assign Export to Excel file functionality",
+      "area": "Weekly Assign",
+      "steps": "1.login to QALink\r\n2. go to planning tab\r\n3. go to Weekly Assign\r\n4. select Office \r\n5. select Week Begins date\r\n6. Click on \"Export to Excel file\" button\r\n7. select different columns checkbox\r\n8. Click on \"Export\" button\r\n9. Click on \"Close\" button",
+      "expected": "On step 6th Child window with title \"Select the columns you would like to export to Excel file\" opened\r\non step 7th select checkbox of columns\r\nOn step 8th WeeklyAssignment_(week begin date).xls should get downloaded\r\nOn step 9th child window should get closed",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    }
+  ],
+  "ReportTab_TC": [
+    {
+      "id": 1,
+      "summary": "Verify Overall Report tab functionality",
+      "area": "Report/Overall",
+      "steps": "1. login to QALink\r\n2. go to Report=> Overall\r\n3. select Release, Phase, Project Managers, Office\r\n4. check add_release_phase button and del_release_phase button able to add and remove multiple phase\r\n5. click on \"Load Execution Summary\"",
+      "expected": "on step 3rd Multiple Phases should be selectable\r\nOn step 4th add_release_phase button and del_release_phase button working\r\nOn step 5th  tables with title \"Test Case Execution Summary\" ,\" Language Coverage Summary\",\"Server Configuration Coverage Summary\", \"Client Configuration Coverage Summary\" will be displayed",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 3,
+      "summary": "Verify Generate CFT report Functionality using detail view",
+      "area": "Report/CFT Report",
+      "steps": "1. Navigate to the Report tab and select CFT Report.\r\n2. Select a CFT Report from the dropdown (e.g., “Atlas FY 24”).\r\n3. From the Release list, select a release (e.g., “Creo View_old”).\r\n4. From the Phase dropdown, select a phase (e.g., “0.83_II”) and click on the >> (Add) button to move it to the right box.\r\n5. Click on the << (Remove) button to remove the phase from the selection.\r\n6. From the Product list, select one or more products (e.g., “2784048”).\r\n7. From the Component list, select one or more components (e.g., “/Administration/Installation, Upgrade, Migration”).\r\n8. From the Project Manager list, select project managers\r\n9. Select the Detail radio button under the View section.\r\n10. Click on the Generate CFT Status button.",
+      "expected": "4\tSelected phase should appear in the right box.\r\n5\tPhase should be removed from the right box when << is clicked.\r\n6-8\tSelected product, component, and project manager should remain selected.\r\n10\tThe system should generate and display the CFT Status Report based on the selected criteria in Detail View.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 4,
+      "summary": "Verify Generate CFT report Functionality using summary view",
+      "area": "Report/CFT Report",
+      "steps": "1. Navigate to the Report tab and select CFT Report.\r\n2. Select a CFT Report from the dropdown (e.g., “Atlas FY 24”).\r\n3. From the Release list, select a release (e.g., “Creo View_old”).\r\n4. From the Phase dropdown, select a phase (e.g., “0.83_II”) and click on the >> (Add) button to move it to the right box.\r\n5. Click on the << (Remove) button to remove the phase from the selection.\r\n6. From the Product list, select one or more products (e.g., “2784048”).\r\n7. From the Component list, select one or more components (e.g., “/Administration/Installation, Upgrade, Migration”).\r\n8. From the Project Manager list, select one or more project managers (e.g., “Bhagat, Shilpa”).\r\n9. Select the Summary radio button under the View section.\r\n10. Click on the Generate CFT Status button.",
+      "expected": "4\tSelected phase should appear in the right box.\r\n5\tPhase should be removed from the right box when << is clicked.\r\n6-8\tSelected product, component, and project manager should remain selected.\r\n10\tThe system should generate and display the CFT Status Report based on the selected criteria in Summary View.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 5,
+      "summary": "Validate \"TestCase Info\" report generation for selected release and product",
+      "area": "Report/TestCase info",
+      "steps": "1.Navigate to Report tab and click on TestCase Info.\t\r\n2.In the \"Release\" dropdown, select a valid release (e.g., ALD 12.3.1.0).\t\r\n3.In the \"Product\" section, select a valid product (e.g., ALD).\t\r\n4.Optionally, select a project manager or leave as default (All Project Managers).\t\r\n5.Click the \"Load Test Case Info\" button.\t\r\n6.Verify that the summary shows accurate test case counts (e.g., Auto/10fn = 68, FA = 53).\t\r\n7.Check the “Language Delegation” and “Test Case Base Overlap” section.\t\r\n8.Validate that test case information is displayed in tabular format below, with fields like Test Case Category, Language, etc.",
+      "expected": "TestCase Info page is displayed.\r\nThe release value is selected and visible.\r\nProduct is selected and displayed.\r\nCorrect PM is selected.\r\nThe system loads and displays test case information for the selected criteria.\r\nThe data matches what's stored in the system for the selected release/product.\r\nValues like total assigned and overlap percentage are shown correctly.\r\nAll columns are populated and readable.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 6,
+      "summary": "Validate Weekly Report Generation for a Specific Office",
+      "area": "Report/Weekly Report",
+      "steps": "1.Navigate to Report tab and click on Weekly Report.\t\r\n2.In the \"Office\" dropdown, select a specific office (e.g., Pune).\t\r\n3.In the “Week begins” field, enter or select a valid start date (e.g., 04/27/2025).\r\n4.Click on the Load Tasks button.\t\r\n5.Verify that the report displays a list of test cases for the week.\t\r\n6.Check the “Weekly Status Done (%)” column for progress.\t\r\n7.Confirm that the fields like Assigned Date, Done Date, Hours(A), and Defer are populated or editable as per role.\t\r\n8.Review if the Comment field allows manual input.",
+      "expected": "The Weekly Report page is displayed.\r\nOffice selection is registered.\r\nDate is selected correctly.\r\nThe Weekly Report is generated for the selected office and date.\r\nTest cases are listed with correct details such as project, product, language, config, and engineer.\r\nShows 0% if not started, or actual percentage if work is done.\r\nAll related fields reflect actual data or allow updates where applicable.\r\nComments can be entered or reviewed.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 7,
+      "summary": "Validate \"Save\" Functionality on Weekly Report functionality",
+      "area": "Report/Weekly Report",
+      "steps": "1.login QA link\r\n2.click on Report tab\r\n3.click on Weekly Report=>enter data =>click on Load Task=> go to bottom of the page\r\n4.Make changes in any row (e.g., update status, hours, or comment).\t\r\n5.Click the Save button at the bottom of the screen.\t\r\n6.Refresh the page or re-load the report.",
+      "expected": "Fields reflect edited values.\r\nData is validated and saved in the backend.\r\nPreviously entered data persists.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 8,
+      "summary": "Verify \"Send Mail\" Functionality for Weekly Report",
+      "area": "Report",
+      "steps": "1.QA link=> Report tab=> Weekly Report=>enter data =>click on Load Task=> go to bottom of the page=>Click on the \"Send Mail\" button.\r\n2.serve the email popup window that appears.\r\n3.In the \"To:\" field, enter a valid email address (e.g., testuser@example.com).\r\n4.(Optional) In the \"Cc:\" field, enter one or more additional valid email addresses. Use ; to separate multiple addresses.\r\n5.Verify that the Subject field is auto-populated correctly (e.g., Weekly Report for 04/27/2025 Pune Office).\r\n6.Click the Preview button to preview the email content.\r\n7.Click the Send button.\r\n8.Confirm if a success message or confirmation appears (e.g., \"Weekly Report Mail has been sent.\").\r\n9.Check the recipient's inbox to verify the report is received correctly with accurate details.",
+      "expected": "Email popup opens with proper layout.\r\n\r\nSubject auto-fills with the weekly report's details.\r\n\r\nMultiple recipients are supported with ; separator.\r\n\r\nClicking \"Send\" successfully dispatches the report.\r\n\r\nReport content is accurate and matches what is displayed on the page.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 9,
+      "summary": "Verify \"Push Weekly Time into TimeTracker\" Functionality",
+      "area": "Report",
+      "steps": "1.QA link=> Report tab=> Weekly Report=>enter data =>click on Load Task=> go to bottom of the page=>click on \"Push to Time Tracker\"\r\n2.Verify that the weekly data (user names, projects, hours, remarks, etc.) is loaded correctly.\r\n3.Scroll to the bottom of the page.\r\n4.Click the \"Push Weekly Time into TimeTracker\" button.\r\n5.Observe the response after clicking the button.\r\n6.Review the \"Weekly Time Data\" link that appears and confirm the link text is correct and clickable.",
+      "expected": "The button is visible and enabled.\r\non step 6th data appear in xml format",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 10,
+      "summary": "Verify Weekly Report functionality",
+      "area": "Report/Time Report",
+      "steps": "1.Click on “Report” in the main navigation.\r\n\r\n2.In the report filters:\r\n\r\n3.Select an Office.\r\n\r\n4.Select a Week.\r\n\r\n5.Click on the “View” button.\r\n\r\n6.Click on the “Load Task” button.\r\n\r\n7.Wait for the Test Case Execution Details table to load.\r\n\r\n8.Scroll down to the bottom of the table.\r\n\r\n9.Click on the “Time Tracker Report” button.",
+      "expected": "A new window or tab opens.\r\n\r\nThe user is navigated to the SharePoint page containing the Time Tracker Report.\r\n\r\nThe report should be correctly generated and accessible.",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 11,
+      "summary": "View Test Case Execution & Other Tasks Summary Report",
+      "area": "Report",
+      "steps": "1.Navigate to the QALink application.\r\n2.Click on the Report tab.\r\n3.Select the TimeReport sub-tab.\r\n4.In the \"Release\" field, enter or select a valid release (e.g., FlexPLM 12.1.3.0(N2)).\r\n5.From the Office list, select one or more offices (e.g., Pune).\r\n6.From the QA Engineer list, select one or more QA engineers \r\n7.Select the Period From and Period To dates (e.g., From 10/01/2023 to 04/29/2025).\r\n8.Choose the View option as Summary or Detail.\r\n9.Click on the Load Execution Summary button.\r\n10.Observe the section titled Test Case Execution & Other Tasks Summary.",
+      "expected": "The summary table appears below with relevant data.\r\n\r\nColumns such as Date, Release, Project Name, Phase, Task Name, QA Engineer, Total Execution, Esti Work Time (Hour), and Actual Work Time (Hour) are displayed correctly.\r\n\r\nThe Export to Excel button should be visible and enabled.\r\n\r\nThe following totals should be displayed at the bottom of the summary:\r\n\r\nTotal Execution:\r\n\r\nEstimation Work Time: )\r\n\r\nActual Work Time:\r\n\r\nTotal SPRs:",
+      "priority": "Normal",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    },
+    {
+      "id": 12,
+      "summary": "Verify ROI Report Generation",
+      "area": "Report",
+      "steps": "1.Navigate to Report → ROI Report tab\t-\t\r\n2.Select Office from dropdown (e.g., DT Services)\t\r\n3.Select Start Date as 01/01/2023\t\r\n4.Select End Date as 05/06/2025\t\r\n5.Select SPR Source as PTC Integrity\t\r\n6.Select Product Line as Windchill Core\t\r\n7.Select Manager as All\t\r\n8.Select QA Engineer \r\n9.Click on the Load button\t-\t\r\n10.Verify the ROI trend graph displays expected trend line\t\r\n11.Verify data table below shows: Product Line, Release, Hours Worked, No. of Bugs, ROI, etc.",
+      "expected": "The ROI trend graph and data table below are updated\r\nROI graph appears with values on Y-axis and dates on X-axis\r\nData is correctly populated based on filters",
+      "priority": "",
+      "owner": "Shilpa Bhagat",
+      "prereq": ""
+    }
+  ],
+  "UserTab_TC": [
+    {
+      "id": 1,
+      "summary": "Validate User tab present in Header Menu & it is clickable",
+      "area": "User tab",
+      "steps": "1. Login to Application with user credentials\r\n2. check User tab in Header Menu\r\n3. click on User tab",
+      "expected": "2. User tab should be present in Header Menu\r\n3. User tab should be clickable & will load User page",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 3,
+      "summary": "Verify All Tabs present under User tab\r\n   -My Tasks\r\n  - My SPRs\r\n  - My Weekly Goals\r\n  - Resources\r\n  - My Profile",
+      "area": "User tab",
+      "steps": "1. Login to Application with user credentials\r\n2. Click on User tab in Header Menu\r\n3. Check all options present under User tab\r\n4. Each menu option should be clickable & will navigate to respective page.",
+      "expected": "3. Various options present should be\r\n   -My Tasks\r\n  - My SPRs\r\n  - My Weekly Goals\r\n  - Resources\r\n  - My Profile",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 4,
+      "summary": "Verify Navigation to 'My Weekly Goal'",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' option present\r\n2. Check 'Week Begins' dropdown present\r\n3. Check 'Load Tasks' Button present",
+      "expected": "2. 'Work Begin' dropdown should have current week start date (Sunday) by default",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 5,
+      "summary": "Check the default values Calender Scenarios for 'My Weekly Goal'",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Open 'Week begins' dropdown\r\n2. Check the dates highlighted",
+      "expected": "1. Calender should open with current  week begin date in DD/MM/YYYY form\r\n\r\n2. Week Start date should be highlighted with Blue Color & Current  date should be highlighted with Yellow Color\r\n\r\n2.1 User is only able to select Week Start Date (Random date selection is disabled)",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 6,
+      "summary": "Perform different  Week Start Date  selection",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Select default date (Week Start Date) & click on Load Tasks\r\n2. Select any previous Week  Start date of current month & Load the Tasks\r\n3. Select Week Start Date from last month & Load the Tasks\r\n4. Change Month & select any Week Start Date from any random month & Load the Tasks\r\n5. Change to any previous year & month and select any Week Start Date & Load the Tasks",
+      "expected": "1. User should ble to load current weekly tasks \r\n\r\n2. User should able to load weekly task any previous week , any previous month or year.",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 7,
+      "summary": "Verify below fields present on 'My Weekly Goal' page\r\n   Test Case Execution\r\n   Other Task\r\n   Add SPR Verification task \r\n   Weekly Goal hours\r\n   Actual Completed hours\r\n   Save Actual Hours\r\n   Time Tracker Report",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' \r\n2. Click 'Load Tasks' Button \r\n3. After loading the page, verify various fields",
+      "expected": "3. various fields should present are \r\n   Test Case Execution\r\n   Other Task\r\n   Add SPR Verification task \r\n   Weekly Goal hours\r\n   Actual Completed hours\r\n   Save Actual Hours\r\n   Time Tracker Report",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 8,
+      "summary": "Verify the Variuos options present under 'Test Case Execution'",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' \r\n2. Click 'Load Tasks' Button \r\n3. After loading the page, verify various fields",
+      "expected": "Assinged Manual test suit should appear under Test Case Execution label",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 9,
+      "summary": "Verify the assigned placeholders visible under 'Other Tasks'",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' \r\n2. Click 'Load Tasks' Button \r\n3. After loading the page, verify various fields",
+      "expected": "All assigned tasks other than Manual test suit should be present under 'Other Tasks' as a placeholder",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 10,
+      "summary": "Verify 'Add SPR Verification Task' present & Clickable",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' \r\n2. Click 'Load Tasks' Button \r\n3. After loading the page, verify various fields",
+      "expected": "Verify 'Add SPR Verification Task' should be present & Clickable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 11,
+      "summary": "Verify below  things present on  'Add SPR Verification Task' popup\r\n-  Release, Phase, Complexity dropdowns\r\n-  Task Name, Assigned Exe No. , Note etc. Input fields\r\n- Submit & Cancel button present & clickable",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' \r\n2. Click 'Load Tasks' Button \r\n3. After loading the page, Click on Add SPR verification task button",
+      "expected": "Dropdowns\r\nRelease dropdown has values as product names with thier release values\r\nPhase dropdown has phase values e.g. I, II, CD, PM\r\nComplexity drodown has values like low, medium, high\r\nAll other input boxes should be visible & editable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 12,
+      "summary": "Check user is able to add SPR verification task by his own",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal' \r\n2. Click 'Load Tasks' Button \r\n3. After loading the page, Click on Add SPR verification task button\r\n4. Select any value from Release dropdown e.g. FlexPLM 13.0.3.0 (Q2)\r\n5.Select phase & Complexity\r\n6. Add any no. for Assigned Exe No. & also add Note \r\n7. click on  Submit button",
+      "expected": "User should successfully add SPR verification task",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 13,
+      "summary": "Validate SPR Verification task added in above step is visible in 'Other Tasks' as placeholder",
+      "area": "User tab/My Weekly Goal",
+      "steps": "Repeat steps mentioned above test case 13",
+      "expected": "Task should be visible under Other task on My Weekly Goal page",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 14,
+      "summary": "Verify Task  title of assigned Task is appearing as a link  in  'Task Name' Column",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal'\r\n2. Click 'Load Tasks' Button",
+      "expected": "Task Title should appear as link in blue color & it's clickable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 15,
+      "summary": "Navigate to Task Update popup page",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal'\r\n2. Click 'Load Tasks' Button\r\n3. Click on Blue color link of task name",
+      "expected": "Task update popup page should open without any error",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 16,
+      "summary": "Verify various fields on update Task page\r\nTitle of the Pop up - Execution / Weekly Goal / Other Tasks Update\r\nTask Name\r\nTask Type \r\nComplexity\r\nRelease\r\nPhase\r\nProject Manager\r\nNote\r\nAssigned Exe No\r\nAssigned Language\r\nOffice\r\nStatus\r\nDone\r\nSPRs\r\nComment\r\nAssigned Date \r\nDone By \r\nUpdate Button",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal'\r\n2. Click 'Load Tasks' Button\r\n3. Click on Blue color link of task name",
+      "expected": "Mentioned fields should be present on update Task page\r\nTitle of the Pop up - Execution / Weekly Goal / Other Tasks Update\r\nTask Name\r\nTask Type \r\nComplexity\r\nRelease\r\nPhase\r\nProject Manager\r\nNote\r\nAssigned Exe No\r\nAssigned Language\r\nOffice\r\nStatus\r\nDone\r\nSPRs\r\nComment\r\nAssigned Date \r\nDone By \r\nUpdate Button",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 17,
+      "summary": "Validate all 4 options present under Status dropdown\r\nAssigned - White colour\r\nIn Progress - Yellow color\r\nComplete -Green color\r\nDeferred to next week - Red color",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal'\r\n2. Click 'Load Tasks' Button\r\n3. Click on Blue color link of task name\r\n4. Open Status dropdown",
+      "expected": "4 options should  present under Status dropdown with diff colors\r\nAssigned - White\r\nIn Progress - Yellow\r\nComplete -Green\r\nDeferred to next week - Red",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 18,
+      "summary": "Update the assigned task & verify that changes got appear correctly after saving them successfully",
+      "area": "User tab/My Weekly Goal",
+      "steps": "1. Click on 'My Weekly Goal'\r\n2. Click 'Load Tasks' Button\r\n3. Click on Blue color link of task name\r\n4. Select 'Complete' from Status dropdown\r\n5. Add hours in Done input box same as Assigned Exe No. hours\r\n6.  Hours added in above step also got refects on 'All hours' input box & user can modify as per needed\r\n7. Click on Update\r\n8. This will complete the operation & popup automatically got closed\r\n9. Verify the Status & hours shown Correctly in placeholder after update",
+      "expected": "All change should get saved Successfully & it should appear correctly on Other Task section of My Weekly Goal page",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 19,
+      "summary": "Verify 'My Profile' tab present & clickable",
+      "area": "User tab/My Profile",
+      "steps": "1. Login to Application with provided user credentials\r\n2. Click on User tab\"",
+      "expected": "My Profile' option should be present  under User tab & it should be clickable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 20,
+      "summary": "Verify Various Fields & its details related to User present under My Profile\r\nFirst Name\r\nLast Name\r\nEmail\r\nPhone\r\nAccess Level\r\nOffice\r\nLogin Name\r\nPassword\r\nEdit My Profile Button",
+      "area": "User tab/My Profile",
+      "steps": "1. Login to Application with provided user credentials\r\n2. Click on User tab\r\n3. Select My Profile option present\r\n4. Verify the user details",
+      "expected": "All User details should be correctly shown along with the labels",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 21,
+      "summary": "Navigate to Edit My Profile Page & verify the editable fields",
+      "area": "User tab/My Profile",
+      "steps": "",
+      "expected": "",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 22,
+      "summary": "As a user, check if he is able to change the Username, password, Email id, Phone No.",
+      "area": "User tab/My Profile",
+      "steps": "",
+      "expected": "",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 23,
+      "summary": "Verify 'My Tasks' tab present & clickable",
+      "area": "User/My Tasks",
+      "steps": "1. Login to Application with provided user credentials\r\n2. Click on User tab",
+      "expected": "My Task' option should be present  under User tab & it should be clickable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 24,
+      "summary": "\"Verify various fields on My Task page\r\n- Release Box  \r\n- Phase section (empty by default)\r\n- Dual Forward Angular brackects enclosed in yellow box\r\n- Dual backward Angular brackects enclosed in yellow box\r\n- Empty Box with scrollbar\r\n- Product box with defalut values\r\n- Project Mananger Box with default names of Managers\r\n- Load Test Case Assignment button\"",
+      "area": "User/My Tasks",
+      "steps": "1.Login QA link with user details\r\n2.Go to User tab\r\n3.Navigate to My Task tab.",
+      "expected": "Various fields mentioned should displayed correctly on UI\r\n- Release box should have default list of all products along all releases & it should have scroll bar\r\n\r\n- All associated Phase values should be displayed in Phase Box\r\n  e.g. I,II, CD, AUTO, PM etc. (it may vary product-to-product)\r\n  \r\n- Dual Forward/Backword Angular brackects enclosed in yellow box should move selection from Release to Empty Box & vice Versa\r\n\r\n- Empty Box which empty by default,Should display selected Release(Product name along with release value) moved towards it.\r\n\r\n- Product box (empty by default)\r\n  It should display various work types associated with particular release selected\r\n  e.g. if user selects FlexPLM 13.0.3.0 (Q2) is Release Box\r\n       then Product box will display will various associated work types i.e. CD verification, FlexPLM, Help Center, Help Center_PDF, Project Management\r\n\t   \r\n- Project Managers box should display Name of all Managers belongs to different segments\r\n  e.g. Names of all manager of from different segments like FSG, IOT, PLM, ALM of L10N QA (RESQA)department\t   \r\n\t   \r\n- Load Test Case Assignment button should display in yellow colour & it should be clickable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 25,
+      "summary": "As a user, check if he is able to fetch/load previously assigned task for different products & diiferent releases",
+      "area": "User/My Tasks",
+      "steps": "",
+      "expected": "",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 26,
+      "summary": "Verify Resource tab is present under User tab & it is clickable",
+      "area": "User/Resource",
+      "steps": "1.Login QA link with user details\r\n2.Go to User tab",
+      "expected": "Resource tab should be present  under User tab & it should be clickable",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 27,
+      "summary": "Verify various fields on Resource menu\r\n\r\nOffice (Dropdown )\r\nQA Engineer (Dropdown)\r\nResource Adjustment Type (Dropdown)\r\nStart Date (Date Picker)\r\nEnd Date (Date Picker)\r\n'Load Details' button\r\n'Add Records' button (Disabled by default)\r\n\r\nRecord Adjustment Records List \r\nIt has various columns showing users data\r\nAll\r\nDate\r\nOffice\r\nQA Engineer \r\nAdj Type\r\nHours\r\nNote\r\nUpdate Records button (Disabled by default)\r\nDelete Records button (Disabled by default)\r\nReset Button",
+      "area": "User/Resource",
+      "steps": "1.Login QA link with user details\r\n2.Go to User tab\r\n3.Navigate to Resource tab.",
+      "expected": "All the Various fields should be displayed correctly on resource page\r\n\r\n\r\nOffice (Dropdown ) has only default value as a location where user currently working e.g. Pune\r\n  QA Engineer (Dropdown) shows the default value as Users Name\r\n  Resource Adjustment Type (Dropdown) should have below values \r\n  - All Types (default value)\r\n  - Holiday\r\n  - PTO\r\n  - Overtime\r\n  Start Date & End Date is Date Picker where user can choose any Span \r\nLoad Details should be Enabled\r\nAdd Records button should be Disabled by default\r\n\r\n\r\nResource Adjustment Records List should have empty list by default \r\n   All the columns should present & have empty records initially\r\n   Update Records button should be Disabled initially\r\n   Delete Records button should be Disabled initially\r\n   Reset Button should be present & Enabled by default",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 28,
+      "summary": "Verify that user records related to Holiday, PTOs & Overtimes are fetched successfully",
+      "area": "User/Resource",
+      "steps": "1.Login QA link with user details\r\n2.Go to User tab\r\n3.Navigate to Resource tab\r\n4.Office & QA Engineer dropdown has default values present\r\n5.Select any value Resource Adjustment type dropdown e.g. PTO\r\n6.Select any date from previous years in Start Date\r\n7.Select current date in End Date \r\n8.Click on Load Details button\r\n9. Verify all the details from every column\r\n10.Repeat the process by selecting different Adjustment Type\r\n11. Fetch the records & verify all the details",
+      "expected": "8. After clicking on Load Details button , it should fetch all the records between the span selected \r\n9. Details fetched should correclty show the record of user.\r\n   e.g. No. of PTOs taken on particular dates\r\n  -All column should have checkboxes to select any particular reocrd\r\n  -Dates column should display particular dates on which user has taken PTOs during the selected span \r\n  -Office & QA Engineer columns should display default values same as above\r\n  - Adj Type column should display the recorrds of type which user selected in Adj type dropdown\r\n    e.g. PTO\r\n  - In Adj Type column user will see, PTO for planned leaves & Others for any Sick leave taken",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 29,
+      "summary": "Verify that 'Add Records', 'Update Records' 'Delete Records' buttons present on Resource page is Disabled for Non-admin user, before & after fetching/loading the records",
+      "area": "User/Resource",
+      "steps": "Steps:-\r\nCase 1] Before fetching/Loading the user records\r\n           1.Login QA link with Non-admin user \r\n           2.Go to User tab\r\n           3.Navigate to Resource tab\r\n           4.Verify 'Add Records', 'Update Records' 'Delete Records' buttons are Disabled by default\r\n\r\nCase 2] After fetching/loading the user records\r\n           1.Login QA link with Non-admin user \r\n           2.Go to User tab\r\n           3.Navigate to Resource tab\r\n           4.Office & QA Engineer dropdown has default values present\r\n           5.Select any value Resource Adjustment type dropdown e.g. PTO\r\n           6.Select any date from previous years in Start Date\r\n           7.Select current date in End Date \r\n           8.Click on Load Details button\r\n           9.Verify\t'Add Records', 'Update Records' 'Delete Records' buttons are still Disabled for non-admin user",
+      "expected": "Add Records', 'Update Records' 'Delete Records' buttons should be Disabled for non-admin user, both before & after loading the records",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 30,
+      "summary": "Verify that 'Add Records', 'Update Records' 'Delete Records' buttons present on Resource page is only Enabled for Admin user, before & after fetching/loading the records",
+      "area": "User/Resource",
+      "steps": "1.Login QA link with Admin user \r\n           2.Go to User tab\r\n           3.Navigate to Resource tab\r\n\t\t   4.Verify 'Add Records', 'Update Records' 'Delete Records' buttons are Enabled by default\r\n\t\t   5.Now load the records by follwing below steps\r\n           6.Office & QA Engineer dropdown has default values present\r\n           7.Select any value Resource Adjustment type dropdown e.g. PTO\r\n           8.Select any date from previous years in Start Date\r\n           9.Select current date in End Date \r\n           10.Click on Load Details button\r\n           11.now Verify 'Add Records', 'Update Records' 'Delete Records' buttons are still Enabled for admin user",
+      "expected": "Add Records', 'Update Records' 'Delete Records' buttons should be Enabled for Admin user both before & after loading the records",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 31,
+      "summary": "Verify the \"Non Testing Resource\" Tab is Present Under the \"User\" Tab, Clickable, and Only Visible to Admin Users",
+      "area": "User/Non Testing Resource",
+      "steps": "1. Log in to the application using an admin account.\r\n2. Navigate to the main dashboard.\r\n3. Select the \"User\" tab.\r\n4. Verify that the \"Non Testing Resource\" tab is present under the \"User\" tab.\r\n5. Click on the \"Non Testing Resource\" tab.",
+      "expected": "1. The \"Non Testing Resource\" tab should be visible under the \"User\" tab only when logged in with admin rights or admin credentials.\r\n2. The \"Non Testing Resource\" tab should be clickable and should navigate to the appropriate page or section when clicked.",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 32,
+      "summary": "Verify Fields and Functionalities in the \"Non Testing Resource\" Tab",
+      "area": "User/Non Testing Resource",
+      "steps": "1. Log in to the application using an admin account.\r\n2. Navigate to the main dashboard.\r\n3. Select the \"User\" tab.\r\n4. Click on the \"Non Testing Resource\" tab.\r\n5. Verify the presence and functionality of the \"Office\" field:\r\n   Check if the \"Office\" field is present.\r\n   Click on the dropdown and verify that it displays the expected list of options.\r\n   Select an option from the dropdown and ensure it is correctly selected.\r\n6. Verify the presence and functionality of the \"Execution Type\" field:\r\n   Check if the \"Execution Type\" field is present.\r\n   Click on the dropdown and verify that it displays the expected list of options.\r\n   Select an option from the dropdown and ensure it is correctly selected.\r\n7. Verify the presence and functionality of the \"User\" field:\r\n   Check if the \"User\" field is present.\r\n   Click on the dropdown and verify that it displays the expected list of options.\r\n   Select an option from the dropdown and ensure it is correctly selected.\r\n8. Verify the presence and functionality of the \"Week of\" field:\r\n   Check if the \"Week of\" field is present.\r\n   Verify that it includes both a Start Date picker and an End Date picker.\r\n   Select a start date and an end date, and ensure the dates are correctly picked.\r\n9. Verify the presence of the \"Load\" button",
+      "expected": "1. Office Field: The dropdown should be present, display the correct list of options, and allow selection of an option.\r\n2. Execution Type Field: The dropdown should be present, display the correct list of options, and allow selection of an option.\r\n3. User Field: The dropdown should be present, display the correct list of options, and allow selection of an option.\r\n4. Week of Field: The field should be present with both Start Date and End Date pickers, and should allow correct date selection.\r\n5. Load Button: The button should be present.",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 33,
+      "summary": "Verify Non-Testing Resource Capacity Loads Correctly on Clicking 'Load' Button",
+      "area": "User/Non Testing Resource",
+      "steps": "1. Login to the application using valid credentials.\r\n2. Navigate to the 'Users' tab.\r\n3. Click on the 'Non-Testing Resource' tab.\r\n4. Select a value from the 'Office' dropdown.\r\n5. Select a value from the 'User' dropdown.\r\n6. Select a value from the 'Execution Type' dropdown.\r\n7. Select a value from the 'Week of' field.\r\n8. Click on the 'Load' button.\r\n9. Verify the presence of 'Add', 'Edit', and 'Delete' buttons once the list is loaded.\r\n10. Verify that the 'Enable Filter' checkbox appears after clicking the 'Load' button.\r\n11. Check the 'Enable Filter' checkbox and ensure it performs its functionality as expected.\r\n12. Click on the 'Enable Filter' checkbox and verify that dropdowns appear next to the table columns.\r\n13. Select a value from the filter dropdowns and ensure the results load accordingly.",
+      "expected": "1. The Non-Testing Resource Capacity should be displayed correctly based on the selected values.\r\n2. 'Add', 'Edit', and 'Delete' buttons should be present once the list is loaded.\r\n3. The 'Enable Filter' checkbox should appear after clicking the 'Load' button and should be functional.\r\n4. Dropdowns should appear next to the table columns when the 'Enable Filter' checkbox is clicked.\r\n5. The results should load correctly based on the selected filter values.",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    },
+    {
+      "id": 34,
+      "summary": "Verify Functionality of 'Add', 'Edit', and 'Delete' Buttons in Non-Testing Resource Tab",
+      "area": "User/Non Testing Resource",
+      "steps": "1. Click on the 'Add' button.\r\n2. Verify that an overlay appears.\r\n3. Fill in the required details in the overlay.\r\n4. Click on the 'Submit' button.\r\n5. Verify that the task is added to the list.\r\n6. Without selecting any element, click on the 'Edit' button.\r\n7. Verify that a warning message appears stating that no element is selected.\r\n8. Select an element by clicking on the radio button next to the task.\r\n9. Click on the 'Edit' button.\r\n10. Verify that the Edit overlay appears.\r\n11. Edit the existing element information.\r\n12. Click on the 'Submit' button.\r\n13. Verify that the information is edited as expected.\r\n14. Without selecting any element, click on the 'Delete' button.\r\n15. Verify that an error popup appears stating that no element is selected.\r\n16. Select an element by clicking on the radio button next to the task.\r\n17. Click on the 'Delete' button.\r\n18. Verify that a confirmation dialog appears asking if you are sure you want to delete the element.\r\n19. Click on 'OK' to confirm deletion.\r\n20. Verify that the element is deleted from the list.\r\n21. Click on 'Cancel' in the confirmation dialog.\r\n22. Verify that the element is not deleted.",
+      "expected": "1. The 'Add' button should open an overlay, allow task addition, and add the task to the list.\r\n2. The 'Edit' button should display a warning if no element is selected, open an edit overlay, and allow editing of the selected element.\r\n3. The 'Delete' button should display an error if no element is selected, show a confirmation dialog, and delete the element upon confirmation.",
+      "priority": "Medium",
+      "owner": "",
+      "prereq": ""
+    }
+  ],
+  "AdminTab_TC": [
+    {
+      "id": 1,
+      "summary": "Verify that the \"Admin\" tab is displayed in the header menu and is clickable.",
+      "area": "Admin Tab",
+      "steps": "1. Navigate to the URL in a web browser.\r\n2. Select the Login tab.\r\n3. Enter your username and password.\r\n4. Click the Login button.\r\n5. Verify if the Admin Tab is visible.\r\n6. Click on the Admin Tab.",
+      "expected": "The \"Admin\" tab should be visible, clickable, and opens the corresponding page.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 2,
+      "summary": "Verify the sub-tabs present under the Admin tab.",
+      "area": "Admin Tab",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Observe the tabs displayed under the Admin tab.",
+      "expected": "All expected sub-tabs under the Admin tab should be present and correctly labeled, including:\r\n   Users\r\n   Offices\r\n   Configurations\r\n    Languages\r\n    Platforms\r\n    Products\r\n    Components\r\n    Test Types\r\n    CFT Report\r\n    App Type\r\n    Application\r\n    Release\r\n    Capacity\r\n     Exe Type\r\n    Test Plan Template",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 3,
+      "summary": "Verify Functionality of Users Tab under Admin Tab",
+      "area": "Admin Tab/Users",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Click on the Users tab under the Admin tab.\r\n5. Check the presence of the 'Office' field with a scroll bar.\r\n6. Check the 'Active only' checkbox.\r\n7. Check the 'Show page' button.",
+      "expected": "1. The Users tab should be accessible from the Admin tab.\r\n2. The 'Office' field should be present with a functional scroll bar.\r\n3. The 'Active only' checkbox should be present and functional.\r\n4. The 'Show page' button should be present and functional.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 4,
+      "summary": "Verify User List Loads Correctly on Clicking Show Page Button",
+      "area": "Admin Tab/Users",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Click on the Users tab under the Admin tab.\r\n5. Select an office from the 'Office' field.\r\n6. Click on the 'Show page' button.\r\n7. Verify the list of users loads correctly.\r\n8. Check the 'Active only' checkbox.\r\n9. Verify that only active users are shown when the checkbox is checked.\r\n10. Uncheck the 'Active only' checkbox.\r\n11. Verify that both active and inactive users are shown when the checkbox is unchecked.\r\n12. Verify that the 'Add', 'Edit', and 'Delete' tabs appear when the user list is loaded.",
+      "expected": "1. The list of users should load correctly upon selecting an office and clicking the 'Show page' button.\r\n2. When the 'Active only' checkbox is checked, only active users should be displayed.\r\n3. When the 'Active only' checkbox is unchecked, both active and inactive users should be displayed.\r\n4. The 'Add', 'Edit', and 'Delete' tabs should appear when the user list is loaded.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 5,
+      "summary": "Verify Functionality of Add, Edit, and Delete Buttons in Users Tab",
+      "area": "Admin Tab/Users",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Click on the Users tab under the Admin tab.\r\n5. Select an office from the 'Office' field.\r\n6. Click on the 'Show page' button.\r\n7.The 'Add', 'Edit', and 'Delete' buttons appear.\r\n8. Click on the 'Add' button.\r\n9. Verify that a page appears to fill in user details such as Log name, Password, First Name, Last Name, Email, Office, etc.\r\n10. Fill in the user details and submit the form.\r\n11. Verify that the new user is added to the list.\r\n12. Without selecting any user, click on the 'Edit' button.\r\n13. Verify that an error message appears stating \"You didn't choose any user.\"\r\n14. Select a user from the list and click on the 'Edit' button.\r\n15. Verify that a page appears to edit user details.\r\n16. Modify the user details and submit the form.\r\n17. Verify that the user details are updated in the list.\r\n18. Without selecting any user, click on the 'Delete' button.\r\n19. Verify that an error message appears stating \"You didn't choose any user\" and a blank page appears on the UI.\r\n20. Select a user from the list and click on the 'Delete' button.\r\n21. Confirm the deletion.\r\n22. Verify that the user is removed from the list.",
+      "expected": "1. Clicking the 'Add' button should open a page to fill in user details such as Log name, Password, First Name, Last Name, Email, Office, etc.\r\n2. Submitting the form should add the new user to the list.\r\n3. Clicking the 'Edit' button without selecting a user should display an error message: \"You didn't choose any user.\"\r\n4. Clicking the 'Edit' button after selecting a user should open a page to edit user details.\r\n5. Submitting the form should update the user details in the list.\r\n6. Clicking the 'Delete' button without selecting a user should display an error message: \"You didn't choose any user\" and a blank page should appear on the UI.\r\n7. Clicking the 'Delete' button after selecting a user should remove the selected user from the list after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 6,
+      "summary": "Verify Functionality of Offices Tab under Admin Tab",
+      "area": "Admin Tab/Offices",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Click on the Office tab under the Admin tab.\r\n5. Verify that the list of offices loads correctly.\r\n6. Verify that the 'Add', 'Edit', and 'Delete' buttons appear.\r\n7. Verify the presence of the 'Active only' checkbox.",
+      "expected": "1. The list of offices should load correctly upon clicking the Office tab.\r\n2. The 'Add', 'Edit', and 'Delete' buttons should appear.\r\n3. The 'Active only' checkbox should be present and functional.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 7,
+      "summary": "Verify Functionality of Active Only Checkbox in Office Tab",
+      "area": "Admin Tab/Offices",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Click on the Office tab under the Admin tab.\r\n5. Verify that the list of offices loads correctly.\r\n6. Check the 'Active only' checkbox.\r\n7. Verify that only active offices are displayed.\r\n8. Uncheck the 'Active only' checkbox.\r\n9. Verify that both active and inactive offices are displayed.",
+      "expected": "1. The list of offices should load correctly upon clicking the Office tab.\r\n2. When the 'Active only' checkbox is checked, only active offices should be displayed.\r\n3. When the 'Active only' checkbox is unchecked, both active and inactive offices should be displayed.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 8,
+      "summary": "Verify Functionality of Add, Edit, and Delete Buttons in Office Tab",
+      "area": "Admin Tab/Offices",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard of the application.\r\n3. Click on the Admin tab in the header menu.\r\n4. Click on the Office tab under the Admin tab.\r\n5. Verify that the list of offices loads correctly.\r\n6. Click on the 'Add' button.\r\n7. Verify that a page appears to add details for the new office, including Manager Name, Office Name, Location, Short Name, and Resource Capacity checkbox.\r\n8. Fill in the office details and click on 'Submit'.\r\n9. Verify that the new office is added to the list.\r\n10. Without selecting any office, click on the 'Edit' button.\r\n11. Verify that an error message appears stating \"You didn't choose any office.\"\r\n12. Select an office from the list and click on the 'Edit' button.\r\n13. Verify that a page appears to edit office details.\r\n14. Modify the office details and click on 'Submit'.\r\n15. Verify that the office details are updated in the list.\r\n16. Without selecting any office, click on the 'Delete' button.\r\n17. Verify that an error message appears stating \"You didn't choose any office\" and a blank page appears on the UI.\r\n18. Select an office from the list and click on the 'Delete' button.\r\n19. Confirm the deletion.\r\n20. Verify that the office is removed from the list.",
+      "expected": "1. Clicking the 'Add' button should open a page to add details for the new office, including Manager Name, Office Name, Location, Short Name, and Resource Capacity checkbox.\r\n2. Submitting the form should add the new office to the list.\r\n3. Clicking the 'Edit' button without selecting an office should display an error message: \"You didn't choose any office.\"\r\n4. Clicking the 'Edit' button after selecting an office should open a page to edit office details.\r\n5. Submitting the form should update the office details in the list.\r\n6. Clicking the 'Delete' button without selecting an office should display an error message: \"You didn't choose any office\" and a blank page should appear on the UI.\r\n7. Clicking the 'Delete' button after selecting an office should remove the selected office from the list after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 9,
+      "summary": "Verify Fields and Functionalities in Configuration Tab",
+      "area": "Admin Tab/Configurations",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Configuration\" tab.\"\r\n5. Verify the presence of the Release field.\r\n6. Check that the Release field contains multiple release values.\r\n7. Verify that the Release field has a scroll bar and that it functions correctly.\r\n8. Verify the presence of the Type field.\r\n9. Check that the Type field has two radio button options: Server and Client.\r\n10. Verify the presence of the Active Page checkbox.\r\n11. Verify the presence of the Show Page button.",
+      "expected": "1. The Release field should be present, contain multiple values, and have a functional scroll bar.\r\n2. The Type field should be present with two radio button options (Server and Client) that function correctly.\r\n3. The Active Page checkbox and Show Page button should be present and functional.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 10,
+      "summary": "Verify Show Page Button Loads Results Correctly in Configuration Tab",
+      "area": "Admin Tab/Configurations",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Check if the \"Configuration\" tab is present under the \"Execution\" tab.\r\n5. Click on the \"Configuration\" tab.\r\n6. Select a value from the Release field.\r\n7. Select a value from the Type field.\r\n8. Ensure the Active Only checkbox is not checked.\r\n9. Click on the Show Page button.\r\n10. Verify that the results include both Active and Inactive statuses.\r\n11. Verify the presence of the 'Add', 'Edit', and 'Delete' buttons.\r\n12. Check the Active Only checkbox.\r\n13. Click on the Show Page button again.\r\n14. Verify that the results now only show Active status configurations.\r\n15. Verify the presence of the Enable Filter checkbox when the results are loaded.\r\n16. Check the Enable Filter checkbox.\r\n17. Verify that a dropdown appears next to the relevant field.\r\n18. Select a value from the dropdown.\r\n19. Verify that the results are filtered according to the selected value.",
+      "expected": "1. The results should include both Active and Inactive statuses when the Active Only checkbox is not checked.\r\n2. The 'Add', 'Edit', and 'Delete' buttons should be present after clicking the Show Page button.\r\n3. The results should only show Active status configurations when the Active Only checkbox is checked.\r\n4. The Enable Filter checkbox should be present when the results are loaded.\r\n5. A dropdown should appear next to the relevant field when the Enable Filter checkbox is checked.\r\n6. The results should be filtered according to the selected value from the dropdown.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 11,
+      "summary": "Verify Functionality of Add, Edit, and Delete Buttons in Configuration Tab",
+      "area": "Admin Tab/Configurations",
+      "steps": "1. Login to the application.\r\n2. Navigate to the main dashboard.\r\n3. Click on the \"Execution\" tab.\r\n4. Click on the \"Configuration\" tab.\r\n5. Select a value from the Release field.\r\n6. Select a value from the Type field.\r\n7. Ensure the Active Only checkbox is not checked.\r\n8. Click on the Show Page button.\r\n9. Verify the presence of the 'Add', 'Edit', and 'Delete' buttons.\r\n10. Click on the 'Add' button.\r\n11. Verify that a page appears to fill in details for the new configuration.\r\n12. Fill in the configuration details and click on 'Submit'.\r\n13. Verify that the new configuration is added to the list.\r\n14. Without selecting any configuration, click on the 'Edit' button.\r\n15. Verify that an error message appears stating \"You didn't choose any server config.\"\r\n16. Select a configuration from the list and click on the 'Edit' button.\r\n17. Verify that a page appears to edit configuration details.\r\n18. Modify one of the values and click on 'Submit'.\r\n19. Verify that the configuration details are updated in the list.\r\n20. Without selecting any configuration, click on the 'Delete' button.\r\n21. Verify that an error message appears stating \"You didn't choose any config to delete\" and a blank page appears on the UI.\r\n22. Select a configuration from the list and click on the 'Delete' button.\r\n23. Confirm the deletion.\r\n24. Verify that the configuration is removed from the list.",
+      "expected": "1. Clicking the 'Add' button should open a page to fill in details for the new configuration.\r\n2. Submitting the form should add the new configuration to the list.\r\n3. Clicking the 'Edit' button without selecting a configuration should display an error message: \"You didn't choose any server config.\"\r\n4. Clicking the 'Edit' button after selecting a configuration should open a page to edit configuration details.\r\n5. Submitting the form should update the configuration details in the list.\r\n6. Clicking the 'Delete' button without selecting a configuration should display an error message: \"You didn't choose any config to delete\" and a blank page should appear on the UI.\r\n7. Clicking the 'Delete' button after selecting a configuration should remove the selected configuration from the list after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 12,
+      "summary": "Verify Functionality of Language Tab under Admin Tab",
+      "area": "Admin Tab/Language",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard.\r\n3. Click on the Admin tab.\r\n4. Click on the Language tab.\r\n5. Verify that the Language tab is clickable.\r\n6. On clicking the Language tab, verify that the Language details table gets loaded.\r\n7. Verify the presence of the 'Add', 'Edit', and 'Delete' buttons.\r\n8. Verify the presence of the 'Active only' checkbox.",
+      "expected": "1. The Language tab should be clickable.\r\n2. The Language details table should load correctly upon clicking the Language tab.\r\n3. The 'Add', 'Edit', and 'Delete' buttons should be present.\r\n4. The 'Active only' checkbox should be present.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 13,
+      "summary": "Verify Functionality of Active Only Checkbox in Language Tab",
+      "area": "Admin Tab/Language",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard.\r\n3. Click on the Admin tab.\r\n4. Click on the Language tab.\r\n5. The Language details table gets loaded.\r\n6. Verify the presence of the 'Active only' checkbox.\r\n7. Check the 'Active only' checkbox.\r\n8. Verify that only active languages are shown in the list.\r\n9. Uncheck the 'Active only' checkbox.\r\n10. Verify that both active and inactive languages are shown in the list.",
+      "expected": "1. The 'Active only' checkbox should be present and functional.\r\n2. When the 'Active only' checkbox is checked, only active languages should be displayed.\r\n3. When the 'Active only' checkbox is unchecked, both active and inactive languages should be displayed.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 14,
+      "summary": "Verify Functionality of Add, Edit, and Delete Buttons in Language Tab",
+      "area": "Admin Tab/Language",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard.\r\n3. Click on the Admin tab.\r\n4. Click on the Language tab.\r\n5.The Language details table gets loaded.\r\n6. Verify the presence of the 'Add', 'Edit', and 'Delete' buttons.\r\n7. Click on the 'Add' button.\r\n8. Verify that a page appears to add details for the new language.\r\n9. Fill in the language details and click on 'Submit'.\r\n10. Verify that the new language is added to the list.\r\n11. Without selecting any language, click on the 'Edit' button.\r\n12. Verify that an error message appears stating \"You didn't choose any locale.\"\r\n13. Select a language from the list and click on the 'Edit' button.\r\n14. Verify that a page appears to edit language details.\r\n15. Modify the language details and click on 'Submit'.\r\n16. Verify that the language details are updated in the list.\r\n17. Without selecting any language, click on the 'Delete' button.\r\n18. Verify that an error message appears stating \"You didn't choose any locale\" and a blank page appears on the UI.\r\n19. Select a language from the list and click on the 'Delete' button.\r\n20. Confirm the deletion.\r\n21. Verify that the language is removed from the list.",
+      "expected": "1. The 'Add', 'Edit', and 'Delete' buttons should be present.\r\n2. Clicking the 'Add' button should open a page to add details for the new language.\r\n3. Submitting the form should add the new language to the list.\r\n4. Clicking the 'Edit' button without selecting a language should display an error message: \"You didn't choose any locale.\"\r\n5. Clicking the 'Edit' button after selecting a language should open a page to edit language details.\r\n6. Submitting the form should update the language details in the list.\r\n7. Clicking the 'Delete' button without selecting a language should display an error message: \"You didn't choose any locale\" and a blank page should appear on the UI.\r\n8. Clicking the 'Delete' button after selecting a language should remove the selected language from the list after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 15,
+      "summary": "Verify Platform Tab Functionality and Field Operations",
+      "area": "Admin Tab/Platforms",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard.\r\n3. Click on the Admin tab.\r\n4. Click on the Platform tab.\r\n5. Verify the presence of the following fields:\r\n   Release field\r\n   Active only checkbox\r\n   Show page button.\r\n6. Select a release from the Release field.\r\n7. Click on the Show page button.\r\n8. Verify that the results are loaded correctly.\r\n9. Check the presence of the Add,Edit, and Delete buttons.\r\n10. Check the Active only checkbox.\r\n11. Verify that only active platform results are shown.\r\n12. Uncheck the Active only checkbox.\r\n13. Verify that both active and inactive platform results are shown.",
+      "expected": "1. The Platform tab should be clickable.\r\n2. Upon clicking the Platform tab, the following fields should be visible:\r\n  Release field\r\n  Active only checkbox\r\n  Show page button\r\n3. Selecting a release and clicking on the Show page button should load the results correctly.\r\n4. Add,Edit, and Delete buttons should be present.\r\n5. Checking the Active only checkbox should display only active platform results.\r\n6. Unchecking the Active only checkbox should display both active and inactive platform results.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 16,
+      "summary": "Verify the functionality of Add, Edit, and Delete buttons under the Platform tab",
+      "area": "Admin Tab/Platforms",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard.\r\n3. Click on the Admin tab.\r\n4. Click on the Platform tab.\r\n5. Select a release from the Release field.\r\n6. Click on the Show page button.\r\n7. Verify the presence of Add, Edit, and Delete buttons when the results are loaded.\r\n8. Click on the Add button.\r\n   - Verify that a page opens to fill in the details.\r\n   - Fill in the details: Platform name, description, release.\r\n   - Check the presence of two radio buttons: Enable and Disable.\r\n   - Click on the Submit button.\r\n9. Verify that the platform is added successfully.\r\n10. Without selecting any platform, click on the Edit button.\r\n   - Verify that a warning message appears: \"You didn't choose any platform.\"\r\n11. Select a platform and click on the Edit button.\r\n   - Edit the information.\r\n   - Click on the Submit button.\r\n12. Verify that the information is updated successfully.\r\n13. Without selecting any platform, click on the Delete button.\r\n   - Verify that a warning message appears: \"You didn't choose any platform.\"\r\n14. Select a platform and click on the Delete button.\r\n   - Confirm the deletion.\r\n15. Verify that the platform is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.\r\n2. Clicking on the Add button should open a page to fill in the details.\r\n3. Filling in the details and clicking on Submit should add the platform successfully.\r\n4. Clicking on the Edit button without selecting a platform should display a warning message: \"You didn't choose any platform.\"\r\n5. Selecting a platform and clicking on Edit should allow editing the information and submitting it successfully.\r\n6. Clicking on the Delete button without selecting a platform should display a warning message: \"You didn't choose any platform.\"\r\n7. Selecting a platform and clicking on Delete should delete the platform successfully after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 17,
+      "summary": "Verify that the Products tab under the Admin tab is clickable and displays the correct fields and buttons",
+      "area": "Admin Tab/Products",
+      "steps": "1. Navigate to the Admin tab.\r\n2. Click on the Products tab.\r\n3. Verify that the Products tab is clickable.\r\n4. Verify that a page appears with a table containing the following columns:\r\n   - Product name\r\n   - Priority\r\n   - Status\r\n5. Verify the presence of the Add, Edit, and Delete buttons.\r\n6. Verify the presence of the Active only checkbox.\r\n7. Check the Active only checkbox.\r\n   - Verify that only products with active status are displayed.\r\n8. Uncheck the Active only checkbox.\r\n   - Verify that products with both active and inactive statuses are displayed.",
+      "expected": "1. The Products tab should be clickable.\r\n2. Upon clicking the Products tab, a page should appear with a table containing the columns: Product name, Priority, and Status.\r\n3. Add, Edit, and Delete buttons should be present.\r\n4. Active only checkbox should be present.\r\n5. Checking the Active only checkbox should display only products with active status.\r\n6. Unchecking the Active only checkbox should display products with both active and inactive statuses.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 18,
+      "summary": "Verify the functionality of Add, Edit, and Delete buttons under the Products tab",
+      "area": "Admin Tab/Products",
+      "steps": "1. Navigate to the Admin tab.\r\n2. Click on the Products tab.\r\n3. Verify the presence of Add, Edit, and Delete buttons when the results are loaded.\r\n4. Click on the Add button.\r\n   - Verify that a page opens to fill in the details.\r\n   - Fill in the details: Product name, priority.\r\n   - Check the presence of two radio buttons: Enable and Disable.\r\n   - Click on the Submit button.\r\n5. Verify that the product is added successfully to the list.\r\n6. Without selecting any product, click on the Edit button.\r\n   - Verify that a warning message appears: \"You didn't choose any product.\"\r\n7. Select a product and click on the Edit button.\r\n   - Edit the information.\r\n   - Click on the Submit button.\r\n8. Verify that the information is updated successfully.\r\n9. Without selecting any product, click on the Delete button.\r\n   - Verify that a warning message appears: \"You didn't choose any product.\"\r\n10. Select a product and click on the Delete button.\r\n   - Confirm the deletion.\r\n11. Verify that the product is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.\r\n2. Clicking on the Add button should open a page to fill in the details.\r\n3. Filling in the details and clicking on Submit should add the product successfully to the list.\r\n4. Clicking on the Edit button without selecting a product should display a warning message: \"You didn't choose any product.\"\r\n5. Selecting a product and clicking on Edit should allow editing the information and submitting it successfully.\r\n6. Clicking on the Delete button without selecting a product should display a warning message: \"You didn't choose any product.\"\r\n7. Selecting a product and clicking on Delete should delete the product successfully after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 19,
+      "summary": "Verify that the Components tab under the Admin tab is clickable and displays the correct table and buttons",
+      "area": "Admin Tab/Components",
+      "steps": "1. Navigate to the Admin tab.\r\n2. Click on the Components tab.\r\n3. Verify that the Components tab is clickable.\r\n4. Verify that a page appears with a table containing the following columns:\r\n   - Component name\r\n   - Priority\r\n   - Status\r\n5. Verify the presence of the Add, Edit, and Delete buttons.\r\n6. Verify the presence of the Active only checkbox.\r\n7. Check the Active only checkbox.\r\n   - Verify that only components with active status are displayed.\r\n8. Uncheck the Active only checkbox.\r\n   - Verify that components with both active and inactive statuses are displayed.",
+      "expected": "1. The Components tab should be clickable.\r\n2. Upon clicking the Components tab, a page should appear with a table containing the columns: Component name, Priority, and Status.\r\n3. Add, Edit, and Delete buttons should be present.\r\n4. Active only checkbox should be present.\r\n5. Checking the Active only checkbox should display only components with active status.\r\n6. Unchecking the Active only checkbox should display components with both active and inactive statuses.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 20,
+      "summary": "Verify the functionality of Add, Edit, and Delete buttons under the Components tab",
+      "area": "Admin Tab/Components",
+      "steps": "1. In the Components Tab, verify the presence of Add, Edit, and Delete buttons when the results are loaded.\r\n2. Click on the Add button.\r\n   - Verify that a page opens to fill in the details.\r\n   - Fill in the details: Component name, priority.\r\n   - Check the presence of two radio buttons: Enable and Disable.\r\n   - Click on the Submit button.\r\n3. Verify that the component is added successfully to the list.\r\n4. Without selecting any component, click on the Edit button.\r\n   - Verify that a warning message appears: \"You didn't choose any component.\"\r\n5. Select a component and click on the Edit button.\r\n   - Edit the information.\r\n   - Click on the Submit button.\r\n6. Verify that the information is updated successfully.\r\n7. Without selecting any component, click on the Delete button.\r\n   - Verify that a warning message appears: \"You didn't choose any component.\"\r\n8. Select a component and click on the Delete button.\r\n   - Confirm the deletion.\r\n9. Verify that the component is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.\r\n2. Clicking on the Add button should open a page to fill in the details.\r\n3. Filling in the details and clicking on Submit should add the component successfully to the list.\r\n4. Clicking on the Edit button without selecting a component should display a warning message: \"You didn't choose any component.\"\r\n5. Selecting a component and clicking on Edit should allow editing the information and submitting it successfully.\r\n6. Clicking on the Delete button without selecting a component should display a warning message: \"You didn't choose any component.\"\r\n7. Selecting a component and clicking on Delete should delete the component successfully after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 21,
+      "summary": "Verify that the Test Types tab under the Admin tab is clickable and displays the correct table and buttons",
+      "area": "Admin Tab/ Test Types",
+      "steps": "1. Navigate to the Admin tab.\r\n2. Click on the Test Types tab.\r\n3. Verify that the Test Types tab is clickable.\r\n4. Verify that a page appears with a table containing the following columns:\r\n   - Test types name\r\n   - Priority\r\n   - Status\r\n5. Verify the presence of the Add, Edit, and Delete buttons.\r\n6. Verify the presence of the Active only checkbox.\r\n7. Check the Active only checkbox.\r\n   - Verify that only test types with active status are displayed.\r\n8. Uncheck the Active only checkbox.\r\n   - Verify that test types with both active and inactive statuses are displayed.",
+      "expected": "1. The Test Types tab should be clickable.\r\n2. Upon clicking the Test Types tab, a page should appear with a table containing the columns: Test types name, Priority, and Status.\r\n3. Add, Edit, and Delete buttons should be present.\r\n4. Active only checkbox should be present.\r\n5. Checking the Active only checkbox should display only test types with active status.\r\n6. Unchecking the Active only checkbox should display test types with both active and inactive statuses.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 22,
+      "summary": "Verify the functionality of Add, Edit, and Delete buttons under the Test Types tab",
+      "area": "Admin Tab/ Test Types",
+      "steps": "1. On clicking on Test Type tab, verify the presence of Add, Edit, and Delete buttons when the results are loaded.\r\n2. Click on the Add button.\r\n   - Verify that a page opens to fill in the details.\r\n   - Fill in the details: Test type name, priority.\r\n   - Check the presence of two radio buttons: Enable and Disable.\r\n   - Click on the Submit button.\r\n3. Verify that the test type is added successfully to the list.\r\n4. Without selecting any test type, click on the Edit button.\r\n   - Verify that a warning message appears: \"You didn't choose any test type.\"\r\n5. Select a test type and click on the Edit button.\r\n   - Edit the information.\r\n   - Click on the Submit button.\r\n6. Verify that the information is updated successfully.\r\n7. Without selecting any test type, click on the Delete button.\r\n   - Verify that a warning message appears: \"You didn't choose any test type.\"\r\n8. Select a test type and click on the Delete button.\r\n   - Confirm the deletion.\r\n9. Verify that the test type is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.\r\n2. Clicking on the Add button should open a page to fill in the details.\r\n3. Filling in the details and clicking on Submit should add the test type successfully to the list.\r\n4. Clicking on the Edit button without selecting a test type should display a warning message: \"You didn't choose any test type.\"\r\n5. Selecting a test type and clicking on Edit should allow editing the information and submitting it successfully.\r\n6. Clicking on the Delete button without selecting a test type should display a warning message: \"You didn't choose any test type.\"\r\n7. Selecting a test type and clicking on Delete should delete the test type successfully after confirmation.",
+      "priority": "Normal",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 23,
+      "summary": "Verify that the CTF Report tab under the Admin tab is clickable and displays the correct table and buttons",
+      "area": "Admin Tab/CTF Report",
+      "steps": "1. Navigate to the Admin tab.\r\n2. Click on the CTF Report tab.\r\n3. Verify that the CTF Report tab is clickable.\r\n4. Verify that a page appears with a table containing the following columns:\r\n   - CTF Report name\r\n   - Priority\r\n   - Status\r\n5. Verify the presence of the Add, Edit, and Delete buttons.\r\n6. Verify the presence of the Active only checkbox.\r\n7. Check the Active only checkbox.\r\n   - Verify that only CTF reports with active status are displayed.\r\n8. Uncheck the Active only checkbox.\r\n   - Verify that CTF reports with both active and inactive statuses are displayed.",
+      "expected": "1. The CTF Report tab should be clickable.\r\n2. Upon clicking the CTF Report tab, a page should appear with a table containing the columns: CTF Report name, Priority, and Status.\r\n3. Add, Edit, and Delete buttons should be present.\r\n4. Active only checkbox should be present.\r\n5. Checking the Active only checkbox should display only CTF reports with active status.\r\n6. Unchecking the Active only checkbox should display CTF reports with both active and inactive statuses.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 24,
+      "summary": "Verify the functionality of Add, Edit, and Delete buttons under the CTF Report tab",
+      "area": "Admin Tab/CTF Report",
+      "steps": "1. On clicking the CTF Report Tab, verify the presence of Add, Edit, and Delete buttons when the results are loaded.\r\n2. Click on the Add button.\r\n   - Fill in all the details.\r\n   - Click on the Submit button.\r\n3. Verify that the CTF report is added successfully to the list.\r\n4. Without selecting any CTF report, click on the Edit button.\r\n   - Verify that a warning message appears: \"You didn't choose any CTF Report.\"\r\n5. Select a CTF report and click on the Edit button.\r\n   - Edit the information.\r\n   - Click on the Submit button.\r\n6. Verify that the information is updated successfully.\r\n7. Without selecting any CTF report, click on the Delete button.\r\n   - Verify that a warning message appears: \"You didn't choose any CTF Report.\"\r\n8. Select a CTF report and click on the Delete button.\r\n   - Confirm the deletion.\r\n9. Verify that the CTF report is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.\r\n2. Clicking on the Add button should allow filling in the details and submitting the form to add the CTF report successfully to the list.\r\n3. Clicking on the Edit button without selecting a CTF report should display a warning message: \"You didn't choose any CTF Report.\"\r\n4. Selecting a CTF report and clicking on Edit should allow editing the information and submitting it successfully.\r\n5. Clicking on the Delete button without selecting a CTF report should display a warning message: \"You didn't choose any CTF Report.\"\r\n6. Selecting a CTF report and clicking on Delete should delete the CTF report successfully after confirmation.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 25,
+      "summary": "Verify that the App Type tab under the Admin tab is clickable and displays the correct table and buttons",
+      "area": "Admin Tab/ App Type",
+      "steps": "1. Navigate to the Admin tab.\r\n2. Click on the App Type tab.\r\n3. Verify that the App Type tab is clickable.\r\n4. Verify that a page appears with a table containing the following columns:\r\n   - App type name\r\n   - Status\r\n5. Verify the presence of the Add, Edit, and Delete buttons.\r\n6. Verify the presence of the Active only checkbox.\r\n7. Check the Active only checkbox.\r\n   - Verify that only app types with active status are displayed.\r\n8. Uncheck the Active only checkbox.\r\n   - Verify that app types with both active and inactive statuses are displayed.",
+      "expected": "1. The App Type tab should be clickable.\r\n2. Upon clicking the App Type tab, a page should appear with a table containing the columns: App type name and Status.\r\n3. Add, Edit, and Delete buttons should be present.\r\n4. Active only checkbox should be present.\r\n5. Checking the Active only checkbox should display only app types with active status.\r\n6. Unchecking the Active only checkbox should display app types with both active and inactive statuses.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 26,
+      "summary": "Verify the functionality of Add, Edit, and Delete buttons under the App Type tab",
+      "area": "Admin Tab/ App Type",
+      "steps": "1. On clicking App Type tab, verify the presence of Add, Edit, and Delete buttons when the results are loaded.\r\n2. Click on the Add button.\r\n   - Fill in the details: App type name.\r\n   - Check the presence of two radio buttons: Enable and Disable.\r\n   - Click on the Submit button.\r\n3. Verify that the app type is added successfully to the list.\r\n4. Without selecting any application type, click on the Edit button.\r\n   - Verify that a warning message appears: \"You didn't choose any application type.\"\r\n5. Select an app type and click on the Edit button.\r\n   - Edit the information.\r\n   - Click on the Submit button.\r\n6. Verify that the information is updated successfully.\r\n7. Without selecting any app type, click on the Delete button.\r\n   - Verify that a warning message appears: \"You didn't choose any app type.\"\r\n8. Select an app type and click on the Delete button.\r\n   - Confirm the deletion.\r\n9. Verify that the app type is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.\r\n2. Clicking on the Add button should allow filling in the details and submitting the form to add the app type successfully to the list.\r\n3. Clicking on the Edit button without selecting an application type should display a warning message: \"You didn't choose any application type.\"\r\n4. Selecting an app type and clicking on Edit should allow editing the information and submitting it successfully.\r\n5. Clicking on the Delete button without selecting an app type should display a warning message: \"You didn't choose any app type.\"\r\n6. Selecting an app type and clicking on Delete should delete the app type successfully after confirmation.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 27,
+      "summary": "Verify the functionality of the Application Tab under Admin Tab",
+      "area": "Admin Tab/Application",
+      "steps": "1. Login to the application using valid admin credentials.\r\n2. Navigate to the main dashboard.\r\n3. Click on the Admin tab.\r\n4. Navigate to the Application Tab.\r\n5. Verify that the Application Tab is clickable and click on it.\r\n6. Ensure a table appears with details: Application Name, Description, Status, Release, Server or Client.\r\n7. Verify the presence of Add, Edit, and Delete buttons.\r\n8. Verify the presence of the \"Active Only\" checkbox. \r\n9. Check the Active only checkbox.\r\n10. When checked, only active statuses should be displayed.\r\n11. Uncheck the Active only checkbox.\r\n12. When unchecked, both active and inactive statuses should be displayed.",
+      "expected": "1. User should be able to navigate to the Admin Tab successfully.\r\n2. Application Tab should be clickable. On clicking, a table should appear with the specified details.\r\n3. Table should display columns for Application Name, Description, Status, Release, Server or Client.\r\n4. Add, Edit, and Delete buttons should be present and functional.\r\n5. \"Active Only\" checkbox should be present. When checked, only active statuses should be displayed. When unchecked, both active and inactive statuses should be displayed.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 28,
+      "summary": "Verify Add, Edit, and Delete operations including validations in the Application tab",
+      "area": "Admin Tab/Application",
+      "steps": "1. On clicking the Application tab under the Admin section, verify the presence of Add, Edit, and Delete buttons when the results are loaded.  \r\n2. Click on the Add button.  \r\n   - Fill in the details  \r\n   - Click on the Submit button.  \r\n3. Verify that the application is added successfully to the list.  \r\n4. Without selecting any application, click on the Edit button.  \r\n   - Verify that a warning message appears: \"You didn't choose any application.\"  \r\n5. Select an application and click on the Edit button.  \r\n   - Edit the information.  \r\n   - Click on the Submit button.  \r\n6. Verify that the information is updated successfully.  \r\n7. Without selecting any application, click on the Delete button.  \r\n   - Verify that a warning message appears: \"You didn't choose any application.\"  \r\n8. Select an application and click on the Delete button.  \r\n   - Confirm the deletion.  \r\n9. Verify that the application is deleted successfully.",
+      "expected": "1. Add, Edit, and Delete buttons should be visible when the results are loaded.  \r\n2. Clicking on the Add button should allow filling in the details and submitting the form to add the application successfully to the list.  \r\n3. Clicking on the Edit button without selecting an application should display a warning message: \"You didn't choose any application.\"  \r\n4. Selecting an application and clicking on Edit should allow editing the information and submitting it successfully.  \r\n5. Clicking on the Delete button without selecting an application should display a warning message: \"You didn't choose any application.\"  \r\n6. Selecting an application and clicking on Delete should delete the application successfully after confirmation.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 29,
+      "summary": "Verify the functionality of the Release tab",
+      "area": "Admin Tab/ Release",
+      "steps": "1. Click on the Release tab in the top navigation.  \r\n2. Verify that the Release tab is clickable and navigates to the correct page.  \r\n3. Check the presence of the following fields and controls:\r\n   - Release Name: a text box where a name can be entered.\r\n   - L10N QA Manager: a dropdown where you can search for the manager name or simply type a letter, and it will highlight the respective result in the dropdown.\r\n   - Priority: a dropdown where you can search for the priority or simply type a letter, and it will highlight the respective result in the dropdown.\r\n   - Archived: a dropdown where you can search for the value or simply type a letter, and it will highlight the respective result in the dropdown.\r\n   - Active Only: a dropdown where you can search for the value or simply type a letter, and it will highlight the respective result in the dropdown.\r\n   - No Test Case: a dropdown where you can search for the value or simply type a letter, and it will highlight the respective result in the dropdown.\r\n   - Test Case Format: a dropdown where you can search for the value or simply type a letter, and it will highlight the respective result in the dropdown.\r\n4. Verify the presence of the following buttons:\r\n   - Load\r\n   - Add\r\n   - Sync TimeTrack Projects",
+      "expected": "1. The Release tab should be clickable and should load the respective page.  \r\n2. The Release Name field should allow text input.  \r\n3. The L10N QA Manager dropdown should allow searching or typing a letter to highlight matching results.  \r\n4. The Priority dropdown should allow searching or typing a letter to highlight matching results.  \r\n5. The Archived dropdown should allow searching or typing a letter to highlight matching results.  \r\n6. The Active Only dropdown should allow searching or typing a letter to highlight matching results.  \r\n7. The No Test Case dropdown should allow searching or typing a letter to highlight matching results.  \r\n8. The Test Case Format dropdown should allow searching or typing a letter to highlight matching results.  \r\n9. The Load, Add, and Sync TimeTrack Projects buttons should be visible and clickable.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 30,
+      "summary": "Verify Load functionality in the Release tab",
+      "area": "Admin Tab/ Release",
+      "steps": "1. Click on the Release tab in the top navigation.  \r\n2. Click on the Load button.  \r\n   - Verify that it loads all the existing releases.  \r\n3. Enter a specific value in the Release Name or L10N QA Manager field.  \r\n   - Click on the Load button.  \r\n   - Verify that it loads the respective filtered results.  \r\n4. After the results are loaded, verify the presence of Edit and Delete buttons.  \r\n5. Click on the Edit button without selecting any release.  \r\n   - Verify that a new tab opens with a warning message: \"You didn't choose any release.\"  \r\n6. Select a release and click on the Edit button.  \r\n   - Edit the information.  \r\n   - Click on the Submit button.  \r\n7. Verify that the information is updated successfully.  \r\n8. Click on the Delete button without selecting any release.  \r\n   - Verify that a new tab opens with a warning message: \"You didn't choose any release.\"  \r\n9. Select a release and click on the Delete button.  \r\n   - Verify that a confirmation message appears: \"Are you sure to delete release: (release name)?\"  \r\n   - Verify the presence of Submit and Cancel buttons.  \r\n   - Click on Submit and verify that the release is deleted successfully.  \r\n   - Click on Cancel and verify that the release is not deleted.  \r\n10. Verify the presence of the Search box.  \r\n    - Click on the dropdown inside the Search box.  \r\n    - Verify that a list of column names appears.  \r\n    - Select and deselect columns to customize the search criteria.",
+      "expected": "1. Clicking on the Load button should display all existing releases.  \r\n2. Entering specific values and clicking Load should filter and display matching results.  \r\n3. Edit and Delete buttons should be visible after results are loaded.  \r\n4. Clicking Edit without selection should open a new tab with the message: \"You didn't choose any release.\"  \r\n5. Selecting a release and editing it should allow updating the information successfully.  \r\n6. Clicking Delete without selection should open a new tab with the message: \"You didn't choose any release.\"  \r\n7. Selecting a release and clicking Delete should show a confirmation message with Submit and Cancel options.  \r\n8. Clicking Submit should delete the release; clicking Cancel should not delete it.  \r\n9. The Search box should allow selecting and deselecting column names from a dropdown to refine search behavior.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    },
+    {
+      "id": 31,
+      "summary": "Verify Add functionality in the Release tab",
+      "area": "Admin Tab/ Release",
+      "steps": "1. Click on the Release tab in the top navigation.  \r\n2. Verify that the page loads and the Add button is visible.  \r\n3. Click on the Add button.  \r\n   - A new page should appear with fields to fill in the release details\r\n   - Two radio buttons should be visible: Enable and Disable  \r\n   - Two buttons should be visible: Submit and Cancel  \r\n   - Verify the presence of the tab/button: Select SPR Report In Release  \r\n4. Fill in all the required details and click on the Submit button.  \r\n5. Verify that the new release is added successfully to the list.  \r\n6. Click on the Cancel button instead of Submit.  \r\n   - Verify that the release is not added.  \r\n7. Click on the Select SPR Report In Release button.  \r\n   - Verify that a \"Find SPR Reported in Release\" overlay appears.  \r\n   - Fill in the following fields:\r\n     - SPR Source\r\n     - Product Line\r\n     - SPR Reported in Release  \r\n   - Click on the OK button.  \r\n8. Verify that the SPR report is added to the release being created.",
+      "expected": "1. The Release tab should load with the Add button visible.  \r\n2. Clicking on Add should open a form with fields for Release Name, Note, L10N QA Manager, L10N Project Manager, Priority etc, and radio buttons for Enable and Disable.  \r\n3. Submit and Cancel buttons should be present.  \r\n4. The Select SPR Report In Release button should be visible.  \r\n5. Submitting the form with valid details should add the new release to the list.  \r\n6. Clicking Cancel should not add the release.  \r\n7. Clicking Select SPR Report In Release should open an overlay.  \r\n8. Filling in SPR Source, Product Line, and SPR Reported in Release and clicking OK should add the SPR report to the release.",
+      "priority": "",
+      "owner": "Payal Nit",
+      "prereq": ""
+    }
+  ]
+}

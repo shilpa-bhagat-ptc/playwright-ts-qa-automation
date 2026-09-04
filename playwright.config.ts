@@ -9,7 +9,7 @@ const hectorBaseOptions = {
   serverUrl: "https://hector.ptcnet.ptc.com/Hector",
   packageId: "demo-package",
   pipelineBuild: 1,
-  developmentBuild: 17,
+  developmentBuild: 18,
   logLevel: "verbose",
   outputDir: "reports/test-results",
   includeProjectInTestName: true,
