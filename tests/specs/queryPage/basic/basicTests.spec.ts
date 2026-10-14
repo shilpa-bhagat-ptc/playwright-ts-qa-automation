@@ -3,8 +3,25 @@ import { QUERY_PAGE_LOCATORS } from "../../../../src/locators/queryPage.locators
 import { captureStepScreenshot } from "../../../../src/utils/screenshotHelper";
 import { expect, test } from "../../../fixtures/fixture";
 
-const BASIC_DOC_LIST_COLUMNS = ["NO", "Product", "Component", "Title", "Main ProjID", "Last Update", "Total T/C"];
-const TC_DETAIL_COLUMNS = ["T/C NO", "Short DESC", "LONG DESC", "Input Data", "Expected Result", "Project No", "Priority", "Functional Area"];
+const BASIC_DOC_LIST_COLUMNS = [
+  "NO",
+  "Product",
+  "Component",
+  "Title",
+  "Main ProjID",
+  "Last Update",
+  "Total T/C",
+];
+const TC_DETAIL_COLUMNS = [
+  "T/C NO",
+  "Short DESC",
+  "LONG DESC",
+  "Input Data",
+  "Expected Result",
+  "Project No",
+  "Priority",
+  "Functional Area",
+];
 
 test("TC_QRY_001 - Verify the presence and functionality of the Query tab and its sub-tabs", async ({
   page,
@@ -18,7 +35,7 @@ test("TC_QRY_001 - Verify the presence and functionality of the Query tab and it
   console.log("Navigating to home page...");
   await page.goto(
     process.env.TEST_BASE_URL ||
-      "http://lqatms-test5.ptcnet.ptc.com:8080/QALink/jsp/home/"
+      "http://lqatms-test5.ptcnet.ptc.com:8080/QALink/jsp/home/",
   );
   await page.waitForLoadState("networkidle");
 
@@ -31,7 +48,11 @@ test("TC_QRY_001 - Verify the presence and functionality of the Query tab and it
   await page.waitForLoadState("networkidle");
 
   // Navigate directly to query index.jsp so all 3 sub-tabs (Basic/Advanced/Update) are present in the DOM
-  const base = process.env.TEST_QALINK_BASE || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
+
+  const base =
+    process.env.TEST_QALINK_BASE ||
+    "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
+
   await page.goto(`${base}/jsp/query/index.jsp`);
   await page.waitForLoadState("networkidle");
   await captureStepScreenshot(page, testInfo, "02_query_tab_clicked");
@@ -44,12 +65,18 @@ test("TC_QRY_001 - Verify the presence and functionality of the Query tab and it
     if (visible) {
       console.log(`Sub-tab "${tab}" is visible.`);
     } else {
-      console.log(`Sub-tab "${tab}" not found in nav — may require elevated permissions or direct URL access.`);
+      console.log(
+        `Sub-tab "${tab}" not found in nav — may require elevated permissions or direct URL access.`,
+      );
     }
   }
   // Verify Basic and Advanced are always present (Update may be permission-gated)
-  await expect(page.locator(`//a[normalize-space()='Basic']`)).toBeVisible({ timeout: 10000 });
-  await expect(page.locator(`//a[normalize-space()='Advanced']`)).toBeVisible({ timeout: 10000 });
+  await expect(page.locator(`//a[normalize-space()='Basic']`)).toBeVisible({
+    timeout: 10000,
+  });
+  await expect(page.locator(`//a[normalize-space()='Advanced']`)).toBeVisible({
+    timeout: 10000,
+  });
   await captureStepScreenshot(page, testInfo, "03_subtabs_visible");
 
   console.log("TC_QRY_001 completed successfully.");
@@ -69,19 +96,29 @@ test("TC_QRY_002 - Verify the functionality of the Basic tab under the Query sec
   await queryPage.clickBasicTab();
   await captureStepScreenshot(page, testInfo, "01_basic_tab_opened");
 
-  console.log("Verifying Release, Phase, Product fields and Load button are visible...");
+  console.log(
+    "Verifying Release, Phase, Product fields and Load button are visible...",
+  );
   await queryPage.verifyBasicTabFieldsVisible();
   await captureStepScreenshot(page, testInfo, "02_basic_fields_visible");
 
-  console.log("Clicking Release control and verifying TomSelect dropdown appears...");
-  await queryPage.clickControlAndVerifyDropdownAppears(QUERY_PAGE_LOCATORS.releaseControl);
+  console.log(
+    "Clicking Release control and verifying TomSelect dropdown appears...",
+  );
+  await queryPage.clickControlAndVerifyDropdownAppears(
+    QUERY_PAGE_LOCATORS.releaseControl,
+  );
   await captureStepScreenshot(page, testInfo, "03_release_dropdown_visible");
 
   console.log("Pressing Escape to close dropdown...");
   await page.keyboard.press("Escape");
 
-  console.log("Clicking Product control and verifying TomSelect dropdown appears...");
-  await queryPage.clickControlAndVerifyDropdownAppears(QUERY_PAGE_LOCATORS.productControl);
+  console.log(
+    "Clicking Product control and verifying TomSelect dropdown appears...",
+  );
+  await queryPage.clickControlAndVerifyDropdownAppears(
+    QUERY_PAGE_LOCATORS.productControl,
+  );
   await captureStepScreenshot(page, testInfo, "04_product_dropdown_visible");
 
   console.log("Pressing Escape to close dropdown...");
@@ -172,13 +209,15 @@ test("TC_QRY_004 - Verify clicking a hyperlinked Title opens test case list with
   console.log("Verifying test case detail columns are present...");
   for (const col of TC_DETAIL_COLUMNS) {
     await expect(
-      page.locator(`(//td | //th)[normalize-space()='${col}']`).first()
+      page.locator(`(//td | //th)[normalize-space()='${col}']`).first(),
     ).toBeVisible({ timeout: 5000 });
   }
   await captureStepScreenshot(page, testInfo, "04_tc_columns_verified");
 
   console.log("Checking Enable Filter checkbox is visible...");
-  await expect(page.locator(QUERY_PAGE_LOCATORS.enableFilterCheckbox)).toBeVisible();
+  await expect(
+    page.locator(QUERY_PAGE_LOCATORS.enableFilterCheckbox),
+  ).toBeVisible();
   await captureStepScreenshot(page, testInfo, "05_enable_filter_visible");
 
   console.log("Clicking Enable Filter checkbox...");

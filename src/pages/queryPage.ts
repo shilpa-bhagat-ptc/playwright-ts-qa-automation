@@ -15,7 +15,7 @@ export class QueryPage {
   async clickBasicTab() {
     const base =
       process.env.TEST_QALINK_BASE ||
-      "https://lqatms-test3.ptcnet.ptc.com/QALink";
+      "https://lqatms-test5.ptcnet.ptc.com/QALink";
     await this.page.goto(`${base}/jsp/query/basic.jsp`);
     await this.page.waitForLoadState("domcontentloaded");
     await this.page.waitForSelector(QUERY_PAGE_LOCATORS.releaseSelect, {
@@ -27,7 +27,7 @@ export class QueryPage {
   async clickUpdateTab() {
     const base =
       process.env.TEST_QALINK_BASE ||
-      "https://lqatms-test3.ptcnet.ptc.com/QALink";
+      "https://lqatms-test5.ptcnet.ptc.com/QALink";
     await this.page.goto(`${base}/jsp/query/update.jsp`);
     await this.page.waitForLoadState("domcontentloaded");
     await this.page.waitForSelector(QUERY_PAGE_LOCATORS.releaseSelect, {
@@ -44,7 +44,7 @@ export class QueryPage {
   async verifyQuerySubTabsVisible() {
     for (const tab of ["Basic", "Advanced", "Update"]) {
       await expect(
-        this.page.locator(`//a[normalize-space()='${tab}']`)
+        this.page.locator(`//a[normalize-space()='${tab}']`),
       ).toBeVisible({ timeout: 20000 });
     }
   }
@@ -60,25 +60,29 @@ export class QueryPage {
 
   async verifyBasicTabFieldsVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.releaseControl)
+      this.page.locator(QUERY_PAGE_LOCATORS.releaseControl),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.phaseSelect)
+      this.page.locator(QUERY_PAGE_LOCATORS.phaseSelect),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.productControl)
+      this.page.locator(QUERY_PAGE_LOCATORS.productControl),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.loadButton)
+      this.page.locator(QUERY_PAGE_LOCATORS.loadButton),
     ).toBeVisible();
   }
 
   async selectRelease(release: string) {
     const value = await this.page.evaluate((relLabel: string) => {
-      const sel = document.querySelector("select#release") as HTMLSelectElement & {
+      const sel = document.querySelector(
+        "select#release",
+      ) as HTMLSelectElement & {
         tomselect?: { setValue: (v: string) => void };
       };
-      const opt = Array.from(sel?.options ?? []).find((o) => o.text === relLabel);
+      const opt = Array.from(sel?.options ?? []).find(
+        (o) => o.text === relLabel,
+      );
       if (!opt) return null;
 
       if (sel.tomselect) {
@@ -90,7 +94,7 @@ export class QueryPage {
         if (typeof (window as any).TomSelect === "undefined") {
           (window as any).TomSelect = function (
             this: any,
-            element: HTMLSelectElement
+            element: HTMLSelectElement,
           ) {
             element.tomselect = this;
             this.clearOptions = () => {};
@@ -118,7 +122,9 @@ export class QueryPage {
       // update.jsp auto-fills all phases via genPhase; trim to 2 so validate()
       // passes (requires length > 1) and the server query stays fast
       await this.page.evaluate(() => {
-        const rightBox = document.querySelector("select[name='release_phase']") as HTMLSelectElement;
+        const rightBox = document.querySelector(
+          "select[name='release_phase']",
+        ) as HTMLSelectElement;
         if (rightBox) rightBox.length = 2;
       });
       return;
@@ -154,23 +160,23 @@ export class QueryPage {
 
   async verifyDocumentListVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.documentListHeading)
+      this.page.locator(QUERY_PAGE_LOCATORS.documentListHeading),
     ).toBeVisible({ timeout: 20000 });
   }
 
   async verifyDocumentListSearchBarVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.searchByProjectInput)
+      this.page.locator(QUERY_PAGE_LOCATORS.searchByProjectInput),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.searchButton)
+      this.page.locator(QUERY_PAGE_LOCATORS.searchButton),
     ).toBeVisible();
   }
 
   async verifyDocumentTableColumnsPresent(expectedColumns: string[]) {
     for (const col of expectedColumns) {
       await expect(
-        this.page.locator(`(//td | //th)[normalize-space()='${col}']`).first()
+        this.page.locator(`(//td | //th)[normalize-space()='${col}']`).first(),
       ).toBeVisible({ timeout: 5000 });
     }
   }
@@ -181,12 +187,14 @@ export class QueryPage {
   }
 
   async clickFirstDocumentTitle() {
-    const link = this.page.locator(QUERY_PAGE_LOCATORS.documentTitleLinks).first();
+    const link = this.page
+      .locator(QUERY_PAGE_LOCATORS.documentTitleLinks)
+      .first();
     const href = await link.getAttribute("href");
     if (href) {
       const base =
         process.env.TEST_QALINK_BASE ||
-        "https://lqatms-test3.ptcnet.ptc.com/QALink";
+        "https://lqatms-test5.ptcnet.ptc.com/QALink";
       const url = href.startsWith("http")
         ? href
         : `${base}/jsp/query/${href.replace(/^\.\//, "")}`;
@@ -199,14 +207,16 @@ export class QueryPage {
 
   async verifyTestCaseDetailTableVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.testCaseDetailTable)
+      this.page.locator(QUERY_PAGE_LOCATORS.testCaseDetailTable),
     ).toBeVisible({ timeout: 15000 });
   }
 
   async toggleEnableFilter() {
     // The onclick handler uses getElementById(name) — ensure id matches name first
     await this.page.evaluate(() => {
-      const cb = document.querySelector("input[name='chk_othertask']") as HTMLInputElement | null;
+      const cb = document.querySelector(
+        "input[name='chk_othertask']",
+      ) as HTMLInputElement | null;
       if (cb && !cb.id) cb.id = cb.name;
     });
     await this.page.locator(QUERY_PAGE_LOCATORS.enableFilterCheckbox).check();
@@ -222,31 +232,31 @@ export class QueryPage {
 
   async verifyUpdateTabFieldsVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.releaseControl)
+      this.page.locator(QUERY_PAGE_LOCATORS.releaseControl),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.productControl)
+      this.page.locator(QUERY_PAGE_LOCATORS.productControl),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.componentControl)
+      this.page.locator(QUERY_PAGE_LOCATORS.componentControl),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.componentAddArrow)
+      this.page.locator(QUERY_PAGE_LOCATORS.componentAddArrow),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.componentRemoveArrow)
+      this.page.locator(QUERY_PAGE_LOCATORS.componentRemoveArrow),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.phaseSelect)
+      this.page.locator(QUERY_PAGE_LOCATORS.phaseSelect),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.phaseAddArrow)
+      this.page.locator(QUERY_PAGE_LOCATORS.phaseAddArrow),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.phaseRemoveArrow)
+      this.page.locator(QUERY_PAGE_LOCATORS.phaseRemoveArrow),
     ).toBeVisible();
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.loadButton)
+      this.page.locator(QUERY_PAGE_LOCATORS.loadButton),
     ).toBeVisible();
   }
 
@@ -271,36 +281,42 @@ export class QueryPage {
 
   async verifyQueryListVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.queryListHeading)
+      this.page.locator(QUERY_PAGE_LOCATORS.queryListHeading),
     ).toBeVisible({ timeout: 20000 });
   }
 
   async verifyQueryListColumnsPresent(expectedColumns: string[]) {
     for (const col of expectedColumns) {
       await expect(
-        this.page.locator(
-          `//table[.//*[normalize-space()='Title'] and .//*[normalize-space()='Duplicate']]//*[self::th or self::td][normalize-space()='${col}']`
-        ).first()
+        this.page
+          .locator(
+            `//table[.//*[normalize-space()='Title'] and .//*[normalize-space()='Duplicate']]//*[self::th or self::td][normalize-space()='${col}']`,
+          )
+          .first(),
       ).toBeVisible();
     }
   }
 
   async verifyQueryListTitleLinksPresent() {
     expect(
-      await this.page.locator(QUERY_PAGE_LOCATORS.queryListTitleLinks).count()
+      await this.page.locator(QUERY_PAGE_LOCATORS.queryListTitleLinks).count(),
     ).toBeGreaterThan(0);
   }
 
   async verifyQueryListReviewLinksPresent() {
     expect(
-      await this.page.locator(QUERY_PAGE_LOCATORS.queryListReviewLinks).count()
+      await this.page.locator(QUERY_PAGE_LOCATORS.queryListReviewLinks).count(),
     ).toBeGreaterThan(0);
   }
 
   async verifyQueryListDuplicateLinksPresent() {
-    const count = await this.page.locator(QUERY_PAGE_LOCATORS.queryListDuplicateLinks).count();
+    const count = await this.page
+      .locator(QUERY_PAGE_LOCATORS.queryListDuplicateLinks)
+      .count();
     if (count === 0) {
-      console.log("No Duplicate links present — documents may already be duplicated to all targets");
+      console.log(
+        "No Duplicate links present — documents may already be duplicated to all targets",
+      );
     } else {
       expect(count).toBeGreaterThan(0);
     }
@@ -308,7 +324,7 @@ export class QueryPage {
 
   async verifyUpdateButtonVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.updateButton)
+      this.page.locator(QUERY_PAGE_LOCATORS.updateButton),
     ).toBeVisible();
   }
 
@@ -323,16 +339,20 @@ export class QueryPage {
   async clickEditLinkInReviewPage() {
     const [popup] = await Promise.all([
       this.page.context().waitForEvent("page"),
-      this.page.locator(QUERY_PAGE_LOCATORS.reviewPageEditLinks).first().click(),
+      this.page
+        .locator(QUERY_PAGE_LOCATORS.reviewPageEditLinks)
+        .first()
+        .click(),
     ]);
     await popup.waitForLoadState("domcontentloaded");
     this.popupPage = popup;
   }
 
   async verifyTcUpdateOverlayVisible() {
-    if (!this.popupPage) throw new Error("No popup page — call clickEditLinkInReviewPage first");
+    if (!this.popupPage)
+      throw new Error("No popup page — call clickEditLinkInReviewPage first");
     await expect(
-      this.popupPage.locator(QUERY_PAGE_LOCATORS.tcUpdateOverlayTitle)
+      this.popupPage.locator(QUERY_PAGE_LOCATORS.tcUpdateOverlayTitle),
     ).toBeVisible({ timeout: 10000 });
   }
 
@@ -344,7 +364,7 @@ export class QueryPage {
 
   async verifySaveAllButtonVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.saveAllButton).first()
+      this.page.locator(QUERY_PAGE_LOCATORS.saveAllButton).first(),
     ).toBeVisible();
   }
 
@@ -360,7 +380,7 @@ export class QueryPage {
 
   async verifyUpdateListVisible() {
     await expect(
-      this.page.locator(QUERY_PAGE_LOCATORS.updateListHeading)
+      this.page.locator(QUERY_PAGE_LOCATORS.updateListHeading),
     ).toBeVisible({ timeout: 20000 });
   }
 
@@ -371,7 +391,7 @@ export class QueryPage {
     await expect(dropdown).toBeVisible();
     for (const opt of expectedOptions) {
       await expect(
-        dropdown.locator(`option:has-text("${opt}")`)
+        dropdown.locator(`option:has-text("${opt}")`),
       ).toBeAttached();
     }
   }
@@ -379,59 +399,75 @@ export class QueryPage {
   async clickDuplicateLink() {
     const [popup] = await Promise.all([
       this.page.context().waitForEvent("page"),
-      this.page.locator(QUERY_PAGE_LOCATORS.queryListDuplicateLinks).first().click(),
+      this.page
+        .locator(QUERY_PAGE_LOCATORS.queryListDuplicateLinks)
+        .first()
+        .click(),
     ]);
     await popup.waitForLoadState("domcontentloaded");
     this.duplicatePopupPage = popup;
   }
 
   async verifyDuplicateOverlayVisible() {
-    if (!this.duplicatePopupPage) throw new Error("No duplicate popup — call clickDuplicateLink first");
+    if (!this.duplicatePopupPage)
+      throw new Error("No duplicate popup — call clickDuplicateLink first");
     await expect(
-      this.duplicatePopupPage.locator(QUERY_PAGE_LOCATORS.duplicateOverlayTitle)
+      this.duplicatePopupPage.locator(
+        QUERY_PAGE_LOCATORS.duplicateOverlayTitle,
+      ),
     ).toBeVisible({ timeout: 10000 });
   }
 
   async verifyDuplicateOverlayFieldsVisible() {
-    if (!this.duplicatePopupPage) throw new Error("No duplicate popup — call clickDuplicateLink first");
+    if (!this.duplicatePopupPage)
+      throw new Error("No duplicate popup — call clickDuplicateLink first");
     await expect(
-      this.duplicatePopupPage.locator(QUERY_PAGE_LOCATORS.duplicateTargetRelease)
+      this.duplicatePopupPage.locator(
+        QUERY_PAGE_LOCATORS.duplicateTargetRelease,
+      ),
     ).toBeVisible();
     await expect(
-      this.duplicatePopupPage.locator(QUERY_PAGE_LOCATORS.duplicateTargetPhase)
+      this.duplicatePopupPage.locator(QUERY_PAGE_LOCATORS.duplicateTargetPhase),
     ).toBeVisible();
     await expect(
-      this.duplicatePopupPage.locator(QUERY_PAGE_LOCATORS.duplicateConfirmButton)
+      this.duplicatePopupPage.locator(
+        QUERY_PAGE_LOCATORS.duplicateConfirmButton,
+      ),
     ).toBeVisible();
   }
 
   async selectDuplicateTargetRelease(release: string) {
-    if (!this.duplicatePopupPage) throw new Error("No duplicate popup — call clickDuplicateLink first");
+    if (!this.duplicatePopupPage)
+      throw new Error("No duplicate popup — call clickDuplicateLink first");
     await this.duplicatePopupPage
       .locator(QUERY_PAGE_LOCATORS.duplicateTargetRelease)
       .selectOption({ label: release });
   }
 
   async selectDuplicateTargetPhase(phase: string) {
-    if (!this.duplicatePopupPage) throw new Error("No duplicate popup — call clickDuplicateLink first");
+    if (!this.duplicatePopupPage)
+      throw new Error("No duplicate popup — call clickDuplicateLink first");
     await this.duplicatePopupPage
       .locator(QUERY_PAGE_LOCATORS.duplicateTargetPhase)
       .selectOption({ label: phase });
   }
 
   async clickDuplicateConfirm() {
-    if (!this.duplicatePopupPage) throw new Error("No duplicate popup — call clickDuplicateLink first");
+    if (!this.duplicatePopupPage)
+      throw new Error("No duplicate popup — call clickDuplicateLink first");
     await this.duplicatePopupPage
       .locator(QUERY_PAGE_LOCATORS.duplicateConfirmButton)
       .click();
-    await this.duplicatePopupPage.waitForEvent("close", { timeout: 10000 }).catch(() => {});
+    await this.duplicatePopupPage
+      .waitForEvent("close", { timeout: 10000 })
+      .catch(() => {});
     this.duplicatePopupPage = null;
   }
 
   async areSubOptionsVisible(subOptions: string[]) {
     for (const option of subOptions) {
       await expect(
-        this.page.locator(`//a[normalize-space(text())='${option}']`)
+        this.page.locator(`//a[normalize-space(text())='${option}']`),
       ).toBeVisible();
     }
   }

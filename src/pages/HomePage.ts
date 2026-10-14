@@ -15,14 +15,14 @@ export class HomePage {
 
   async verifyWeeklyNoteTabVisible() {
     await expect(
-      this.page.locator(HOME_PAGE_LOCATORS.weeklyNoteText)
+      this.page.locator(HOME_PAGE_LOCATORS.weeklyNoteText),
     ).toBeVisible({ timeout: 10000 });
   }
 
   async openCalendar() {
     await this.page.locator(HOME_PAGE_LOCATORS.clickOnCalendar).click();
     await expect(
-      this.page.locator(HOME_PAGE_LOCATORS.clickOnCalendar)
+      this.page.locator(HOME_PAGE_LOCATORS.clickOnCalendar),
     ).toBeVisible();
   }
 
@@ -32,14 +32,20 @@ export class HomePage {
   }
 
   async selectDateFromCalendar(day: string) {
-    console.log(`Setting calendar date via jQuery datepicker API for day: ${day}`);
+    console.log(
+      `Setting calendar date via jQuery datepicker API for day: ${day}`,
+    );
     const set = await this.page.evaluate((dayStr: string) => {
       const $ = (window as any).$;
       if (!$) return "no-jquery";
       const $input = $('input[name="StartDate"]');
       if (!$input.length) return "no-input";
       const current = $input.datepicker("getDate") || new Date();
-      const target = new Date(current.getFullYear(), current.getMonth(), parseInt(dayStr, 10));
+      const target = new Date(
+        current.getFullYear(),
+        current.getMonth(),
+        parseInt(dayStr, 10),
+      );
       $input.datepicker("setDate", target);
       return "ok";
     }, day);
@@ -66,7 +72,7 @@ export class HomePage {
 
   async verifyDateIsSet(expectedDate: string) {
     await expect(this.page.locator(HOME_PAGE_LOCATORS.startDate)).toHaveValue(
-      expectedDate
+      expectedDate,
     );
   }
 
@@ -79,13 +85,17 @@ export class HomePage {
 
   private async selectOptionWithFallback(selector: string, label: string) {
     await this.page.waitForSelector(selector);
-    const optionSelector = selector.startsWith('//') ? `${selector}//option` : `${selector} option`;
+    const optionSelector = selector.startsWith("//")
+      ? `${selector}//option`
+      : `${selector} option`;
     const options = await this.page.locator(optionSelector).allTextContents();
     const match = options.find((o) => o.trim() === label);
     if (match) {
       await this.page.selectOption(selector, { label });
     } else {
-      console.log(`"${label}" not in dropdown. Available: ${options.join(", ")}. Selecting first available.`);
+      console.log(
+        `"${label}" not in dropdown. Available: ${options.join(", ")}. Selecting first available.`,
+      );
       const firstNonEmpty = options.findIndex((o) => o.trim() !== "");
       if (firstNonEmpty >= 0) {
         await this.page.selectOption(selector, { index: firstNonEmpty });
@@ -94,16 +104,22 @@ export class HomePage {
   }
 
   async selectReleaseOption(releaseLabel: string) {
-    await this.selectOptionWithFallback(HOME_PAGE_LOCATORS.selectRelease, releaseLabel);
+    await this.selectOptionWithFallback(
+      HOME_PAGE_LOCATORS.selectRelease,
+      releaseLabel,
+    );
   }
 
   async selectProjectManager(managerLabel: string) {
-    await this.selectOptionWithFallback(HOME_PAGE_LOCATORS.selectManager, managerLabel);
+    await this.selectOptionWithFallback(
+      HOME_PAGE_LOCATORS.selectManager,
+      managerLabel,
+    );
   }
 
   async verifyWeeklyNoteButtonVisible() {
     await expect(
-      this.page.locator(HOME_PAGE_LOCATORS.weeklyNoteButton)
+      this.page.locator(HOME_PAGE_LOCATORS.weeklyNoteButton),
     ).toBeVisible();
   }
 
@@ -115,7 +131,7 @@ export class HomePage {
     console.log("Setting 'From' date...");
     await this.page.evaluate((date) => {
       const input = document.querySelector<HTMLInputElement>(
-        'input[name="period_from"]'
+        'input[name="period_from"]',
       );
       if (input) {
         input.value = "";
@@ -127,7 +143,7 @@ export class HomePage {
     console.log("Setting 'To' date...");
     await this.page.evaluate((date) => {
       const input = document.querySelector<HTMLInputElement>(
-        'input[name="period_to"]'
+        'input[name="period_to"]',
       );
       if (input) {
         input.value = "";
@@ -152,7 +168,7 @@ export class HomePage {
   async waitForDashboardData() {
     await this.page.waitForSelector(
       HOME_PAGE_LOCATORS.productionDashboardTableRow,
-      { timeout: 10000 }
+      { timeout: 10000 },
     );
   }
 
@@ -172,7 +188,7 @@ export class HomePage {
   async selectDropdownValueById(
     prefix: string,
     rowId: string,
-    valueToSelect: string
+    valueToSelect: string,
   ) {
     const dropdownId = `${prefix}${rowId}`;
     const dropdown = this.page.locator(`select#${dropdownId}`);
@@ -188,7 +204,7 @@ export class HomePage {
 
   async toggleEnableFilterCheckbox(enable: boolean) {
     const checkbox = this.page.locator(
-      '//input[@id="prod_dashboard_table_filter"]'
+      '//input[@id="prod_dashboard_table_filter"]',
     );
 
     await checkbox.waitFor({ state: "visible", timeout: 5000 });
@@ -254,7 +270,7 @@ export class HomePage {
     await this.page.locator('input[name="StartDate"]').click();
 
     const dateCell = this.page.locator(
-      `//td[contains(@class, 'day') and text()="${parseInt(day)}"]`
+      `//td[contains(@class, 'day') and text()="${parseInt(day)}"]`,
     );
     await expect(dateCell).toBeVisible({ timeout: 5000 });
 
@@ -264,7 +280,7 @@ export class HomePage {
   async navigateToInstallationTips() {
     const base =
       process.env.TEST_QALINK_BASE ||
-      "https://lqatms-test3.ptcnet.ptc.com/QALink";
+      "https://lqatms-test5.ptcnet.ptc.com/QALink";
     const url = `${base}/jsp/home/tips?action=list&category=Installation%20Tips&category_id=2`;
     try {
       await this.page.goto(url, { waitUntil: "load" });
@@ -282,7 +298,7 @@ export class HomePage {
   async goToTipsSection() {
     const link = this.page.locator("a", { hasText: "Installation Tips" });
     await link.waitFor({ state: "visible" });
-    const href = await link.getAttribute("href") ?? "";
+    const href = (await link.getAttribute("href")) ?? "";
     const url = href.startsWith("http")
       ? href
       : new URL(href, this.page.url()).toString();
