@@ -9,7 +9,7 @@
  *   npx ts-node tools/mcpLocatorExtractor.ts --url <page-url> --output <locator-file-name>
  *
  * Example:
- *   npx ts-node tools/mcpLocatorExtractor.ts --url "https://lqatms-test3.ptcnet.ptc.com/QALink/jsp/home/" --output homePage
+ *   npx ts-node tools/mcpLocatorExtractor.ts --url "https://lqatms-test5.ptcnet.ptc.com/QALink/jsp/home/" --output homePage
  */
 
 import { chromium, Page } from "@playwright/test";

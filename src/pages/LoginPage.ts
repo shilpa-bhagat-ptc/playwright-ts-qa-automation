@@ -11,7 +11,7 @@ export class LoginPage {
     await this.page.goto(
       process.env.TEST_QALINK_BASE
         ? `${process.env.TEST_QALINK_BASE}/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?`
-        : "https://lqatms-test3.ptcnet.ptc.com/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?",
+        : "https://lqatms-test5.ptcnet.ptc.com/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?",
     );
     await this.page.waitForTimeout(6000);
   }
@@ -20,12 +20,12 @@ export class LoginPage {
     console.log("Logging in with test credentials...");
     await this.page.fill(
       LOGIN_PAGE_LOCATORS.usernameInput,
-      testData.validUser.username
+      testData.validUser.username,
     );
     await this.page.waitForTimeout(6000);
     await this.page.fill(
       LOGIN_PAGE_LOCATORS.passwordInput,
-      testData.validUser.password
+      testData.validUser.password,
     );
     await this.page.waitForTimeout(6000);
     await this.page.click(LOGIN_PAGE_LOCATORS.loginButton);

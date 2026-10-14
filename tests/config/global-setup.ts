@@ -4,7 +4,7 @@ import path from "path";
 import { formatXml } from "../../tools/formatJUnitReport";
 
 const LOGIN_URL =
-  "https://lqatms-test3.ptcnet.ptc.com/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?";
+  "https://lqatms-test5.ptcnet.ptc.com/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?";
 
 const MAX_RETRIES = 3;
 const GOTO_TIMEOUT_MS = 60_000;
