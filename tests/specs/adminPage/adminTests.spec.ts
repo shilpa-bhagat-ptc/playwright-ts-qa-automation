@@ -4,6 +4,8 @@ import { captureStepScreenshot } from "../../../src/utils/screenshotHelper";
 import { TestDataGenerator } from "../../../src/utils/testDataGenerator";
 import { expect, test } from "../../fixtures/fixture";
 
+const ADMIN_URL = `${process.env.TEST_QALINK_BASE || "https://lqatms-test5.ptcnet.ptc.com/QALink"}/jsp/admin/`;
+
 // Helper: click a button and handle a JS alert dialog if one fires, otherwise
 // return the current page text so the caller can check for inline error messages.
 async function clickAndHandleDialog(
@@ -274,10 +276,12 @@ test("TC_ADM_005 - Verify Functionality of Add, Edit, and Delete Buttons in User
   console.log(
     "Step 3: Navigating back to users page to test Edit/Delete without selection...",
   );
-  await page.goBack();
+  // goBack() into the POSTed list page throws net::ERR_CACHE_MISS on HTTPS; reload via the tab instead.
+  await page.goto(ADMIN_URL);
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
+  await adminPage.clickUsersTab();
   await adminPage.selectUsersOffice(commonProperties.admin.office);
   await adminPage.clickShowPage();
   await captureStepScreenshot(page, testInfo, "04_back_to_users");
@@ -295,14 +299,11 @@ test("TC_ADM_005 - Verify Functionality of Add, Edit, and Delete Buttons in User
   console.log(
     "Step 5: Reloading list and clicking Delete without selection — expecting error...",
   );
-  await page.goBack().catch(() => {});
+  await page.goto(ADMIN_URL);
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
-  const isAdminPage = page.url().includes("admin");
-  if (!isAdminPage) {
-    await adminPage.clickUsersTab();
-  }
+  await adminPage.clickUsersTab();
   await adminPage.selectUsersOffice(commonProperties.admin.office);
   await adminPage.clickShowPage();
 
@@ -645,9 +646,7 @@ test("TC_ADM_011 - Verify Functionality of Add, Edit, and Delete Buttons in Conf
 
 
   console.log("Step 3: Navigating to Configurations results and testing Edit without selection...");
-  const adminBase = process.env.TEST_QALINK_BASE || "http://lqatms-test5.ptcnet.ptc.com:8080/QALink";
-
-  await page.goto(`${adminBase}/jsp/admin/`);
+  await page.goto(ADMIN_URL);
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
@@ -668,7 +667,7 @@ test("TC_ADM_011 - Verify Functionality of Add, Edit, and Delete Buttons in Conf
   console.log(
     'Step 4: Testing Delete without selection — expecting "You didn\'t choose any config to delete."',
   );
-  await page.goto(`${adminBase}/jsp/admin/`);
+  await page.goto(ADMIN_URL);
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
@@ -926,10 +925,12 @@ test("TC_ADM_016 - Verify Add, Edit, and Delete buttons under the Platform tab",
   console.log(
     'Step 3: Back to platforms and asserting Edit-without-selection shows "You didn\'t choose any platform."',
   );
-  await page.goBack();
+  // goBack() into the POSTed list page throws net::ERR_CACHE_MISS on HTTPS; reload via the tab instead.
+  await page.goto(ADMIN_URL);
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
+  await adminPage.clickPlatformsTab();
   await adminPage.selectPlatformRelease(0);
   await adminPage.clickShowPage();
   await expectMissingSelectionError(
@@ -942,10 +943,11 @@ test("TC_ADM_016 - Verify Add, Edit, and Delete buttons under the Platform tab",
   console.log(
     'Step 4: Testing Delete without selection — expecting "You didn\'t choose any platform."',
   );
-  await page.goBack().catch(() => {});
+  await page.goto(ADMIN_URL);
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
+  await adminPage.clickPlatformsTab();
   await adminPage.selectPlatformRelease(0);
   await adminPage.clickShowPage();
   await expectMissingSelectionError(
