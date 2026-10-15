@@ -82,7 +82,10 @@ test("TC_HOM_003 - Verify Weekly Note Functionality", async ({
   const selectedDateValue = await page.inputValue(
     HOME_PAGE_LOCATORS.clickOnCalendar
   );
-  expect(selectedDateValue).toBe(commonProperties.dateFormat.fulldate);
+  // Calendar opens on the current month, so build the expected MM/DD/YYYY from today.
+  const today = new Date();
+  const expectedDate = `${String(today.getMonth() + 1).padStart(2, "0")}/${commonProperties.dateFormat.date.padStart(2, "0")}/${today.getFullYear()}`;
+  expect(selectedDateValue).toBe(expectedDate);
 
   console.log(" Clicking Weekly Note button and waiting for data...");
   await homePage.clickWeeklyNoteButtonAndWait();
