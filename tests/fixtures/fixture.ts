@@ -9,7 +9,9 @@ import { QueryPage } from "../../src/pages/queryPage";
 import { ReportPage } from "../../src/pages/reportPage";
 import { UserPage } from "../../src/pages/userPage";
 
-const BASE = "https://lqatms-test5.ptcnet.ptc.com/QALink";
+// Jenkins passes QALINK_SERVER_URL through as TEST_QALINK_BASE.
+const BASE =
+  process.env.TEST_QALINK_BASE || "https://lqatms-test5.ptcnet.ptc.com/QALink";
 
 // Navigates to targetUrl, re-authenticates if the server session has expired.
 // Detects two cases: (1) redirect to login.jsp, (2) app serves degraded content

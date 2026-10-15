@@ -3,8 +3,9 @@ import { chromium, FullConfig } from "@playwright/test";
 import path from "path";
 import { formatXml } from "../../tools/formatJUnitReport";
 
-const LOGIN_URL =
-  "https://lqatms-test5.ptcnet.ptc.com/QALink/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?";
+const QALINK_BASE =
+  process.env.TEST_QALINK_BASE || "https://lqatms-test5.ptcnet.ptc.com/QALink";
+const LOGIN_URL = `${QALINK_BASE}/jsp/home/login.jsp?page_url=/jsp/home/index.jsp?`;
 
 const MAX_RETRIES = 3;
 const GOTO_TIMEOUT_MS = 60_000;

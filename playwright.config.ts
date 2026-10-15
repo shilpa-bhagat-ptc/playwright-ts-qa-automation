@@ -9,7 +9,8 @@ const hectorBaseOptions = {
   serverUrl: "https://hector.ptcnet.ptc.com/Hector",
   packageId: "demo-package",
   pipelineBuild: 1,
-  developmentBuild: 19,
+  // Jenkins passes HECTOR_BUILD_NUMBER; falls back to the last manually bumped value.
+  developmentBuild: Number(process.env.HECTOR_BUILD_NUMBER) || 19,
   logLevel: "verbose",
   outputDir: "reports/test-results",
   includeProjectInTestName: true,
