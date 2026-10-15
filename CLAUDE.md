@@ -44,7 +44,7 @@ Posttest hook runs `tools/formatJUnitReport.ts` automatically via `npm test`; if
 
 Do not add login steps inside individual tests. The only exception is invalid-login tests, which instantiate `new LoginPage(page)` directly.
 
-The base URL is hardcoded in [tests/fixtures/fixture.ts:12](tests/fixtures/fixture.ts#L12): `https://lqatms-test5.ptcnet.ptc.com/QALink`. Each fixture supports a per-page env override (`TEST_HOME_URL`, `TEST_PLANNING_URL`, etc.).
+The base URL comes from `TEST_QALINK_BASE` (default `https://lqatms-test5.ptcnet.ptc.com/QALink`), read in [tests/fixtures/fixture.ts](tests/fixtures/fixture.ts), [tests/config/global-setup.ts](tests/config/global-setup.ts) and the POMs. Jenkins sets it from the `QALINK_SERVER_URL` job parameter. Each fixture supports a per-page env override (`TEST_HOME_URL`, `TEST_PLANNING_URL`, etc.).
 
 ### Fixtures auto-navigate
 
@@ -52,7 +52,7 @@ Importing the `homePage` / `planningPage` / `executionPage` / `queryPage` / `rep
 
 ### Reporting
 
-`reporter` in [playwright.config.ts](playwright.config.ts) emits four channels: list, JUnit (`reports/test-results/results.xml`), HTML (`reports/html-report/`, never auto-opens), and `@ptc-fusion/playwright-hector-reporter` which uploads per-test results live to Hector at `https://hector.ptcnet.ptc.com/Hector`. The `testCategory` passed to Hector is the `TEST_PROJECT` env var; `developmentBuild` is bumped per branch (currently 15 on `shilpa-003`). Build-level Hector push is done by a separate Jenkins job `Post-Hector-Results_QALink`.
+`reporter` in [playwright.config.ts](playwright.config.ts) emits four channels: list, JUnit (`reports/test-results/results.xml`), HTML (`reports/html-report/`, never auto-opens), and `@ptc-fusion/playwright-hector-reporter` which uploads per-test results live to Hector at `https://hector.ptcnet.ptc.com/Hector`. The `testCategory` passed to Hector is the `TEST_PROJECT` env var; `developmentBuild` comes from the `HECTOR_BUILD_NUMBER` env var (Jenkins job parameter of the same name; default 19). Build-level Hector push is done by a separate Jenkins job `Post-Hector-Results_QALink`.
 
 ### Jenkins
 

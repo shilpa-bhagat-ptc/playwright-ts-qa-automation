@@ -16,6 +16,16 @@ pipeline {
       ],
       description: 'Select which Playwright test project to run, or ALL to run every suite sequentially'
     )
+    string(
+      name: 'QALINK_SERVER_URL',
+      defaultValue: 'https://lqatms-test5.ptcnet.ptc.com/QALink',
+      description: 'QALink base URL under test (up to and including /QALink, no trailing slash)'
+    )
+    string(
+      name: 'HECTOR_BUILD_NUMBER',
+      defaultValue: '19',
+      description: 'Hector developmentBuild number the results are published under'
+    )
   }
 
   stages {
@@ -44,17 +54,29 @@ pipeline {
             'executionPageTests'
           ] : [params.TEST_PROJECT]
 
+          def serverUrl = params.QALINK_SERVER_URL.trim().replaceAll('/+$', '')
+          if (!(serverUrl ==~ /^https?:\/\/.+/)) {
+            error "QALINK_SERVER_URL must start with http:// or https:// (got '${params.QALINK_SERVER_URL}')"
+          }
+          def hectorBuild = params.HECTOR_BUILD_NUMBER.trim()
+          if (!(hectorBuild ==~ /^\d+$/)) {
+            error "HECTOR_BUILD_NUMBER must be a whole number (got '${params.HECTOR_BUILD_NUMBER}')"
+          }
+          echo "QALink server: ${serverUrl} | Hector developmentBuild: ${hectorBuild}"
+
           def results = [:]
 
-          for (suite in suites) {
-            stage("Suite: ${suite}") {
-              try {
-                bat "set TEST_PROJECT=${suite}\nnpx playwright test"
-                results[suite] = 'PASSED'
-              } catch (err) {
-                results[suite] = 'FAILED'
-                currentBuild.result = 'FAILURE'
-                echo "Suite ${suite} FAILED: ${err.getMessage()} — pipeline will continue with next suite."
+          withEnv(["TEST_QALINK_BASE=${serverUrl}", "HECTOR_BUILD_NUMBER=${hectorBuild}"]) {
+            for (suite in suites) {
+              stage("Suite: ${suite}") {
+                try {
+                  bat "set TEST_PROJECT=${suite}\nnpx playwright test"
+                  results[suite] = 'PASSED'
+                } catch (err) {
+                  results[suite] = 'FAILED'
+                  currentBuild.result = 'FAILURE'
+                  echo "Suite ${suite} FAILED: ${err.getMessage()} — pipeline will continue with next suite."
+                }
               }
             }
           }
