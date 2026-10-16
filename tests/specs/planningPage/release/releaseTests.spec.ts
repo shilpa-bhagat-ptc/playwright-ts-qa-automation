@@ -114,10 +114,13 @@ test("TC_PLAN003- Verify all Planning tab sub-options are present and visible", 
   // Manual case 2 implies sub-options should be visible/correctly displayed.
   let releaseSubsFound = 0;
   for (const option of releaseSubOptions) {
+    // isVisible() ignores its timeout and returns immediately; sub-options render
+    // shortly after release selection, so actually wait for each one.
     const visible = await page
       .locator(`//a[normalize-space()='${option}']`)
       .first()
-      .isVisible({ timeout: 3000 })
+      .waitFor({ state: "visible", timeout: 3000 })
+      .then(() => true)
       .catch(() => false);
     console.log(`  Release sub-option "${option}": ${visible ? "✓" : "✗"}`);
     if (visible) releaseSubsFound++;
