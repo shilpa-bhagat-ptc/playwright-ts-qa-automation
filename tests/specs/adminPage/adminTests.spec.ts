@@ -1556,7 +1556,9 @@ test("TC_ADM_026 - Verify Add, Edit, and Delete buttons under the App Type tab",
   console.log(
     "Step 5: Filling Add form (name + Enable radio) and submitting...",
   );
-  const uniqueName = `QA_AppType_${Date.now()}`;
+  // Keep the name short: the server errors out on long App Type names
+  // (24 chars fails, 13 chars works).
+  const uniqueName = `QA_AT_${Date.now().toString().slice(-6)}`;
   const firstTextInput = page
     .locator("input[type='text']:visible, input:not([type]):visible")
     .first();
@@ -1571,13 +1573,23 @@ test("TC_ADM_026 - Verify Add, Edit, and Delete buttons under the App Type tab",
   await page
     .waitForLoadState("networkidle", { timeout: 30000 })
     .catch(() => {});
+  // Add lands on a confirmation page, not the list.
+  await expect(
+    page.getByText(`App type ${uniqueName} is added`),
+  ).toBeVisible({ timeout: 15000 });
+  await page.locator(ADMIN_PAGE_LOCATORS.goBackToAppTypeLink).click();
+  await page
+    .waitForLoadState("networkidle", { timeout: 30000 })
+    .catch(() => {});
   await ensureListLoaded(page);
 
   console.log(
     `Step 6: Asserting new row "${uniqueName}" appears in the App Type list...`,
   );
+  // App Type table has no `list_table` class; match the innermost row whose
+  // own cell text equals the name (avoids matching outer layout-table rows).
   const newRow = page.locator(
-    `//table[contains(@class,'list_table')]//tr[.//*[contains(normalize-space(),"${uniqueName}")]]`,
+    `//tr[td[normalize-space()="${uniqueName}"]]`,
   );
   await expect(newRow).toBeVisible({ timeout: 15000 });
   await captureStepScreenshot(page, testInfo, "06_new_row_visible");
@@ -1609,9 +1621,18 @@ test("TC_ADM_026 - Verify Add, Edit, and Delete buttons under the App Type tab",
   await captureStepScreenshot(page, testInfo, "07_after_delete");
 
   console.log(
-    `Step 8: Asserting row "${uniqueName}" is no longer in the App Type list...`,
+    `Step 8: Asserting row "${uniqueName}" is now Inactive in the App Type list...`,
   );
-  await expect(newRow).toHaveCount(0, { timeout: 15000 });
+  // Delete is a soft delete: the app type is set to Inactive, not removed.
+  await expect(
+    page.getByText(/App\s+type\s+status\s+is\s+set\s+to\s+Inactive/i),
+  ).toBeVisible({ timeout: 15000 });
+  await page.locator(ADMIN_PAGE_LOCATORS.goBackToAppTypeLink).click();
+  await page
+    .waitForLoadState("networkidle", { timeout: 30000 })
+    .catch(() => {});
+  await ensureListLoaded(page);
+  await expect(newRow).toContainText(/Inactive/i, { timeout: 15000 });
 
   console.log("TC_ADM_026 completed successfully.");
 });
