@@ -29,6 +29,7 @@ export const ADMIN_PAGE_LOCATORS = {
   showPageButton: "input[value='Show Page']",
   loadButton: "//input[@value='Load ...' or @value='Load']",
   syncButton: "input[value*='Sync']",
+  goBackToAppTypeLink: "//a[normalize-space()='Go back to App Type page']",
 
   // ── Common Controls ────────────────────────────────────────────────────
   activeOnlyCheckbox: "input[type='checkbox'][name='active_only']",
