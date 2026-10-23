@@ -43,15 +43,18 @@ async function ensureListLoaded(
 }
 
 // Hard-assert that clicking a CRUD button without a selection produces the
-// "You didn't choose any <entity>" warning — either as a JS dialog or as
-// inline page text. `entityWord` is a discriminating substring of the entity
-// name (e.g., "user", "office", "locale") used to confirm the message refers
-// to the correct list.
+// "You didn't choose any <entity>" warning — as a JS dialog, as inline page
+// text, or in a new tab (Release's Edit/Delete form has target="_blank").
+// `entityWord` is a discriminating substring of the entity name (e.g., "user",
+// "office", "locale") used to confirm the message refers to the correct list.
 async function expectMissingSelectionError(
   page: import("@playwright/test").Page,
   locator: import("@playwright/test").Locator,
   entityWord: string,
 ): Promise<void> {
+  const popupPromise = page
+    .waitForEvent("popup", { timeout: 4000 })
+    .catch(() => null);
   const msg = await clickAndHandleDialog(page, locator);
   if (msg !== null) {
     const lower = msg.toLowerCase();
@@ -63,13 +66,21 @@ async function expectMissingSelectionError(
     );
     return;
   }
-  const body = ((await page.locator("body").textContent()) ?? "").toLowerCase();
-  expect(body, `page body should contain "didn't choose"`).toMatch(
-    /(didn'?t|did not)\s+choose/i,
-  );
-  expect(body, `page body should mention "${entityWord}"`).toContain(
-    entityWord.toLowerCase(),
-  );
+  const popup = await popupPromise;
+  const target = popup ?? page;
+  try {
+    const body = target.locator("body");
+    await expect(body, `page body should contain "didn't choose"`).toContainText(
+      /(didn'?t|did not)\s+choose/i,
+      { timeout: 15000 },
+    );
+    await expect(
+      body,
+      `page body should mention "${entityWord}"`,
+    ).toContainText(new RegExp(entityWord, "i"));
+  } finally {
+    if (popup) await popup.close().catch(() => {});
+  }
 }
 
 // ── TC_ADM_001 ────────────────────────────────────────────────────────────────
